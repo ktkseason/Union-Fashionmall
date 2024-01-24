@@ -1,0 +1,79 @@
+// import fonts
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;600&family=Montserrat:wght@300;400;600&display=swap');
+
+// fonts
+$ff-title: 'Libre Bodoni', serif;
+$ff-body: 'Montserrat', sans-serif;
+
+// font sizes
+$fs-header: 2.8rem;
+$fs-title: 1.8rem;
+$fs-hightlight: 1.3rem;
+$fs-body: 1.2rem;
+$fs-sm: 1.1rem;
+
+// font weights
+$fw-light: 300;
+$fw-regular: 400;
+$fw-bold: 600;
+
+// colors
+// these three vary on light and dark theme
+$color-background: #f7f1f0;
+$color-text: #3a324a;
+$color-card: #d1d3ce;
+
+$color-primary: #2e151b;
+$color-secondary: #b99095;
+$color-tertiary: #81365c;
+
+// groups
+$button-colors: (
+    "primary": $color-primary,
+    "secondary": $color-secondary,
+    "text": $color-text
+);
+
+$shadows: (
+    "primary": 1px 2px 6px rgba(46, 21, 27, 0.2),
+    "secondary": 1px 2px 6px rgba(185, 144, 149, 0.2),
+    "text": 1px 2px 6px rgba(58, 50, 74, 0.2)
+);
+
+/*=========================================================*/
+
+// html setup
+@import 'html-setup';
+
+/*========================================================*/
+
+@mixin transition {
+    transition: all 0.5s ease-out;
+}
+
+/*=========================================================*/
+
+
+@mixin media-xl {
+    @media screen and (max-width: 1600px) {
+        @content;
+    }
+}
+
+@mixin media-lg {
+    @media screen and (max-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin media-md {
+    @media screen and (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin media-sm {
+    @media screen and (max-width: 425px) {
+        @content;
+    }
+}

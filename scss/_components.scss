@@ -1,0 +1,46 @@
+.btn {
+    outline: none;
+    font-family: $ff-body;
+    font-size: $fs-body;
+    font-weight: $fw-bold;
+    padding: 8px 18px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+
+    &-outline {
+        background: $color-background;
+
+        @each $key, $value in $button-colors {
+            &-#{$key} {
+                border-color: $value;
+                color: $value;
+                // box-shadow: map-get($shadows, $key);
+                @include transition;
+
+                &:hover {
+                    background-color: $value;
+                    color: $color-background;
+                }
+            }
+        }
+    }
+
+    @each $key, $value in $button-colors {
+        &-#{$key} {
+            border-color: $value;
+            background-color: $value;
+            color: $color-background;
+            @include transition;
+
+            &:hover {
+                background-color: $color-background;
+                border-color: $value;
+                color: $value;
+            }
+        }
+    }
+}
+
+/* =================== Cards ======================*/

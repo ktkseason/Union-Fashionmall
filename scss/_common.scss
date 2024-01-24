@@ -1,0 +1,49 @@
+.wrap {
+    min-height: 100vh;
+    position: relative;
+}
+
+.container {
+    position: relative;
+    padding: 4rem 2rem;
+}
+
+.logo {
+    width: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+}
+
+i {
+    padding: 0.8rem;
+    font-size: 1.6rem;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+        border-color: $color-primary;
+    }
+}
+
+
+@include media-md {
+    .container {
+        padding: 2.8rem 1.5rem;
+    }
+}
+
+@include media-sm {
+    .container {
+        padding: 2rem 1rem;
+    }
+}

@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: $color-background;
+    color: $color-text;
+    font-family: $ff-body;
+    font-size: $fs-body;
+    font-weight: $fw-regular;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: $color-text;
+    cursor: pointer;
+}
+
+h2,
+h3,
+h4 {
+    font-family: $ff-body;
+}
+
+h1 {
+    font-family: $ff-title;
+    font-size: $fs-header;
+    font-weight: $fw-regular;
+}
+
+h2 {
+    font-size: $fs-title;
+    font-weight: $fw-light;
+}
+
+h3 {
+    font-size: $fs-hightlight;
+    font-weight: $fw-bold;
+}
+
+h4 {
+    font-size: $fs-sm;
+    font-weight: $fw-bold;
+}
+
+hr {
+    position: relative;
+    width: 50vw;
+    margin: 3rem auto;
+    border-top: 1px dashed $color-primary;
+}
+
+::-webkit-scrollbar {
+    width: 0.4rem;
+    border-left: 1px solid $color-primary;
+    background: $color-background;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 100%;
+    background: $color-primary;
+    border-radius: 0.5rem;
+}
+
+::-webkit-input-placeholder {
+    font-family: $ff-body;
+    color: $color-text;
+    font-size: $fs-body;
+}
+
+/* will be useful for vertical scroll */
+::-webkit-scrollbar-thumb {
+    width: 20rem;
+    background: $color-primary;
+    border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 0;
+}

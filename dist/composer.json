@@ -1,0 +1,16 @@
+{
+    "name": "ktk/pogue",
+    "authors": [
+        {
+            "name": "Khin Thiri Kyaw",
+            "email": "khinthirikyaw.b@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Helpers": "_classes/Helpers",
+            "Libs": "_classes/Libs"
+        }
+    }
+}

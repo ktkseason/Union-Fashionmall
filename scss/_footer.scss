@@ -1,0 +1,76 @@
+.footer {
+    height: 19.5rem;
+}
+
+footer {
+    position: absolute;
+    bottom: 2.6rem;
+    left: 0;
+    width: 100%;
+    background-color: $color-primary;
+    color: $color-background;
+    padding: 3rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .logo-social {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        .logo {
+            width: 12rem;
+        }
+
+        h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+
+    .newsletter {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: 1rem;
+
+        form {
+            min-width: 30rem;
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            justify-content: center;
+            gap: 0.5rem;
+
+            input {
+                width: 100%;
+                height: 3.2rem;
+                padding: 1rem;
+                border-radius: 3px;
+                border: none;
+                outline: none;
+            }
+        }
+    }
+
+    a {
+        display: block;
+        color: $color-background;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

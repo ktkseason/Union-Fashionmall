@@ -1,0 +1,227 @@
+header {
+    position: sticky;
+    top: 0;
+    background-color: $color-background;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    height: 5.5rem;
+    padding: 1rem 2rem;
+    // border-bottom: 1px solid $color-primary;
+    box-shadow: map-get($shadows, 'text');
+    z-index: 2;
+
+    .left-part {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+
+        .burger {
+            cursor: pointer;
+            display: none;
+
+            i {
+                font-size: 2rem;
+                padding: 0.5rem 0.5rem 0.5rem 0;
+                border: none;
+            }
+        }
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+
+
+        a {
+            padding: 0.6rem 1rem;
+            font-weight: $fw-bold;
+            @include transition;
+
+            &:hover,
+            &.active {
+                color: $color-primary;
+            }
+        }
+
+        button {
+            margin-top: 2rem;
+            display: none;
+        }
+    }
+
+    .same-part {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.5rem;
+
+        .working-icons {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 1rem;
+
+            li {
+
+                &.search {
+                    .search-icon {
+                        display: none;
+                    }
+
+                    form {
+                        background-color: $color-background;
+                        display: flex;
+                        justify-content: center;
+                        align-items: end;
+                        border-radius: 3px;
+                        min-width: 30rem;
+                        border: 1px solid $color-primary;
+
+                        i {
+                            border: none;
+
+                            &:hover {
+                                border: none;
+                            }
+                        }
+
+                        input {
+                            flex: 1;
+                            padding: 0.8rem 1.5rem;
+                            border: none;
+                            outline: none;
+                            border-top-right-radius: 8px;
+                            border-bottom-right-radius: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* Responsive Media */
+
+@include media-lg {
+    header {
+        padding: 0.5rem;
+
+        .same-part {
+            .working-icons {
+                li {
+
+                    &.search {
+
+                        .search-icon {
+                            display: inline;
+                        }
+
+                        form {
+                            position: absolute;
+                            top: 6rem;
+                            right: 0.5rem;
+                            opacity: 0;
+                            @include transition;
+                        }
+
+                        form.open {
+                            opacity: 1;
+                            @include transition;
+                        }
+                    }
+
+                }
+            }
+
+        }
+
+    }
+}
+
+@include media-md {
+    header {
+
+        .left-part {
+            .burger {
+                display: inline;
+            }
+        }
+
+        nav {
+            position: absolute;
+            top: 5.5rem;
+            left: -20rem;
+            background-color: $color-background;
+            width: 20rem;
+            height: calc(100vh - 5.5rem);
+            flex-direction: column;
+            justify-content: start;
+            gap: 0;
+            @include transition;
+
+            a {
+                display: block;
+                border-bottom: 1px solid $color-primary;
+                width: 100%;
+                padding: 1rem 3rem;
+            }
+        }
+
+        nav.open {
+            left: 0;
+            @include transition;
+        }
+
+    }
+}
+
+@include media-sm {
+    header {
+        height: 4rem;
+        padding: 0.2rem;
+
+        .left-part {
+            .logo {
+                width: 8rem;
+            }
+        }
+
+        nav {
+            top: 4rem;
+
+            button {
+                display: block;
+            }
+        }
+
+        .same-part {
+            .working-icons {
+                gap: 0.2rem;
+
+                li {
+                    &.search {
+
+                        form {
+                            top: 4.5rem;
+                            left: 50%;
+                            width: 98vw;
+                            transform: translateX(-50%);
+                        }
+                    }
+                }
+            }
+        }
+
+        button {
+            display: none;
+        }
+
+    }
+}
