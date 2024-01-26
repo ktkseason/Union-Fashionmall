@@ -1,16 +1,17 @@
 // import fonts
-@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;600&family=Montserrat:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;600&display=swap');
 
 // fonts
-$ff-title: 'Libre Bodoni', serif;
+$ff-title: 'Cinzel', serif;
 $ff-body: 'Montserrat', sans-serif;
 
 // font sizes
 $fs-header: 2.8rem;
-$fs-title: 1.8rem;
+$fs-title: 1.6rem;
 $fs-hightlight: 1.3rem;
 $fs-body: 1.2rem;
 $fs-sm: 1.1rem;
+$fs-us: 0.8rem;
 
 // font weights
 $fw-light: 300;
@@ -21,11 +22,11 @@ $fw-bold: 600;
 // these three vary on light and dark theme
 $color-background: #f7f1f0;
 $color-text: #3a324a;
-$color-card: #d1d3ce;
+$color-card: #fff9f8;
 
 $color-primary: #2e151b;
 $color-secondary: #b99095;
-$color-tertiary: #81365c;
+$color-tertiary: #5b5859;
 
 // groups
 $button-colors: (

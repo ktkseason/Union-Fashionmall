@@ -2,6 +2,12 @@ const searchIcon = document.querySelector("header .same-part .working-icons li .
 const searchForm = document.querySelector("header .same-part .working-icons li form");
 const navBurger = document.querySelector("header .left-part .burger i");
 const nav = document.querySelector("header nav");
+const products = document.querySelector("header nav .nav-dropdown .product-text");
+const productsDropdown = document.querySelector("header nav .nav-dropdown .products-dropdown");
+
+products.addEventListener("click", () => {
+    productsDropdown.classList.toggle("open");
+})
 
 searchIcon.addEventListener("click", () => {
     searchForm.classList.toggle("open");

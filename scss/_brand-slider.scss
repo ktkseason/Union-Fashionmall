@@ -1,0 +1,54 @@
+.brand-slider {
+    .brands {
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+
+        &:before,
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 25rem;
+            height: 100%;
+            // z-index: 2;
+        }
+
+        &:before {
+            left: 0;
+            background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+        }
+
+        &:after {
+            right: 0;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+        }
+
+
+        &-slide {
+            display: inline-block;
+            animation: 35s slide infinite linear;
+
+            img {
+                height: 10rem;
+                margin: 0 0.5rem;
+                border-radius: 3px;
+            }
+
+            @keyframes slide {
+                from {
+                    transform: translateX(0);
+                }
+
+                to {
+                    transform: translateX(-100%);
+                }
+            }
+        }
+
+        &:hover .brands-slide {
+            animation-play-state: paused;
+        }
+    }
+
+}

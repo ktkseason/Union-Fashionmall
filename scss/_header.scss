@@ -10,7 +10,7 @@ header {
     height: 5.5rem;
     padding: 1rem 2rem;
     // border-bottom: 1px solid $color-primary;
-    box-shadow: map-get($shadows, 'text');
+    // box-shadow: map-get($shadows, 'text');
     z-index: 2;
 
     .left-part {
@@ -37,21 +37,84 @@ header {
         align-items: center;
         gap: 0.5rem;
 
-
-        a {
-            padding: 0.6rem 1rem;
+        div {
             font-weight: $fw-bold;
-            @include transition;
+            cursor: pointer;
 
-            &:hover,
-            &.active {
-                color: $color-primary;
+            a {
+                padding: 0.6rem 1rem;
+                @include transition;
+
+                &:hover,
+                &.active {
+                    color: $color-secondary;
+                }
             }
-        }
 
-        button {
-            margin-top: 2rem;
-            display: none;
+            i {
+                font-size: $fs-body;
+                border: none;
+
+                &:hover {
+                    border: none;
+                }
+            }
+
+            &.nav-dropdown {
+                .product-text {
+                    padding: 0.6rem 1rem;
+                }
+
+                .products-dropdown {
+                    position: absolute;
+                    top: 5.5rem;
+                    left: 0;
+                    width: 100vw;
+                    background-color: $color-background;
+                    box-shadow: map-get($shadows, 'text');
+                    border-bottom-left-radius: 3px;
+                    border-bottom-right-radius: 3px;
+                    padding: 2rem;
+                    display: none;
+                    @include transition;
+
+                    div {
+                        &.gender-topics {
+                            display: flex;
+                            align-items: start;
+                            justify-content: start;
+                            margin: 1rem 0;
+                            flex-wrap: wrap;
+                            gap: 7rem;
+
+                            .products {
+                                display: flex;
+                                align-items: start;
+                                justify-content: start;
+                                margin-top: 0.5rem;
+                                gap: 5rem;
+
+                                .categories {
+                                    margin-top: 1rem;
+
+                                    a {
+                                        display: block;
+                                        padding: 0.5rem 0;
+                                    }
+                                }
+
+                            }
+                        }
+
+                    }
+
+                    &.open {
+                        display: block;
+                        @include transition;
+                    }
+                }
+
+            }
         }
     }
 
@@ -81,7 +144,7 @@ header {
                         align-items: end;
                         border-radius: 3px;
                         min-width: 30rem;
-                        border: 1px solid $color-primary;
+                        border-bottom: 1px solid $color-primary;
 
                         i {
                             border: none;
@@ -129,12 +192,13 @@ header {
                             right: 0.5rem;
                             opacity: 0;
                             @include transition;
+
+                            &.open {
+                                opacity: 1;
+                                @include transition;
+                            }
                         }
 
-                        form.open {
-                            opacity: 1;
-                            @include transition;
-                        }
                     }
 
                 }
@@ -157,27 +221,79 @@ header {
         nav {
             position: absolute;
             top: 5.5rem;
-            left: -20rem;
+            left: -32rem;
             background-color: $color-background;
-            width: 20rem;
+            width: 32rem;
             height: calc(100vh - 5.5rem);
+            overflow: auto;
             flex-direction: column;
             justify-content: start;
             gap: 0;
             @include transition;
 
-            a {
-                display: block;
+            &>div {
                 border-bottom: 1px solid $color-primary;
+                padding: 1rem 2rem;
+            }
+
+            div {
                 width: 100%;
-                padding: 1rem 3rem;
+
+                a {
+                    padding: 1rem 0;
+                    display: block;
+                    width: 100%;
+                }
+
+                &.nav-dropdown {
+                    .product-text {
+                        padding: 0.5rem 0;
+                    }
+
+                    .products-dropdown {
+                        position: relative;
+                        top: 0;
+                        width: 100%;
+                        box-shadow: none;
+                        border-radius: 0;
+                        padding: 0 0.5rem;
+
+                        div {
+                            &.gender-topics {
+                                flex-direction: column;
+                                margin: 0;
+                                flex-wrap: nowrap;
+                                gap: 2rem;
+
+                                .products {
+                                    flex-direction: column;
+                                    gap: 1rem;
+                                    margin-top: 0.5rem;
+                                    margin-left: 0.5rem;
+
+                                    .categories {
+                                        margin-top: 1rem;
+                                        margin-left: 0.5rem;
+
+                                        a {
+                                            padding: 1rem 0;
+                                        }
+                                    }
+
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            &.open {
+                left: 0;
+                @include transition;
             }
         }
 
-        nav.open {
-            left: 0;
-            @include transition;
-        }
 
     }
 }
@@ -195,10 +311,6 @@ header {
 
         nav {
             top: 4rem;
-
-            button {
-                display: block;
-            }
         }
 
         .same-part {
@@ -217,10 +329,6 @@ header {
                     }
                 }
             }
-        }
-
-        button {
-            display: none;
         }
 
     }
