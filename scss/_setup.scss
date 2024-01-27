@@ -6,7 +6,7 @@ $ff-title: 'Cinzel', serif;
 $ff-body: 'Montserrat', sans-serif;
 
 // font sizes
-$fs-header: 2.8rem;
+$fs-header: 2.4rem;
 $fs-title: 1.6rem;
 $fs-hightlight: 1.3rem;
 $fs-body: 1.2rem;
@@ -25,8 +25,9 @@ $color-text: #3a324a;
 $color-card: #fff9f8;
 
 $color-primary: #2e151b;
+$color-primary-opacity: rgba(46, 21, 27, 0.5);
 $color-secondary: #b99095;
-$color-tertiary: #5b5859;
+$color-tertiary: #81365c;
 
 // groups
 $button-colors: (
@@ -36,9 +37,9 @@ $button-colors: (
 );
 
 $shadows: (
-    "primary": 1px 2px 6px rgba(46, 21, 27, 0.2),
-    "secondary": 1px 2px 6px rgba(185, 144, 149, 0.2),
-    "text": 1px 2px 6px rgba(58, 50, 74, 0.2)
+    "primary": 1px 2px 6px rgba(46, 21, 27, 0.3),
+    "secondary": 1px 2px 6px rgba(185, 144, 149, 0.3),
+    "text": 1px 2px 6px rgba(58, 50, 74, 0.3)
 );
 
 /*=========================================================*/

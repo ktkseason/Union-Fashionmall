@@ -1,5 +1,5 @@
 <!-- Brands Slider -->
-<section class="container brand-slider">
+<section class="py brand-slider">
     <div class="brands">
         <div class="brands-slide">
             <img src="./assets/img/'S Max Mara.jpg">

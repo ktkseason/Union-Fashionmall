@@ -1,0 +1,25 @@
+.index-new-arrivals {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3rem;
+
+    h1 {
+        text-align: center;
+    }
+
+    .btn-holder {
+        width: 100%;
+        min-height: 3.2rem;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+
+        i {
+            font-size: $fs-body;
+            padding: 0;
+            margin-left: 0.7rem;
+        }
+    }
+
+}

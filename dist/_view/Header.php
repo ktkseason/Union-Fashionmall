@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="shortcut icon" href="./assets/img/logo-icon.png" type="image/x-icon">
     <title>Union Fashion Mall</title>
@@ -27,14 +25,6 @@
                         <a href="#"><i class="fa-solid fa-envelope"></i>union.fashion.com</a>
                     </h4>
                 </div>
-                <div>
-                    <h4 class="socials">
-                        <div class="social"><a href="#"><i class="fa-brands fa-facebook"></i></a></div>
-                        <div class="social"><a href="#"><i class="fa-brands fa-instagram"></i></a></div>
-                        <div class="social"><a href="#"><i class="fa-brands fa-twitter"></i></a></div>
-                        <div class="social"><a href="#"><i class="fa-brands fa-youtube"></i></a></div>
-                    </h4>
-                </div>
             </div>
         </div>
     </div>
@@ -49,18 +39,18 @@
         </div>
         <nav>
             <div>
-                <a class="active" href="#home">Home</a>
+                <a href="index.php">Home</a>
             </div>
             <div>
-                <a href="#about">About</a>
+                <a href="about.php">About</a>
             </div>
             <div class="nav-dropdown">
                 <div class="product-text">
-                    Products<i class="fa-solid fa-angle-down"></i>
+                    Products<i class="dropdown-icon fa-solid fa-angle-down"></i>
                 </div>
                 <div class="products-dropdown">
                     <div>
-                        <a href="#new">New Arrivals</a>
+                        <a href="new-arrivals.php">New Arrivals</a>
                     </div>
                     <div class="gender-topics">
                         <div>
@@ -197,7 +187,7 @@
                 </div>
             </div>
             <div>
-                <a href="#contact">Contact</a>
+                <a href="contact.php">Contact</a>
             </div>
         </nav>
         <div class="same-part">
@@ -213,9 +203,10 @@
                     <i class="fa-solid fa-heart"></i>
                 </li>
                 <li class="cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    <div class="badge">12</div>
+                    <i class="fa-solid fa-bag-shopping"></i>
                 </li>
-                <li class="cart">
+                <li class="profile">
                     <i class="fa-solid fa-user"></i>
                 </li>
             </ul>

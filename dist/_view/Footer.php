@@ -1,4 +1,33 @@
         <!-- Footer -->
+        <section class="container services">
+            <div class="service">
+                <div class="icon">
+                    <i class="fa-solid fa-truck"></i>
+                </div>
+                <div class="text">
+                    <h4>Fast Shipping</h4>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+                </div>
+            </div>
+            <div class="service">
+                <div class="icon">
+                    <i class="fa-solid fa-medal"></i>
+                </div>
+                <div class="text">
+                    <h4>Best Quality</h4>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+                </div>
+            </div>
+            <div class="service">
+                <div class="icon">
+                    <i class="fa-solid fa-bell-concierge"></i>
+                </div>
+                <div class="text">
+                    <h4>24/7 Services</h4>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing.</p>
+                </div>
+            </div>
+        </section>
         <footer>
             <div class="logo-social">
                 <div class="logo">
@@ -32,7 +61,7 @@
                 <h3>Subscribe for newsletter</h3>
                 <form action="">
                     <input type="email" placeholder="john.doe@gmail.com">
-                    <button class="btn btn-secondary">Subscribe</button>
+                    <button class="btn btn-outline btn-outline-secondary">Subscribe</button>
                 </form>
             </div>
         </footer>

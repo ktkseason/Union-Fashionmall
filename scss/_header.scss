@@ -11,7 +11,7 @@ header {
     padding: 1rem 2rem;
     // border-bottom: 1px solid $color-primary;
     // box-shadow: map-get($shadows, 'text');
-    z-index: 2;
+    z-index: 9;
 
     .left-part {
         display: flex;
@@ -26,7 +26,6 @@ header {
             i {
                 font-size: 2rem;
                 padding: 0.5rem 0.5rem 0.5rem 0;
-                border: none;
             }
         }
     }
@@ -45,19 +44,13 @@ header {
                 padding: 0.6rem 1rem;
                 @include transition;
 
-                &:hover,
-                &.active {
+                &:hover {
                     color: $color-secondary;
                 }
             }
 
             i {
                 font-size: $fs-body;
-                border: none;
-
-                &:hover {
-                    border: none;
-                }
             }
 
             &.nav-dropdown {
@@ -146,14 +139,6 @@ header {
                         min-width: 30rem;
                         border-bottom: 1px solid $color-primary;
 
-                        i {
-                            border: none;
-
-                            &:hover {
-                                border: none;
-                            }
-                        }
-
                         input {
                             flex: 1;
                             padding: 0.8rem 1.5rem;
@@ -162,6 +147,23 @@ header {
                             border-top-right-radius: 8px;
                             border-bottom-right-radius: 8px;
                         }
+                    }
+                }
+
+                &.cart {
+                    position: relative;
+
+                    .badge {
+                        position: absolute;
+                        top: -0.5rem;
+                        right: -0.3rem;
+                        padding: 0.3rem 0.5rem;
+                        border-radius: 100%;
+                        font-size: $fs-us;
+                        background-color: $color-tertiary;
+                        color: $color-background;
+                        box-shadow: map-get($shadows, 'text');
+                        pointer-events: none;
                     }
                 }
             }

@@ -1,6 +1,6 @@
 .banner {
     position: relative;
-    min-height: 85vh;
+    height: 86vh;
     overflow: hidden;
 
     .slide-holder {
@@ -14,7 +14,7 @@
             top: 0;
             left: 0;
             width: 100vw;
-            height: 85vh;
+            height: 100%;
             opacity: 0;
             @include transition;
 
@@ -45,13 +45,10 @@
             opacity: 0.7;
             cursor: pointer;
 
-            i {
-                border: none;
-
-                &:hover {
-                    border: none;
-                }
+            i:hover {
+                color: inherit;
             }
+
         }
 
         .left {

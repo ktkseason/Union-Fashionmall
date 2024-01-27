@@ -37,7 +37,7 @@ h4 {
 
 h1 {
   font-family: "Cinzel", serif;
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   font-weight: 400;
 }
 
@@ -95,11 +95,12 @@ hr {
 /*========================================================*/
 /*=========================================================*/
 .btn {
+  text-align: center;
   outline: none;
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
-  padding: 8px 18px;
+  padding: 1rem 2rem;
   border-radius: 3px;
   border-width: 1px;
   border-style: solid;
@@ -170,19 +171,24 @@ hr {
 }
 
 /* =================== Cards ======================*/
-.card {
-  width: 27rem;
-  height: 35rem;
+.card-container {
+  display: grid;
+  grid-gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+  grid-auto-rows: 35rem;
+  grid-auto-flow: dense;
+}
+.card-container .card {
   background-color: #fff9f8;
   border-radius: 3px;
   border: 1px solid transparent;
   transition: all 0.5s ease-out;
 }
-.card .img-holder {
+.card-container .card .img-holder {
   width: 100%;
   height: 60%;
 }
-.card .img-holder img {
+.card-container .card .img-holder img {
   width: 100%;
   height: 100%;
   border-top-left-radius: 3px;
@@ -190,14 +196,15 @@ hr {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.card .info {
+.card-container .card .info {
   height: 40%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
 }
-.card .info .texts {
+.card-container .card .info .texts {
+  width: 100%;
   height: 26.5rem;
   padding: 1rem 1.5rem;
   display: flex;
@@ -205,7 +212,11 @@ hr {
   justify-content: space-between;
   align-items: start;
 }
-.card .info .bottom {
+.card-container .card .info .texts .names {
+  display: block;
+  width: 100%;
+}
+.card-container .card .info .bottom {
   width: 100%;
   border-top: 1px solid #2e151b;
   display: flex;
@@ -213,17 +224,17 @@ hr {
   align-items: center;
   padding: 0.5rem 1.5rem;
 }
-.card .info .bottom h3 span {
+.card-container .card .info .bottom h3 span {
   font-size: 0.8rem;
 }
-.card .info .bottom .working-icons {
+.card-container .card .info .bottom .working-icons {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
 }
-.card:hover {
-  box-shadow: 1px 2px 6px rgba(58, 50, 74, 0.2);
+.card-container .card:hover {
+  box-shadow: 1px 2px 6px rgba(58, 50, 74, 0.3);
 }
 
 .wrap {
@@ -234,6 +245,11 @@ hr {
 .container {
   position: relative;
   padding: 4rem 2rem;
+}
+
+.py {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .logo {
@@ -253,13 +269,12 @@ hr {
 i {
   padding: 0.8rem;
   font-size: 1.6rem;
-  border: 1px solid transparent;
   border-radius: 3px;
   cursor: pointer;
   transition: all 0.5s ease-out;
 }
 i:hover {
-  border-color: #2e151b;
+  color: #b99095;
 }
 
 @media screen and (max-width: 768px) {
@@ -275,7 +290,7 @@ i:hover {
 .forehead {
   text-align: center;
   color: #f7f1f0;
-  background-color: #5b5859;
+  background-color: #81365c;
   width: 100%;
   height: 3rem;
   display: flex;
@@ -288,14 +303,15 @@ i:hover {
   position: absolute;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 .forehead .contact {
-  height: 300%;
+  height: 6rem;
   animation: slider 3s linear infinite;
   transition: all 0.5s ease-out;
 }
 .forehead .contact div {
-  height: 33.3333333333%;
+  height: 3rem;
 }
 .forehead .contact div h4 {
   line-height: 3rem;
@@ -311,38 +327,18 @@ i:hover {
 .forehead .contact div h4 a i {
   font-size: 1.2rem;
 }
-.forehead .contact div h4.socials {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.forehead .contact div h4.socials i {
-  font-size: 1.6rem;
-}
-.forehead .contact div h4 i {
-  border: none;
-}
-.forehead .contact div h4 i:hover {
-  border: none;
-}
 @keyframes slider {
   0% {
-    margin-top: -9rem;
+    margin-top: -6rem;
   }
   5% {
-    margin-top: -6rem;
-  }
-  35% {
-    margin-top: -6rem;
-  }
-  40% {
     margin-top: -3rem;
   }
-  65% {
+  45% {
     margin-top: -3rem;
   }
-  70% {
-    margin-top: 0rem;
+  50% {
+    margin-top: 0;
   }
   100% {
     margin-top: 0;
@@ -360,7 +356,7 @@ header {
   width: 100%;
   height: 5.5rem;
   padding: 1rem 2rem;
-  z-index: 2;
+  z-index: 9;
 }
 header .left-part {
   display: flex;
@@ -375,7 +371,6 @@ header .left-part .burger {
 header .left-part .burger i {
   font-size: 2rem;
   padding: 0.5rem 0.5rem 0.5rem 0;
-  border: none;
 }
 header nav {
   display: flex;
@@ -391,15 +386,11 @@ header nav div a {
   padding: 0.6rem 1rem;
   transition: all 0.5s ease-out;
 }
-header nav div a:hover, header nav div a.active {
+header nav div a:hover {
   color: #b99095;
 }
 header nav div i {
   font-size: 1.2rem;
-  border: none;
-}
-header nav div i:hover {
-  border: none;
 }
 header nav div.nav-dropdown .product-text {
   padding: 0.6rem 1rem;
@@ -410,7 +401,7 @@ header nav div.nav-dropdown .products-dropdown {
   left: 0;
   width: 100vw;
   background-color: #f7f1f0;
-  box-shadow: 1px 2px 6px rgba(58, 50, 74, 0.2);
+  box-shadow: 1px 2px 6px rgba(58, 50, 74, 0.3);
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   padding: 2rem;
@@ -467,12 +458,6 @@ header .same-part .working-icons li.search form {
   min-width: 30rem;
   border-bottom: 1px solid #2e151b;
 }
-header .same-part .working-icons li.search form i {
-  border: none;
-}
-header .same-part .working-icons li.search form i:hover {
-  border: none;
-}
 header .same-part .working-icons li.search form input {
   flex: 1;
   padding: 0.8rem 1.5rem;
@@ -480,6 +465,21 @@ header .same-part .working-icons li.search form input {
   outline: none;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
+}
+header .same-part .working-icons li.cart {
+  position: relative;
+}
+header .same-part .working-icons li.cart .badge {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.3rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 100%;
+  font-size: 0.8rem;
+  background-color: #81365c;
+  color: #f7f1f0;
+  box-shadow: 1px 2px 6px rgba(58, 50, 74, 0.3);
+  pointer-events: none;
 }
 
 /* Responsive Media */
@@ -589,7 +589,7 @@ header .same-part .working-icons li.search form input {
 }
 .banner {
   position: relative;
-  min-height: 85vh;
+  height: 86vh;
   overflow: hidden;
 }
 .banner .slide-holder {
@@ -604,7 +604,7 @@ header .same-part .working-icons li.search form input {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 85vh;
+  height: 100%;
   opacity: 0;
   transition: all 0.5s ease-out;
 }
@@ -631,11 +631,8 @@ header .same-part .working-icons li.search form input {
   opacity: 0.7;
   cursor: pointer;
 }
-.banner .control-arrows .arrow i {
-  border: none;
-}
 .banner .control-arrows .arrow i:hover {
-  border: none;
+  color: inherit;
 }
 .banner .control-arrows .left {
   left: 3%;
@@ -685,6 +682,7 @@ header .same-part .working-icons li.search form input {
   top: 0;
   width: 25rem;
   height: 100%;
+  z-index: 1;
 }
 .brand-slider .brands:before {
   left: 0;
@@ -713,6 +711,102 @@ header .same-part .working-icons li.search form input {
 }
 .brand-slider .brands:hover .brands-slide {
   animation-play-state: paused;
+}
+
+.category-gallery {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-auto-rows: 20rem;
+  grid-auto-flow: dense;
+}
+.category-gallery .image-container {
+  position: relative;
+}
+.category-gallery .image-container .text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 21, 27, 0.5);
+  pointer-events: none;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f7f1f0;
+  opacity: 0;
+  transition: all 0.5s ease-out;
+}
+.category-gallery .image-container a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.category-gallery .image-container a img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 3px;
+}
+.category-gallery .image-container:hover .text {
+  opacity: 1;
+}
+.category-gallery .tall {
+  grid-row: span 2;
+}
+
+.index-new-arrivals {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.index-new-arrivals h1 {
+  text-align: center;
+}
+.index-new-arrivals .btn-holder {
+  width: 100%;
+  min-height: 3.2rem;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.index-new-arrivals .btn-holder i {
+  font-size: 1.2rem;
+  padding: 0;
+  margin-left: 0.7rem;
+}
+
+.services {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+.services .service {
+  text-align: center;
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.services .service .text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.services .service .text p {
+  font-size: 1.1rem;
+}
+.services .service i {
+  font-size: 3.2rem;
+  cursor: inherit;
+}
+.services .service i:hover {
+  color: inherit;
 }
 
 footer {

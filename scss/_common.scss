@@ -8,6 +8,11 @@
     padding: 4rem 2rem;
 }
 
+.py {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
 .logo {
     width: 10rem;
     display: flex;
@@ -25,13 +30,12 @@
 i {
     padding: 0.8rem;
     font-size: 1.6rem;
-    border: 1px solid transparent;
     border-radius: 3px;
     cursor: pointer;
     @include transition;
 
     &:hover {
-        border-color: $color-primary;
+        color: $color-secondary;
     }
 }
 
