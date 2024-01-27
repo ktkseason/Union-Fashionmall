@@ -1,4 +1,4 @@
-<!-- Category Gallery -->
+<!-- Indexx Category Gallery -->
 <section class="py category-gallery">
     <div class="image-container tall">
         <a href="#"><img src="./assets/img/oliur-1JNk998-g70-unsplash.jpg"></a>

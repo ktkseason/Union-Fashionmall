@@ -19,6 +19,10 @@ body {
   font-weight: 400;
 }
 
+main {
+  min-height: 18vh;
+}
+
 ul {
   list-style-type: none;
 }
@@ -471,7 +475,7 @@ header .same-part .working-icons li.cart {
 }
 header .same-part .working-icons li.cart .badge {
   position: absolute;
-  top: -0.5rem;
+  top: -0.3rem;
   right: -0.3rem;
   padding: 0.3rem 0.5rem;
   border-radius: 100%;
@@ -778,6 +782,18 @@ header .same-part .working-icons li.cart .badge {
   font-size: 1.2rem;
   padding: 0;
   margin-left: 0.7rem;
+}
+
+.story {
+  text-align: center;
+}
+.story h1 {
+  margin-bottom: 1rem;
+}
+.story p {
+  max-width: 100rem;
+  width: 100%;
+  margin: auto;
 }
 
 .services {

@@ -1,9 +1,9 @@
 <?php include_once "_view/Header.php"; ?>
 <main>
-    <?php include_once "_view/Banner.php"; ?>
-    <?php include_once "_view/BrandSlider.php"; ?>
-    <?php include_once "_view/CategoryGallery.php"; ?>
-    <?php include_once "_view/IndexNewArrivals.php" ?>
+    <?php include_once "_view/_index/Banner.php"; ?>
+    <?php include_once "_view/_index/BrandSlider.php"; ?>
+    <?php include_once "_view/_index/CategoryGallery.php"; ?>
+    <?php include_once "_view/_index/IndexNewArrivals.php" ?>
 </main>
 <?php include_once('_view/Footer.php'); ?>
 

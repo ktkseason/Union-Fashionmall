@@ -17,6 +17,10 @@ body {
     font-weight: $fw-regular;
 }
 
+main {
+    min-height: 18vh;
+}
+
 ul {
     list-style-type: none;
 }

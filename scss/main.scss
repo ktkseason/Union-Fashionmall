@@ -1,15 +1,13 @@
-@import 'setup';
-@import 'components';
-@import 'common';
+@import '_config/setup';
+@import '_config/components';
+@import '_config/common';
 
-@import 'forehead';
-@import 'header';
+@import '_common/forehead';
+@import '_common/header';
 
-@import 'banner';
-@import 'brand-slider';
-@import 'category-gallery';
-@import 'index-new-arrivals';
+@import 'index';
+@import 'about';
 
-@import 'services';
-@import 'footer';
-@import 'toe';
+@import '_common/services';
+@import '_common/footer';
+@import '_common/toe';

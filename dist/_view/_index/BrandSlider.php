@@ -1,4 +1,4 @@
-<!-- Brands Slider -->
+<!-- Index Brands Slider -->
 <section class="py brand-slider">
     <div class="brands">
         <div class="brands-slide">

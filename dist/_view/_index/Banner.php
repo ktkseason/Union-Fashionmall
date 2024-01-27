@@ -1,4 +1,4 @@
-<!-- Banner Slider -->
+<!-- Index Banner Slider -->
 <section class="banner">
     <div class="slide-holder">
         <div class="slide active">
