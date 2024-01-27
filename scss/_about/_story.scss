@@ -2,7 +2,11 @@
     text-align: center;
 
     h1 {
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
+
+        span {
+            color: $color-secondary;
+        }
     }
 
     p {

@@ -788,12 +788,53 @@ header .same-part .working-icons li.cart .badge {
   text-align: center;
 }
 .story h1 {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.story h1 span {
+  color: #b99095;
 }
 .story p {
   max-width: 100rem;
   width: 100%;
   margin: auto;
+}
+
+.vision-mission {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+  grid-auto-rows: auto;
+  grid-auto-flow: dense;
+}
+.vision-mission .sector {
+  padding: 2rem;
+  text-align: center;
+}
+.vision-mission .sector h2 {
+  margin-bottom: 2rem;
+  color: #81365c;
+}
+.vision-mission .sector p {
+  max-width: 40rem;
+  margin: auto;
+}
+
+.about-gallery {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-auto-rows: 20rem;
+  grid-auto-flow: dense;
+}
+.about-gallery .image-container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 3px;
+}
+.about-gallery .tall {
+  grid-row: span 2;
 }
 
 .services {

@@ -1,4 +1,4 @@
-        <!-- Footer -->
+        <!-- Services -->
         <section class="container services">
             <div class="service">
                 <div class="icon">
@@ -28,6 +28,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- Footer -->
         <footer>
             <div class="logo-social">
                 <div class="logo">

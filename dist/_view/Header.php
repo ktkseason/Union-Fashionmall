@@ -33,15 +33,15 @@
             <div class="burger">
                 <i class="fa-solid fa-bars"></i>
             </div>
-            <a href="#home" class="logo">
+            <a href="index.php" class="logo">
                 <img src="./assets/img/logo.png" alt="Union">
             </a>
         </div>
         <nav>
-            <div>
+            <div class="home">
                 <a href="index.php">Home</a>
             </div>
-            <div>
+            <div class="about">
                 <a href="about.php">About</a>
             </div>
             <div class="nav-dropdown">
@@ -186,7 +186,7 @@
                     </div>
                 </div>
             </div>
-            <div>
+            <div class="contact">
                 <a href="contact.php">Contact</a>
             </div>
         </nav>
@@ -210,7 +210,5 @@
                     <i class="fa-solid fa-user"></i>
                 </li>
             </ul>
-
-            <!-- <button class="btn btn-text">Sign In</button> -->
         </div>
     </header>

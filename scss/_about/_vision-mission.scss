@@ -1,0 +1,22 @@
+.vision-mission {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-auto-rows: auto;
+    grid-auto-flow: dense;
+
+    .sector {
+        padding: 2rem;
+        text-align: center;
+
+        h2 {
+            margin-bottom: 2rem;
+            color: $color-tertiary;
+        }
+
+        p {
+            max-width: 40rem;
+            margin: auto;
+        }
+    }
+}
