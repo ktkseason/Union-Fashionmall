@@ -65,6 +65,14 @@ hr {
     border-top: 1px dashed $color-primary;
 }
 
+input,
+textarea {
+    padding: 1rem 1.5rem;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+}
+
 ::-webkit-scrollbar {
     width: 0.4rem;
     border-left: 1px solid $color-primary;

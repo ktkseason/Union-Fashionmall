@@ -1,0 +1,30 @@
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+
+    .sector {
+        flex: 1;
+        padding: 2rem;
+        max-width: 40rem;
+        min-width: 30rem;
+        margin-left: 0;
+
+        h3 {
+            text-align: center;
+            color: $color-tertiary;
+            margin-bottom: 2rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

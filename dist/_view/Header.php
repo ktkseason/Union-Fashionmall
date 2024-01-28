@@ -50,7 +50,7 @@
                 </div>
                 <div class="products-dropdown">
                     <div>
-                        <a href="new-arrivals.php">New Arrivals</a>
+                        <a href="products.php?show=new">New Arrivals</a>
                     </div>
                     <div class="gender-topics">
                         <div>
@@ -60,7 +60,7 @@
                                     <h3>Clothings</h3>
                                     <div class="categories">
                                         <div>
-                                            <a href="#">category 1</a>
+                                            <a href="products.php?gender=men;topic=clothings;cat=smth">category 1</a>
                                         </div>
                                         <div>
                                             <a href="#new">category 2</a>

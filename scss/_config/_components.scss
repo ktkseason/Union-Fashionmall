@@ -12,7 +12,7 @@
     cursor: pointer;
 
     &-outline {
-        background: $color-background;
+        background: transparent;
 
         @each $key, $value in $button-colors {
             &-#{$key} {
@@ -37,7 +37,7 @@
             @include transition;
 
             &:hover {
-                background-color: $color-background;
+                background-color: transparent;
                 border-color: $value;
                 color: $value;
             }

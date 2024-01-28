@@ -8,4 +8,3 @@
 <?php include_once('_view/Footer.php'); ?>
 
 <script src="./assets/js/header.js"></script>
-<script src="./assets/js/brandSlider.js"></script>

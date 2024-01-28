@@ -68,7 +68,7 @@
             </div>
         </footer>
         <div class="toe">
-            <h4>Lifrary copyright &copy; 2024.</h4>
+            <h4>Union copyright &copy; 2024.</h4>
         </div>
         </body>
 

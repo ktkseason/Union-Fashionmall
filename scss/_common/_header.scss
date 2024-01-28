@@ -142,10 +142,8 @@ header {
                         input {
                             flex: 1;
                             padding: 0.8rem 1.5rem;
-                            border: none;
-                            outline: none;
-                            border-top-right-radius: 8px;
-                            border-bottom-right-radius: 8px;
+                            border-top-left-radius: 0;
+                            border-bottom-left-radius: 0;
                         }
                     }
                 }
@@ -192,11 +190,15 @@ header {
                             position: absolute;
                             top: 6rem;
                             right: 0.5rem;
-                            opacity: 0;
+                            display: none;
                             @include transition;
 
+                            input {
+                                width: calc(100% - 3.6rem);
+                            }
+
                             &.open {
-                                opacity: 1;
+                                display: block;
                                 @include transition;
                             }
                         }

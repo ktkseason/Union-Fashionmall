@@ -1,0 +1,172 @@
+.filter {
+    position: sticky;
+    top: 5.5rem;
+    width: 100vw;
+    height: 4rem;
+    z-index: 8;
+
+    .filter-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .filter-options {
+            flex: 6;
+
+            .filter-icon {
+                display: none;
+            }
+        }
+
+        i {
+            font-size: $fs-body;
+        }
+
+        .product-filter {
+            width: 100%;
+            flex: 1;
+            display: flex;
+            justify-content: start;
+
+            .filter-dropdown {
+                min-width: 15rem;
+
+                &.sort {
+                    width: 100%;
+                }
+
+
+                .dropdown-name {
+                    background-color: $color-card;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0 2rem;
+                    height: 4rem;
+                    cursor: pointer;
+
+                    &.sort {
+                        border-top-left-radius: 3px;
+                        border-bottom-left-radius: 3px;
+                    }
+
+                    &.sizes {
+                        border-top-right-radius: 3px;
+                        border-bottom-right-radius: 3px;
+                    }
+                }
+
+                .dropdown {
+                    background-color: $color-card;
+                    padding: 2rem 1.5rem;
+                    border-bottom-left-radius: 3px;
+                    border-bottom-right-radius: 3px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.2rem;
+                    box-shadow: map-get($shadows, 'primary');
+                    display: none;
+                    @include transition;
+
+                    &.open {
+                        display: flex;
+                        @include transition;
+                    }
+
+                    div {
+                        a {
+                            display: block;
+                            padding: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+@include media-md {
+    .filter {
+        .filter-container {
+            .filter-options {
+                flex: 1;
+                background-color: $color-card;
+
+                .filter-icon {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: $color-card;
+                }
+
+                .product-filter {
+                    display: none;
+                    // height: calc(100vh - 5.5rem - 4rem);
+                    // overflow: auto;
+                    box-shadow: map-get($shadows, 'primary');
+                    border-bottom-right-radius: 3px;
+                    border-bottom-left-radius: 3px;
+                    @include transition;
+
+                    &.open {
+                        display: block;
+                        @include transition;
+                    }
+
+                    .dropdown-name {
+                        &.sort {
+                            border-radius: 0;
+                        }
+
+                        &.sizes {
+                            border-radius: 0;
+                            border-bottom-left-radius: 3px;
+                            border-bottom-right-radius: 3px;
+                        }
+                    }
+
+                    .dropdown {
+                        box-shadow: none;
+                    }
+                }
+
+            }
+
+            .product-filter {
+                width: 100%;
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+
+                .filter-dropdown {
+                    border-bottom-left-radius: 3px;
+                    border-bottom-right-radius: 3px;
+
+                    .dropdown-name {
+                        &.sort {
+                            border-radius: 0;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+@include media-sm {
+    .filter {
+        top: 4rem;
+
+        .filter-container {
+            .filter-options {
+                .product-filter {
+                    height: calc(100vh - 4rem - 4rem);
+                }
+            }
+        }
+    }
+}
