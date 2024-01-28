@@ -4,7 +4,7 @@ namespace Helpers;
 
 class Auth
 {
-	static $loginUrl = '/index.php';
+	static $loginUrl = '/public/index.php';
 
 	static function check()
 	{

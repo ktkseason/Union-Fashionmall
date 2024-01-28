@@ -1,5 +1,5 @@
 {
-    "name": "ktk/pogue",
+    "name": "ktk/union",
     "authors": [
         {
             "name": "Khin Thiri Kyaw",
@@ -9,8 +9,8 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Helpers": "_classes/Helpers",
-            "Libs": "_classes/Libs"
+            "Libs\\": "_classes/Libs/",
+            "Helpers\\": "_classes/Helpers/"
         }
     }
 }

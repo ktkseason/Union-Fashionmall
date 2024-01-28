@@ -4,7 +4,7 @@ namespace Helpers;
 
 class HTTP
 {
-	static $base = "http://localhost/project";
+	static $base = "http://localhost/union/dist";
 
 	static function redirect($path, $query = "")
 	{

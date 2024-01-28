@@ -56,7 +56,6 @@
     .card {
         background-color: $color-card;
         border-radius: 3px;
-        border: 1px solid transparent;
         @include transition;
 
         .img-holder {
@@ -118,9 +117,21 @@
         }
 
         &:hover {
-            // border-color: $color-primary;
             box-shadow: map-get($shadows, 'text');
         }
 
+    }
+}
+
+/* ======================== Alert ================== */
+.alert {
+    width: 100%;
+    padding: 1rem 1.5rem;
+
+    &.error {
+        color: #380d0d;
+        background-color: rgba(56, 13, 13, 0.2);
+        border: 1px solid rgba(56, 13, 13, 0.8);
+        border-radius: 3px;
     }
 }

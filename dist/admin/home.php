@@ -1,3 +1,11 @@
+<?php
+include("../vendor/autoload.php");
+
+use Helpers\Auth;
+
+$auth = Auth::check();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,10 +21,11 @@
 <body style="height: 200vh;">
     <header>
         <h1><a href="home.php">Union Dashboard</a></h1>
-        <a href="#"><i class="fa-solid fa-right-from-bracket"></i></a>
+        <a href="../_actions/logout.php"><i class="fa-solid fa-right-from-bracket"></i></a>
     </header>
 
     <main>
+
 
         <!-- Buttons -->
         <div class="container btns">

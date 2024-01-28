@@ -33,7 +33,7 @@
         <footer>
             <div class="logo-social">
                 <div class="logo">
-                    <img src="./assets/img/logo-dark.png" alt="Union">
+                    <img src="../assets/img/logo-dark.png" alt="Union">
                 </div>
                 <h4>Lorem ipsum dolor sit amet consectetur.</h4>
                 <div class="socials">

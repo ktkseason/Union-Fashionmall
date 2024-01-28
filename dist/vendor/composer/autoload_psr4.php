@@ -6,5 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Ktk\\Pogue\\' => array($baseDir . '/src'),
+    'Libs\\' => array($baseDir . '/_classes/Libs'),
+    'Helpers\\' => array($baseDir . '/_classes/Helpers'),
 );

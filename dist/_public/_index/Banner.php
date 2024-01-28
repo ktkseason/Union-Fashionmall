@@ -2,19 +2,19 @@
 <section class="banner">
     <div class="slide-holder">
         <div class="slide active">
-            <img src="./assets/img/no-revisions-kWVImL5QxJI-unsplash.jpg">
+            <img src="../assets/img/no-revisions-kWVImL5QxJI-unsplash.jpg">
         </div>
         <div class="slide">
-            <img src="./assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg">
+            <img src="../assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg">
         </div>
         <div class="slide">
-            <img src="./assets/img/edgar-chaparro-Lh-CTP558tc-unsplash.jpg">
+            <img src="../assets/img/edgar-chaparro-Lh-CTP558tc-unsplash.jpg">
         </div>
         <div class="slide">
-            <img src="./assets/img/mnz-ToLMORRb97Q-unsplash.jpg">
+            <img src="../assets/img/mnz-ToLMORRb97Q-unsplash.jpg">
         </div>
         <div class="slide">
-            <img src="./assets/img/rene-bohmer-rnXLOEOY75k-unsplash.jpg">
+            <img src="../assets/img/rene-bohmer-rnXLOEOY75k-unsplash.jpg">
         </div>
     </div>
     <div class="control-arrows">

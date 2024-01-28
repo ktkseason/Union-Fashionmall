@@ -4,7 +4,7 @@
     <div class="card-container">
         <div class="card">
             <div class="img-holder">
-                <a href="#"><img src="./assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
+                <a href="#"><img src="../assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
             </div>
             <div class="info">
                 <div class="texts">
@@ -31,7 +31,7 @@
         </div>
         <div class="card">
             <div class="img-holder">
-                <a href=""><img src="./assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
+                <a href=""><img src="../assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
             </div>
             <div class="info">
                 <div class="texts">
@@ -58,7 +58,7 @@
         </div>
         <div class="card">
             <div class="img-holder">
-                <a href="#"><img src="./assets/img/no-revisions-kWVImL5QxJI-unsplash.jpg" alt=""></a>
+                <a href="#"><img src="../assets/img/no-revisions-kWVImL5QxJI-unsplash.jpg" alt=""></a>
             </div>
             <div class="info">
                 <div class="texts">
@@ -85,7 +85,7 @@
         </div>
         <div class="card">
             <div class="img-holder">
-                <a href="#"><img src="./assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
+                <a href="#"><img src="../assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
             </div>
             <div class="info">
                 <div class="texts">
@@ -112,7 +112,7 @@
         </div>
         <div class="card">
             <div class="img-holder">
-                <a href=""><img src="./assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
+                <a href=""><img src="../assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
             </div>
             <div class="info">
                 <div class="texts">
@@ -139,7 +139,7 @@
         </div>
         <div class="card">
             <div class="img-holder">
-                <a href="#"><img src="./assets/img/no-revisions-kWVImL5QxJI-unsplash.jpg" alt=""></a>
+                <a href="#"><img src="../assets/img/no-revisions-kWVImL5QxJI-unsplash.jpg" alt=""></a>
             </div>
             <div class="info">
                 <div class="texts">
@@ -166,7 +166,7 @@
         </div>
         <div class="card">
             <div class="img-holder">
-                <a href="#"><img src="./assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
+                <a href="#"><img src="../assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
             </div>
             <div class="info">
                 <div class="texts">
@@ -193,7 +193,7 @@
         </div>
         <div class="card">
             <div class="img-holder">
-                <a href=""><img src="./assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
+                <a href=""><img src="../assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
             </div>
             <div class="info">
                 <div class="texts">

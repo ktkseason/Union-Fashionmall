@@ -1,4 +1,4 @@
-<?php include_once "_view/Header.php"; ?>
+<?php include_once "../_public/Header.php"; ?>
 
 
 <h1>Hello Testing 1</h1>
@@ -185,7 +185,9 @@
     </div>
 </div>
 
-
+<div class="alert error">
+    <h3>Login Failed. Please try again.</h3>
+</div>
 <!-- colors -->
 <div style=" width: 50px; height: 50px; border: 1px solid #333; background: Beige; display:inline-block">
 </div>
