@@ -67,6 +67,8 @@ hr {
 
 input,
 textarea {
+    font-family: $ff-body;
+    font-size: $fs-body;
     padding: 1rem 1.5rem;
     border-radius: 3px;
     border: none;
@@ -89,6 +91,7 @@ textarea {
     font-family: $ff-body;
     color: $color-text;
     font-size: $fs-body;
+    font-weight: $fw-light;
 }
 
 /* will be useful for vertical scroll */

@@ -69,6 +69,8 @@ hr {
 
 input,
 textarea {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
   padding: 1rem 1.5rem;
   border-radius: 3px;
   border: none;
@@ -91,6 +93,7 @@ textarea {
   font-family: "Montserrat", sans-serif;
   color: #3a324a;
   font-size: 1.2rem;
+  font-weight: 300;
 }
 
 /* will be useful for vertical scroll */
@@ -1064,6 +1067,36 @@ header .same-part .working-icons li.cart .badge {
   text-decoration: underline;
 }
 
+.sign-form .form-container {
+  max-width: 40rem;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.sign-form .form-container form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.sign-form .form-container form .inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.sign-form .form-container p a {
+  color: #81365c;
+  transition: all 0.5s ease-out;
+}
+.sign-form .form-container p a:hover {
+  text-decoration: underline;
+}
+
 .services {
   display: flex;
   justify-content: center;
@@ -1170,4 +1203,57 @@ footer a:hover {
   align-items: center;
   background-color: #b99095;
   color: #f7f1f0;
+}
+
+/* ================= Admin ================= */
+.btns {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.btns .btns-group {
+  display: grid;
+  grid-gap: 1rem;
+  grid-auto-flow: dense;
+}
+.btns .btns-group.product-btns {
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-auto-rows: 6rem;
+}
+.btns .btns-group.other-btns {
+  grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+  grid-auto-rows: 10rem;
+}
+.btns .btns-group.other-btns .crud {
+  background-color: #81365c;
+}
+.btns .btns-group.other-btns .crud h2 span {
+  color: #b99095;
+  border: 1px dashed #f7f1f0;
+  display: inline-block;
+  padding: 0.5rem 0.8rem;
+  margin: 0 1rem;
+  border-radius: 3rem;
+  font-weight: 600;
+  transition: all 0.5s ease-out;
+}
+.btns .btns-group.other-btns .crud:hover span {
+  border-color: #81365c;
+  color: #3a324a;
+}
+.btns .btns-group .crud {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  padding: 1rem;
+  background-color: #2e151b;
+  color: #f7f1f0;
+  transition: all 0.5s ease-out;
+}
+.btns .btns-group .crud h3 span {
+  font-weight: 400;
+}
+.btns .btns-group .crud:hover {
+  background-color: #b99095;
 }/*# sourceMappingURL=main.css.map */
