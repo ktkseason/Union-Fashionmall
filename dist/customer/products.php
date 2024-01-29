@@ -1,11 +1,3 @@
-<?php
-include("../vendor/autoload.php");
-
-use Helpers\Auth;
-
-$auth = Auth::check();
-?>
-
 <?php include_once "../_customer/Header.php"; ?>
 
 <?php include_once('../_public/_products/Head.php'); ?>

@@ -4,7 +4,7 @@ namespace Libs\Database;
 
 use PDOException;
 
-class Functions
+class Users
 {
 	private $db = null;
 
@@ -40,38 +40,5 @@ class Functions
 		]);
 		$row = $statement->fetch();
 		return $row;
-	}
-
-	public function getAll()
-	{
-		$statement = $this->db->query("
-            SELECT users.*, roles.name AS role, roles.value
-            FROM users LEFT JOIN roles
-            ON users.role_id = roles.id
-        ");
-
-		return $statement->fetchAll();
-	}
-
-	public function updatePhoto($id, $name)
-	{
-		$statement = $this->db->prepare(
-			"
-            UPDATE users SET photo=:name WHERE id = :id"
-		);
-		$statement->execute([':name' => $name, ':id' => $id]);
-
-		return $statement->rowCount();
-	}
-
-	public function delete($id)
-	{
-		$statement = $this->db->prepare("
-            DELETE FROM users WHERE id = :id
-        ");
-
-		$statement->execute([':id' => $id]);
-
-		return $statement->rowCount();
 	}
 }

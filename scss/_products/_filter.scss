@@ -30,7 +30,7 @@
             justify-content: start;
 
             .filter-dropdown {
-                min-width: 15rem;
+                min-width: 17rem;
 
                 &.sort {
                     width: 100%;
@@ -51,7 +51,7 @@
                         border-bottom-left-radius: 3px;
                     }
 
-                    &.sizes {
+                    &.colors {
                         border-top-right-radius: 3px;
                         border-bottom-right-radius: 3px;
                     }
@@ -65,6 +65,8 @@
                     display: flex;
                     flex-direction: column;
                     gap: 0.2rem;
+                    height: 25rem;
+                    overflow: auto;
                     box-shadow: map-get($shadows, 'primary');
                     display: none;
                     @include transition;
@@ -75,8 +77,15 @@
                     }
 
                     div {
+                        .color {
+                            display: inline-block;
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            border-radius: 0.2rem;
+                        }
+
                         a {
-                            display: block;
+                            display: inline-block;
                             padding: 1rem;
                         }
                     }
@@ -122,7 +131,7 @@
                             border-radius: 0;
                         }
 
-                        &.sizes {
+                        &.colors {
                             border-radius: 0;
                             border-bottom-left-radius: 3px;
                             border-bottom-right-radius: 3px;

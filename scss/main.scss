@@ -10,7 +10,7 @@
 @import 'products';
 @import 'contact';
 
-@import 'sign-form';
+@import 'sign';
 
 @import '_common/services';
 @import '_common/footer';
@@ -19,3 +19,4 @@
 
 /* ================= Admin ================= */
 @import '_admin/home';
+@import '_admin/stocks';

@@ -44,9 +44,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 3px;
+            border-radius: 1rem;
             padding: 1rem;
-            background-color: $color-primary;
+            background-color: $color-secondary;
             color: $color-background;
             @include transition;
 
@@ -57,7 +57,7 @@
             }
 
             &:hover {
-                background-color: $color-secondary;
+                background-color: $color-primary-opacity;
             }
         }
     }

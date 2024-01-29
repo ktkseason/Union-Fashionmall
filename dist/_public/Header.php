@@ -1,12 +1,21 @@
+<?php
+include("../vendor/autoload.php");
+
+use Libs\Database\Stocks;
+use Libs\Database\MySQL;
+
+$data = new Stocks(new MySQL());
+
+$categories = $data->getCategoryAll();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="shortcut icon" href="../assets/img/logo-icon.png" type="image/x-icon">
     <title>Union Fashion Mall</title>
@@ -52,7 +61,7 @@
                 </div>
                 <div class="products-dropdown">
                     <div>
-                        <a href="products.php?show=new">New Arrivals</a>
+                        <a href="products.php?new=1">New Arrivals</a>
                     </div>
                     <div class="gender-topics">
                         <div>
@@ -61,61 +70,37 @@
                                 <div class="clothings">
                                     <h3>Clothings</h3>
                                     <div class="categories">
-                                        <div>
-                                            <a href="products.php?gender=men;topic=clothings;cat=smth">category 1</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 2</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 3</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 4</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 5</a>
-                                        </div>
+                                        <?php foreach ($categories as $category) :
+                                            if ($category->gender_id == 1 && $category->topic_id == 1) : ?>
+                                                <div>
+                                                    <a href="products.php?gender=<?= $category->gender_id ?>&topic=<?= $category->topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                                </div>
+                                        <?php endif;
+                                        endforeach; ?>
                                     </div>
                                 </div>
                                 <div class="shoes">
                                     <h3>Shoes</h3>
                                     <div class="categories">
-                                        <div>
-                                            <a href="#">category 1</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 2</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 3</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 4</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 5</a>
-                                        </div>
+                                        <?php foreach ($categories as $category) :
+                                            if ($category->gender_id == 1 && $category->topic_id == 2) : ?>
+                                                <div>
+                                                    <a href="products.php?gender=<?= $category->gender_id ?>&topic=<?= $category->topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                                </div>
+                                        <?php endif;
+                                        endforeach; ?>
                                     </div>
                                 </div>
                                 <div class="bags">
                                     <h3>Bags</h3>
                                     <div class="categories">
-                                        <div>
-                                            <a href="#">category 1</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 2</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 3</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 4</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 5</a>
-                                        </div>
+                                        <?php foreach ($categories as $category) :
+                                            if ($category->gender_id == 1 && $category->topic_id == 3) : ?>
+                                                <div>
+                                                    <a href="products.php?gender=<?= $category->gender_id ?>&topic=<?= $category->topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                                </div>
+                                        <?php endif;
+                                        endforeach; ?>
                                     </div>
                                 </div>
                             </div>
@@ -126,61 +111,37 @@
                                 <div class="clothings">
                                     <h3>Clothings</h3>
                                     <div class="categories">
-                                        <div>
-                                            <a href="#">category 1</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 2</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 3</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 4</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 5</a>
-                                        </div>
+                                        <?php foreach ($categories as $category) :
+                                            if ($category->gender_id == 2 && $category->topic_id == 1) : ?>
+                                                <div>
+                                                    <a href="products.php?gender=<?= $category->gender_id ?>&topic=<?= $category->topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                                </div>
+                                        <?php endif;
+                                        endforeach; ?>
                                     </div>
                                 </div>
                                 <div class="shoes">
                                     <h3>Shoes</h3>
                                     <div class="categories">
-                                        <div>
-                                            <a href="#">category 1</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 2</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 3</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 4</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 5</a>
-                                        </div>
+                                        <?php foreach ($categories as $category) :
+                                            if ($category->gender_id == 2 && $category->topic_id == 2) : ?>
+                                                <div>
+                                                    <a href="products.php?gender=<?= $category->gender_id ?>&topic=<?= $category->topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                                </div>
+                                        <?php endif;
+                                        endforeach; ?>
                                     </div>
                                 </div>
                                 <div class="bags">
                                     <h3>Bags</h3>
                                     <div class="categories">
-                                        <div>
-                                            <a href="#">category 1</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 2</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 3</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 4</a>
-                                        </div>
-                                        <div>
-                                            <a href="#new">category 5</a>
-                                        </div>
+                                        <?php foreach ($categories as $category) :
+                                            if ($category->gender_id == 2 && $category->topic_id == 3) : ?>
+                                                <div>
+                                                    <a href="products.php?gender=<?= $category->gender_id ?>&topic=<?= $category->topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                                </div>
+                                        <?php endif;
+                                        endforeach; ?>
                                     </div>
                                 </div>
                             </div>
@@ -209,7 +170,7 @@
                     <a href="cart.php"><i class="fa-solid fa-bag-shopping"></i></a>
                 </li>
                 <li class="profile">
-                    <a href="signin.php"><i class="fa-solid fa-user"></i></a>
+                    <a href="signin.php"><i class="fa-solid fa-right-to-bracket"></i></a>
                 </li>
             </ul>
         </div>

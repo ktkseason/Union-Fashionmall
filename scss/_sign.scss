@@ -1,4 +1,4 @@
-.sign-form {
+.sign {
     .form-container {
         max-width: 40rem;
         width: 100%;
@@ -20,7 +20,14 @@
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
+
+                p {
+                    padding: 0rem 0 0.7rem 0.5rem;
+                    font-size: $fs-us;
+                    font-weight: $fw-bold;
+                }
             }
+
         }
 
         p {

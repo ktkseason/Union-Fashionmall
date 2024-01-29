@@ -1,4 +1,7 @@
 <?php
-session_start();
-unset($_SESSION['user']);
-header('location: ../public/index.php');
+
+include("../vendor/autoload.php");
+
+use Helpers\Auth;
+
+Auth::authDestroy();
