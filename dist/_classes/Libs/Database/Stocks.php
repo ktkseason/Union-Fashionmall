@@ -47,6 +47,14 @@ class Stocks
         return $statement->fetchAll();
     }
 
+    public function getCategoryByGenderAndTopic($gender_id, $topic_id)
+    {
+        $statement = $this->db->query("
+            SELECT id, name FROM categories WHERE gender_id='$gender_id' AND topic_id='$topic_id' ;
+        ");
+        return $statement->fetchAll();
+    }
+
     public function getBrandAll()
     {
         $statement = $this->db->query("
@@ -59,6 +67,14 @@ class Stocks
     {
         $statement = $this->db->query("
             SELECT id, name, value FROM colors;
+        ");
+        return $statement->fetchAll();
+    }
+
+    public function getSizesAll($topic_id)
+    {
+        $statement = $this->db->query("
+            SELECT id, name FROM sizes WHERE topic_id='$topic_id';
         ");
         return $statement->fetchAll();
     }
