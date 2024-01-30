@@ -26,7 +26,7 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
 
 <!-- Head -->
 <section class="container head">
-    <!-- <h4>Products &raquo; <a href="#">product</a> &raquo; <a href="#">category</a></h4> -->
+    <h4>Products &raquo; <a href="#">product</a> &raquo; <a href="#">category</a></h4>
     <div class="caption">
         <h1><?= $gender . " " . $topic ?></h1>
     </div>
@@ -132,12 +132,10 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                     <h3><?= $product->price ?> <span>MMK</span></h3>
                     <div class="working-icons">
                         <div class="wishlist">
-                            <a href="signin.php"><i class="fa-solid fa-heart"></i></a>
+                            <i class="fa-solid fa-heart"></i>
                         </div>
                         <div class="cart">
-                            <a href="../_actions/add-to-cart.php?id=<?= $product->id ?>">
-                                <i class="fa-solid fa-bag-shopping"></i>
-                            </a>
+                            <i class="fa-solid fa-bag-shopping"></i>
                         </div>
                     </div>
                 </div>

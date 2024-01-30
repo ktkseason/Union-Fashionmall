@@ -61,7 +61,7 @@ class Stocks
     public function getBrandAll()
     {
         $statement = $this->db->query("
-            SELECT id, name FROM brands;
+            SELECT id, name, image FROM brands;
         ");
         return $statement->fetchAll();
     }
@@ -232,5 +232,19 @@ class Stocks
         $statement->execute([':id' => $id]);
 
         return $statement->rowCount();
+    }
+
+    public function getProduct($id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.id=:id;
+        ");
+        $statement->execute([':id' => $id]);
+        $name = $statement->fetch();
+        return $name ?? false;
     }
 }

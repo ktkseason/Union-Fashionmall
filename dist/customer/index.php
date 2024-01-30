@@ -1,6 +1,7 @@
 <?php include_once "../_customer/Header.php"; ?>
 <main>
     <?php include_once "../_public/_index/IndexMain.php"; ?>
+    <?php include_once "../_customer/_index/IndexCards.php"; ?>
 </main>
 <?php include_once('../_public/Footer.php'); ?>
 

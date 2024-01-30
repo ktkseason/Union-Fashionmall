@@ -15,4 +15,10 @@ $input = [
 ];
 
 $data->addFeedback($input);
-HTTP::redirect("/customer/contact.php", "success=1");
+
+session_start();
+if (isset($_SESSION['customer_auth'])) {
+    HTTP::redirect("/customer/contact.php", "success=1");
+} else {
+    HTTP::redirect("/public/contact.php", "success=1");
+}

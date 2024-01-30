@@ -1,3 +1,13 @@
+<?php
+include("../vendor/autoload.php");
+
+use Libs\Database\Stocks;
+use Libs\Database\MySQL;
+
+$data = new Stocks(new MySQL());
+$brands = $data->getBrandAll();
+?>
+
 <!-- Index Banner Slider -->
 <section class="banner">
     <div class="slide-holder">
@@ -34,17 +44,9 @@
 <section class="py brand-slider">
     <div class="brands">
         <div class="brands-slide">
-            <img src="../assets/img/'S Max Mara.jpg">
-            <img src="../assets/img/Acne Studios.jpg">
-            <img src="../assets/img/Alaia.jpg">
-            <img src="../assets/img/Ami Paris.jpg">
-            <img src="../assets/img/Balenciaga.jpg">
-            <img src="../assets/img/Berluti.jpg">
-            <img src="../assets/img/Bottega Veneta.jpg">
-            <img src="../assets/img/Brunello Cucinelli.jpg">
-            <img src="../assets/img/Burberry.jpg">
-            <img src="../assets/img/Givenchy.jpg">
-            <img src="../assets/img/Gucci.jpg">
+            <?php foreach ($brands as $brand) : ?>
+                <img src=".<?= $brand->image ?>">
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
@@ -104,231 +106,5 @@
         <div class="text">
             <h2>Men Clothings</h3>
         </div>
-    </div>
-</section>
-
-<!-- Index New Arrivals -->
-<section class="container index-new-arrivals">
-    <h1>New Arrivals</h1>
-    <div class="card-container">
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href=""><img src="../assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/no-revisions-kWVImL5QxJI-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href=""><img src="../assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/no-revisions-kWVImL5QxJI-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href=""><img src="../assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="btn-holder">
-        <a href="#" class="btn btn-primary">See More <i class="fa-solid fa-right-long"></i></a>
     </div>
 </section>
