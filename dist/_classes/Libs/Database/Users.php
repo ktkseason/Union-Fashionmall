@@ -41,4 +41,18 @@ class Users
 		$row = $statement->fetch();
 		return $row;
 	}
+
+	public function addFeedback($input)
+	{
+		try {
+			$query = " INSERT INTO feedbacks (name, email, subject, feedback, created_at) VALUES (:name, :email, :subject, :feedback, NOW())";
+
+			$statement = $this->db->prepare($query);
+			$statement->execute($input);
+
+			return $this->db->lastInsertId();
+		} catch (PDOException $e) {
+			return $e->getMessage()();
+		}
+	}
 }

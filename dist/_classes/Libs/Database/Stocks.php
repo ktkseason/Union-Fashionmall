@@ -15,34 +15,38 @@ class Stocks
 
     public function getGender($gender_id)
     {
-        $statement = $this->db->query("
-            SELECT name FROM genders WHERE id='$gender_id';
+        $statement = $this->db->prepare("
+            SELECT name FROM genders WHERE id = :gender_id;
         ");
+        $statement->execute([':gender_id' => $gender_id]);
         $name = $statement->fetch()->name;
         return $name ?? false;
     }
     public function getTopic($topic_id)
     {
-        $statement = $this->db->query("
-            SELECT name FROM topics WHERE id='$topic_id';
+        $statement = $this->db->prepare("
+            SELECT name FROM topics WHERE id= :topic_id;
         ");
+        $statement->execute([':topic_id' => $topic_id]);
         $name = $statement->fetch()->name;
         return $name ?? false;
     }
     public function getCategory($category_id)
     {
-        $statement = $this->db->query("
-            SELECT name FROM categories WHERE id='$category_id';
+        $statement = $this->db->prepare("
+            SELECT name FROM categories WHERE id=:category_id;
         ");
+        $statement->execute([':category_id' => $category_id]);
         $name = $statement->fetch()->name;
         return $name ?? false;
     }
 
     public function getCategoryByGenderAndTopic($gender_id, $topic_id)
     {
-        $statement = $this->db->query("
-        SELECT id, name FROM categories WHERE gender_id='$gender_id' AND topic_id='$topic_id' ;
+        $statement = $this->db->prepare("
+        SELECT id, name FROM categories WHERE gender_id = :gender_id AND topic_id = :topic_id ;
         ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id]);
         return $statement->fetchAll();
     }
 
@@ -72,9 +76,10 @@ class Stocks
 
     public function getSizeAll($topic_id)
     {
-        $statement = $this->db->query("
-            SELECT id, name FROM sizes WHERE topic_id='$topic_id';
+        $statement = $this->db->prepare("
+            SELECT id, name FROM sizes WHERE topic_id = :topic_id;
         ");
+        $statement->execute([':topic_id' => $topic_id]);
         return $statement->fetchAll();
     }
 
@@ -132,33 +137,34 @@ class Stocks
         //     WHERE products.gender_id = '$gender_id' AND products.topic_id = '$topic_id'
         // ");
 
-        $statement = $this->db->query("
+        $statement = $this->db->prepare("
             SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
             LEFT JOIN categories ON categories.id = products.category_id
             LEFT JOIN brands ON brands.id = products.brand_id
             LEFT JOIN colors ON colors.id = products.color_id
-            WHERE products.gender_id = '$gender_id' AND products.topic_id = '$topic_id'        ");
-
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id        
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id]);
         return $statement->fetchAll();
     }
 
     public function getSizesAndStocksByProduct($product_id)
     {
-        $statement = $this->db->query("
-            SELECT size_id, sizes.name as size, stock FROM stocks 
+        $statement = $this->db->prepare("
+            SELECT stocks.id, stocks.size_id, sizes.name as size, stocks.stock FROM stocks 
             LEFT JOIN sizes ON sizes.id = stocks.size_id
-            WHERE stocks.product_id='$product_id'
+            WHERE stocks.product_id = :product_id
         ");
-
+        $statement->execute([':product_id' => $product_id]);
         return $statement->fetchAll();
     }
     public function getImagesByProduct($product_id)
     {
-        $statement = $this->db->query("
+        $statement = $this->db->prepare("
             SELECT id as image_id, name as image FROM images
-            WHERE product_id='$product_id'
+            WHERE product_id = :product_id
         ");
-
+        $statement->execute([':product_id' => $product_id]);
         return $statement->fetchAll();
     }
 
@@ -166,6 +172,61 @@ class Stocks
     {
         $statement = $this->db->prepare("
             DELETE FROM images WHERE id = :id
+        ");
+
+        $statement->execute([':id' => $id]);
+
+        return $statement->rowCount();
+    }
+
+    public function updateProduct($input)
+    {
+
+        $statement = $this->db->prepare("
+            UPDATE products SET name = :name, color_id = :color_id, price = :price, detail = :detail, updated_at = NOW() WHERE id = :product_id            
+        ");
+
+        $statement->execute($input);
+        return $statement->rowCount();
+    }
+
+    public function deleteImageByProduct($id)
+    {
+        $statement = $this->db->prepare("
+            DELETE FROM images WHERE product_id = :id
+        ");
+
+        $statement->execute([':id' => $id]);
+
+        return $statement->rowCount();
+    }
+
+    public function deleteStock($id)
+    {
+        $statement = $this->db->prepare("
+            DELETE FROM stocks WHERE id = :id
+        ");
+
+        $statement->execute([':id' => $id]);
+
+        return $statement->rowCount();
+    }
+
+    public function deleteStockByProduct($id)
+    {
+        $statement = $this->db->prepare("
+            DELETE FROM stocks WHERE product_id = :id
+        ");
+
+        $statement->execute([':id' => $id]);
+
+        return $statement->rowCount();
+    }
+
+    public function deleteProduct($id)
+    {
+        $statement = $this->db->prepare("
+            DELETE FROM products WHERE id = :id
         ");
 
         $statement->execute([':id' => $id]);

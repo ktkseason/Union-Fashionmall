@@ -188,6 +188,9 @@
 <div class="alert error">
     <h3>Login Failed. Please try again.</h3>
 </div>
+<div class="alert success">
+    <h3>Login Successful.</h3>
+</div>
 <!-- colors -->
 <div style=" width: 50px; height: 50px; border: 1px solid #333; background: Beige; display:inline-block">
 </div>
