@@ -80,7 +80,7 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                     <?php foreach ($products as $product) : ?>
                     <tr>
                         <td>
-                            <?php $images = $data->getImagesByProduct($product->id);
+                            <?php $images = $data->getImageByProduct($product->id);
                                     foreach ($images as $image) : ?>
                             <img src="../assets/img/<?= $image->image ?>"
                                 style="width: 100px; height: 100px; object-fit: cover;" alt="">

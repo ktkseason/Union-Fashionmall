@@ -158,7 +158,7 @@ class Stocks
         $statement->execute([':product_id' => $product_id]);
         return $statement->fetchAll();
     }
-    public function getImagesByProduct($product_id)
+    public function getImageByProduct($product_id)
     {
         $statement = $this->db->prepare("
             SELECT id as image_id, name as image FROM images

@@ -189,7 +189,7 @@ textarea {
 .card-container {
   display: grid;
   grid-gap: 3rem;
-  grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+  grid-template-columns: repeat(auto-fit, 27rem);
   grid-auto-rows: 35rem;
   grid-auto-flow: dense;
 }
@@ -201,14 +201,15 @@ textarea {
 .card-container .card .img-holder {
   width: 100%;
   height: 60%;
+  background-color: #e2e6e9;
 }
 .card-container .card .img-holder img {
   width: 100%;
   height: 100%;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .card-container .card .info {
   height: 40%;
@@ -1019,6 +1020,9 @@ header .same-part .working-icons li.cart .badge {
 }
 .showcase .choices {
   color: rgba(46, 21, 27, 0.5);
+}
+.showcase .sorry {
+  text-align: center;
 }
 
 .contact-form .form-container {

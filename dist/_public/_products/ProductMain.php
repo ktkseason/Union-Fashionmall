@@ -15,13 +15,12 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
     $gender = $data->getGender($gender_id);
     $topic = $data->getTopic($topic_id);
 
+    $categories = $data->getCategoryByGenderAndTopic($gender_id, $topic_id);
+    $brands = $data->getBrandAll();
+    $colors = $data->getColorAll();
     $products = $data->getProductByGenderAndTopic($gender_id, $topic_id);
-
-    if (!$gender || !$topic) {
-        HTTP::redirect("/admin/home.php", "query_error=1");
-    }
 } else {
-    HTTP::redirect("/admin/home.php", "query_error=1");
+    HTTP::redirect("/public/index.php");
 }
 ?>
 
@@ -47,20 +46,11 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                         <h4>Categories</h4><i class="dropdown-icon fa-solid fa-angle-down"></i>
                     </div>
                     <div class="dropdown">
-                        <?php if (isset($gender_id) && isset($category_id)) :
-                            foreach ($categories as $category) :
-                                if ($category->gender_id == $gender_id && $category->topic_id == $topic_id) : ?>
-                        <div>
-                            <a
-                                href="products.php?gender=<?= $category->gender_id ?>&topic=<?= $category->topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
-                        </div>
-                        <?php endif;
-                            endforeach;
-                        else : ?>
-                        <div>
-                            No Category
-                        </div>
-                        <?php endif; ?>
+                        <?php foreach ($categories as $category) : ?>
+                            <div>
+                                <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="filter-dropdown">
@@ -69,9 +59,9 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                     </div>
                     <div class="dropdown">
                         <?php foreach ($brands as $brand) : ?>
-                        <div>
-                            <a href="products.php?brand=<?= $brand->id ?>"><?= $brand->name ?></a>
-                        </div>
+                            <div>
+                                <a href="products.php?brand=<?= $brand->id ?>"><?= $brand->name ?></a>
+                            </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -81,10 +71,10 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                     </div>
                     <div class="dropdown">
                         <?php foreach ($colors as $color) : ?>
-                        <div>
-                            <div class="color" style="background: <?= $color->value ?>;"></div>
-                            <a href="products.php?color=<?= $color->id ?>"><?= $color->name ?></a>
-                        </div>
+                            <div>
+                                <div class="color" style="background: <?= $color->value ?>;"></div>
+                                <a href="products.php?color=<?= $color->id ?>"><?= $color->name ?></a>
+                            </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -94,8 +84,7 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
         <div class="product-filter">
             <div class="filter-dropdown sort">
                 <div class="dropdown-name sort">
-                    <h4><i class="fa-solid fa-arrow-down-short-wide"></i>Sort</h4><i
-                        class="dropdown-icon fa-solid fa-angle-down"></i>
+                    <h4><i class="fa-solid fa-arrow-down-short-wide"></i>Sort</h4><i class="dropdown-icon fa-solid fa-angle-down"></i>
                 </div>
                 <div class="dropdown">
                     <div>
@@ -115,493 +104,44 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
 
 <!-- Showcase -->
 <section class="container showcase">
-    <h4 class="choices">filtered / categories / list / also / color / br nyr</h4>
-    <div class="py card-container">
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
+    <!-- <h4 class="choices">filtered / categories / list / also / color / br nyr</h4> -->
+    <?php if (count($products) != 0) : ?>
+        <div class="card-container">
+            <?php foreach ($products as $product) : ?>
+                <div class="card">
+                    <div class="img-holder">
+                        <a href="#"><img src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
+                                                            echo $images[0]->image; ?>" alt=""></a>
+                    </div>
+                    <div class="info">
+                        <div class="texts">
+                            <a class="names">
+                                <h2 class="brand"><?= $product->brand ?></h2>
+                                <h4><?= $product->name  ?></h4>
+                            </a>
+                            <div class="sizes">
+                                <p>
+                                    <?php $sizes_stocks = $data->getSizesAndStocksByProduct($product->id);
+                                    foreach ($sizes_stocks as $size_stock) echo $size_stock->size . " "; ?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <h3><?= $product->price ?> <span>MMK</span></h3>
+                            <div class="working-icons">
+                                <div class="wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="cart">
+                                    <i class="fa-solid fa-bag-shopping"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href=""><img src="../assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/no-revisions-kWVImL5QxJI-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href=""><img src="../assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/no-revisions-kWVImL5QxJI-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href=""><img src="../assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </a>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/edgar-chaparro-Lh-CTP558tc-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <div class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </div>
-                    <div class="sizes">
-                        <p>XXXS, XXS, XS, S, M, L, XL, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <div class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </div>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href=""><img src="../assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <div class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </div>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/no-revisions-kWVImL5QxJI-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <div class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </div>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/rene-bohmer-rnXLOEOY75k-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <div class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </div>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/edgar-chaparro-Lh-CTP558tc-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <div class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </div>
-                    <div class="sizes">
-                        <p>XXXS, XXS, XS, S, M, L, XL, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/fachry-zella-devandra-bNSdIkCBJOs-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <div class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </div>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href=""><img src="../assets/img/laura-chouette-yCdsqWfxJOw-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <div class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </div>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/no-revisions-kWVImL5QxJI-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <div class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </div>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/rene-bohmer-rnXLOEOY75k-unsplash.jpg" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <div class="names">
-                        <h2 class="brand">Blanciaga</h2>
-                        <h4>Product name geofia</h4>
-                    </div>
-                    <div class="sizes">
-                        <p>XS, M, L, XXL, XXXL</p>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <h3>6700 <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php else : ?>
+        <h2 class="sorry">We are sorry. There is no current product.</h2>
+    <?php endif; ?>
 </section>

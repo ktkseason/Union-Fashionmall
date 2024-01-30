@@ -72,39 +72,44 @@ $categories = $data->getCategoryAll();
                             <h4>Men</h4>
                             <div class="products">
                                 <div class="clothings">
-                                    <h3>Clothings</h3>
+                                    <a href="products.php?gender=1&topic=1">
+                                        <h3>Clothings</h3>
+                                    </a>
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 1 && $category->topic_id == 1) : ?>
                                         <div>
-                                            <a
-                                                href="products.php?gender=<?= $category->gender_id ?>&topic=<?= $category->topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                            <a href="#">
+                                                <?= $category->name ?>
+                                            </a>
                                         </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
                                 </div>
                                 <div class="shoes">
-                                    <h3>Shoes</h3>
+                                    <a href="products.php?gender=1&topic=2">
+                                        <h3>Shoes</h3>
+                                    </a>
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 1 && $category->topic_id == 2) : ?>
                                         <div>
-                                            <a
-                                                href="products.php?gender=<?= $category->gender_id ?>&topic=<?= $category->topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                            <a href="#"><?= $category->name ?></a>
                                         </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
                                 </div>
                                 <div class="bags">
-                                    <h3>Bags</h3>
+                                    <a href="products.php?gender=1&topic=3">
+                                        <h3>Bags</h3>
+                                    </a>
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 1 && $category->topic_id == 3) : ?>
                                         <div>
-                                            <a
-                                                href="products.php?gender=<?= $category->gender_id ?>&topic=<?= $category->topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                            <a href="#"><?= $category->name ?></a>
                                         </div>
                                         <?php endif;
                                         endforeach; ?>
@@ -116,39 +121,42 @@ $categories = $data->getCategoryAll();
                             <h4>Women</h4>
                             <div class="products">
                                 <div class="clothings">
-                                    <h3>Clothings</h3>
+                                    <a href="products.php?gender=2&topic=1">
+                                        <h3>Clothings</h3>
+                                    </a>
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 2 && $category->topic_id == 1) : ?>
                                         <div>
-                                            <a
-                                                href="products.php?gender=<?= $category->gender_id ?>&topic=<?= $category->topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                            <a href="#"><?= $category->name ?></a>
                                         </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
                                 </div>
                                 <div class="shoes">
-                                    <h3>Shoes</h3>
+                                    <a href="products.php?gender=2&topic=2">
+                                        <h3>Shoes</h3>
+                                    </a>
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 2 && $category->topic_id == 2) : ?>
                                         <div>
-                                            <a
-                                                href="products.php?gender=<?= $category->gender_id ?>&topic=<?= $category->topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                            <a href="#"><?= $category->name ?></a>
                                         </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
                                 </div>
                                 <div class="bags">
-                                    <h3>Bags</h3>
+                                    <a href="products.php?gender=2&topic=3">
+                                        <h3>Bags</h3>
+                                    </a>
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 2 && $category->topic_id == 3) : ?>
                                         <div>
-                                            <a
-                                                href="products.php?gender=<?= $category->gender_id ?>&topic=<?= $category->topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                            <a href="#"><?= $category->name ?></a>
                                         </div>
                                         <?php endif;
                                         endforeach; ?>
