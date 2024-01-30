@@ -120,14 +120,56 @@ class Stocks
         }
     }
 
-    // public function getProducts($gender, $topic)
-    // {
-    //     $statement = $this->db->query("
-    //         SELECT stocks.stock FROM stocks 
-    //         LEFT JOIN products on stocks.product_id = products.id
-    //         LEFT JOIN sizes on stocks.size_id = sizes.id
-    //     ");
+    public function getProductByGenderAndTopic($gender_id, $topic_id)
+    {
+        // $statement = $this->db->query("
+        //     SELECT products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail, sizes.name as size, stocks.stock, stocks.created_at FROM stocks
+        //     LEFT JOIN sizes ON sizes.id = stocks.size_id
+        //     LEFT JOIN products ON products.id = stocks.product_id
+        //     LEFT JOIN categories ON categories.id = products.category_id
+        //     LEFT JOIN brands ON brands.id = products.brand_id
+        //     LEFT JOIN colors ON colors.id = products.color_id
+        //     WHERE products.gender_id = '$gender_id' AND products.topic_id = '$topic_id'
+        // ");
 
-    //     return $statement->fetchAll();
-    // }
+        $statement = $this->db->query("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = '$gender_id' AND products.topic_id = '$topic_id'        ");
+
+        return $statement->fetchAll();
+    }
+
+    public function getSizesAndStocksByProduct($product_id)
+    {
+        $statement = $this->db->query("
+            SELECT size_id, sizes.name as size, stock FROM stocks 
+            LEFT JOIN sizes ON sizes.id = stocks.size_id
+            WHERE stocks.product_id='$product_id'
+        ");
+
+        return $statement->fetchAll();
+    }
+    public function getImagesByProduct($product_id)
+    {
+        $statement = $this->db->query("
+            SELECT id as image_id, name as image FROM images
+            WHERE product_id='$product_id'
+        ");
+
+        return $statement->fetchAll();
+    }
+
+    public function deleteImage($id)
+    {
+        $statement = $this->db->prepare("
+            DELETE FROM images WHERE id = :id
+        ");
+
+        $statement->execute([':id' => $id]);
+
+        return $statement->rowCount();
+    }
 }

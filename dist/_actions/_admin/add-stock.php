@@ -4,6 +4,9 @@ include("../../vendor/autoload.php");
 use Libs\Database\MySQL;
 use Libs\Database\Stocks;
 use Helpers\HTTP;
+use Helpers\Auth;
+
+$auth = Auth::adminCheck();
 
 $data = new Stocks(new MySQL());
 

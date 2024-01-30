@@ -37,6 +37,6 @@ if (isset($_GET['gender']) && isset($_GET['topic']) && isset($_GET['category']))
 <section class="container head">
     <h4>Products &raquo; <a href="#">product</a> &raquo; <a href="#">category</a></h4>
     <div class="caption">
-        <h1><?= $head ?></h1>
+        <h1><?= $gender . " " . $topic ?></h1>
     </div>
 </section>
