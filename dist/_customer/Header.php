@@ -17,9 +17,7 @@ $categories = $data->getCategoryAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="shortcut icon" href="../assets/img/logo-icon.png" type="image/x-icon">
     <title>Union Fashion Mall</title>
@@ -78,11 +76,11 @@ $categories = $data->getCategoryAll();
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 1 && $category->topic_id == 1) : ?>
-                                        <div>
-                                            <a href="#">
-                                                <?= $category->name ?>
-                                            </a>
-                                        </div>
+                                                <div>
+                                                    <a href="#">
+                                                        <?= $category->name ?>
+                                                    </a>
+                                                </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
@@ -94,9 +92,9 @@ $categories = $data->getCategoryAll();
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 1 && $category->topic_id == 2) : ?>
-                                        <div>
-                                            <a href="#"><?= $category->name ?></a>
-                                        </div>
+                                                <div>
+                                                    <a href="#"><?= $category->name ?></a>
+                                                </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
@@ -108,9 +106,9 @@ $categories = $data->getCategoryAll();
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 1 && $category->topic_id == 3) : ?>
-                                        <div>
-                                            <a href="#"><?= $category->name ?></a>
-                                        </div>
+                                                <div>
+                                                    <a href="#"><?= $category->name ?></a>
+                                                </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
@@ -127,9 +125,9 @@ $categories = $data->getCategoryAll();
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 2 && $category->topic_id == 1) : ?>
-                                        <div>
-                                            <a href="#"><?= $category->name ?></a>
-                                        </div>
+                                                <div>
+                                                    <a href="#"><?= $category->name ?></a>
+                                                </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
@@ -141,9 +139,9 @@ $categories = $data->getCategoryAll();
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 2 && $category->topic_id == 2) : ?>
-                                        <div>
-                                            <a href="#"><?= $category->name ?></a>
-                                        </div>
+                                                <div>
+                                                    <a href="#"><?= $category->name ?></a>
+                                                </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
@@ -155,9 +153,9 @@ $categories = $data->getCategoryAll();
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 2 && $category->topic_id == 3) : ?>
-                                        <div>
-                                            <a href="#"><?= $category->name ?></a>
-                                        </div>
+                                                <div>
+                                                    <a href="#"><?= $category->name ?></a>
+                                                </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>

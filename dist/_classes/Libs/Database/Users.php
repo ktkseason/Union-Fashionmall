@@ -55,4 +55,37 @@ class Users
 			return $e->getMessage()();
 		}
 	}
+	public function addWish($input)
+	{
+		try {
+			$query = " INSERT INTO wishlist (product_id, customer_id, created_at) VALUES (:product_id, :customer_id, NOW())";
+
+			$statement = $this->db->prepare($query);
+			$statement->execute($input);
+
+			return $this->db->lastInsertId();
+		} catch (PDOException $e) {
+			return $e->getMessage()();
+		}
+	}
+
+	public function getWishAll($customer_id)
+	{
+		$statement = $this->db->prepare("
+            SELECT product_id FROM wishlist WHERE customer_id = :customer_id;
+        ");
+		$statement->execute([':customer_id' => $customer_id]);
+		return $statement->fetchAll();
+	}
+
+	public function deleteWish($product_id)
+	{
+		$statement = $this->db->prepare("
+            DELETE FROM wishlist WHERE product_id = :product_id
+        ");
+
+		$statement->execute([':product_id' => $product_id]);
+
+		return $statement->rowCount();
+	}
 }

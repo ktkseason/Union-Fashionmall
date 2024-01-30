@@ -1,4 +1,7 @@
 <?php
+
+use Libs\Database\Users;
+
 include("../vendor/autoload.php");
 
 use Helpers\HTTP;
@@ -6,6 +9,7 @@ use Libs\Database\Stocks;
 use Libs\Database\MySQL;
 
 $data = new Stocks(new MySQL());
+$user = new Users(new MySQL());
 
 if (isset($_GET['gender']) && isset($_GET['topic'])) {
     $gender_id = $_GET['gender'];
@@ -47,10 +51,9 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                     </div>
                     <div class="dropdown">
                         <?php foreach ($categories as $category) : ?>
-                        <div>
-                            <a
-                                href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
-                        </div>
+                            <div>
+                                <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                            </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -60,9 +63,9 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                     </div>
                     <div class="dropdown">
                         <?php foreach ($brands as $brand) : ?>
-                        <div>
-                            <a href="products.php?brand=<?= $brand->id ?>"><?= $brand->name ?></a>
-                        </div>
+                            <div>
+                                <a href="products.php?brand=<?= $brand->id ?>"><?= $brand->name ?></a>
+                            </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -72,10 +75,10 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                     </div>
                     <div class="dropdown">
                         <?php foreach ($colors as $color) : ?>
-                        <div>
-                            <div class="color" style="background: <?= $color->value ?>;"></div>
-                            <a href="products.php?color=<?= $color->id ?>"><?= $color->name ?></a>
-                        </div>
+                            <div>
+                                <div class="color" style="background: <?= $color->value ?>;"></div>
+                                <a href="products.php?color=<?= $color->id ?>"><?= $color->name ?></a>
+                            </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -85,8 +88,7 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
         <div class="product-filter">
             <div class="filter-dropdown sort">
                 <div class="dropdown-name sort">
-                    <h4><i class="fa-solid fa-arrow-down-short-wide"></i>Sort</h4><i
-                        class="dropdown-icon fa-solid fa-angle-down"></i>
+                    <h4><i class="fa-solid fa-arrow-down-short-wide"></i>Sort</h4><i class="dropdown-icon fa-solid fa-angle-down"></i>
                 </div>
                 <div class="dropdown">
                     <div>
@@ -108,42 +110,52 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
 <section class="container showcase">
     <!-- <h4 class="choices">filtered / categories / list / also / color / br nyr</h4> -->
     <?php if (count($products) != 0) : ?>
-    <div class="card-container">
-        <?php foreach ($products as $product) : ?>
-        <div class="card">
-            <div class="img-holder">
-                <a href="#"><img src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
+        <div class="card-container">
+            <?php foreach ($products as $product) : ?>
+                <div class="card">
+                    <div class="img-holder">
+                        <a href="#"><img src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
                                                             echo $images[0]->image; ?>" alt=""></a>
-            </div>
-            <div class="info">
-                <div class="texts">
-                    <a class="names">
-                        <h2 class="brand"><?= $product->brand ?></h2>
-                        <h4><?= $product->name  ?></h4>
-                    </a>
-                    <div class="sizes">
-                        <p>
-                            <?php $sizes_stocks = $data->getSizesAndStocksByProduct($product->id);
+                    </div>
+                    <div class="info">
+                        <div class="texts">
+                            <a class="names">
+                                <h2 class="brand"><?= $product->brand ?></h2>
+                                <h4><?= $product->name  ?></h4>
+                            </a>
+                            <div class="sizes">
+                                <p>
+                                    <?php $sizes_stocks = $data->getSizesAndStocksByProduct($product->id);
                                     foreach ($sizes_stocks as $size_stock) echo $size_stock->size . " "; ?>
-                        </p>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <h3><?= $product->price ?> <span>MMK</span></h3>
+                            <div class="working-icons">
+                                <div class="wishlist">
+                                    <a href="../_actions/add-to-wishlist.php?product_id=<?= $product->id ?>">
+                                        <i class="fa-solid fa-heart" style="color: <?php $wishes = $user->getWishAll($auth->id);
+                                                                                    $wish_products = [];
+                                                                                    foreach ($wishes as $wish) {
+                                                                                        $wish_products[] = $wish->product_id;
+                                                                                    }
+                                                                                    if (in_array($product->id, $wish_products)) echo "#b99095";
+                                                                                    else echo "#3a324a"; ?>;"></i>
+                                    </a>
+                                </div>
+                                <div class="cart">
+                                    <a href="../_actions/add-to-cart.php?id=<?= $product->id ?>">
+                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="bottom">
-                    <h3><?= $product->price ?> <span>MMK</span></h3>
-                    <div class="working-icons">
-                        <div class="wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <div class="cart">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
-        <?php endforeach; ?>
-    </div>
     <?php else : ?>
-    <h2 class="sorry">We are sorry. There is no current product.</h2>
+        <h2 class="sorry">We are sorry. There is no current product.</h2>
     <?php endif; ?>
 </section>
