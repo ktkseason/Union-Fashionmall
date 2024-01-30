@@ -29,7 +29,6 @@ class Stocks
         $name = $statement->fetch()->name;
         return $name ?? false;
     }
-
     public function getCategory($category_id)
     {
         $statement = $this->db->query("
@@ -39,18 +38,18 @@ class Stocks
         return $name ?? false;
     }
 
-    public function getCategoryAll()
+    public function getCategoryByGenderAndTopic($gender_id, $topic_id)
     {
         $statement = $this->db->query("
-            SELECT * FROM categories;
+        SELECT id, name FROM categories WHERE gender_id='$gender_id' AND topic_id='$topic_id' ;
         ");
         return $statement->fetchAll();
     }
 
-    public function getCategoryByGenderAndTopic($gender_id, $topic_id)
+    public function getCategoryAll()
     {
         $statement = $this->db->query("
-            SELECT id, name FROM categories WHERE gender_id='$gender_id' AND topic_id='$topic_id' ;
+            SELECT * FROM categories;
         ");
         return $statement->fetchAll();
     }
@@ -71,12 +70,54 @@ class Stocks
         return $statement->fetchAll();
     }
 
-    public function getSizesAll($topic_id)
+    public function getSizeAll($topic_id)
     {
         $statement = $this->db->query("
             SELECT id, name FROM sizes WHERE topic_id='$topic_id';
         ");
         return $statement->fetchAll();
+    }
+
+    public function addProduct($input)
+    {
+        try {
+            $query = " INSERT INTO products (name, gender_id, topic_id, category_id, brand_id, color_id, price, detail, created_at) VALUES (:name, :gender_id, :topic_id, :category_id, :brand_id, :color_id, :price, :detail, NOW())";
+
+            $statement = $this->db->prepare($query);
+            $statement->execute($input);
+
+            return $this->db->lastInsertId();
+        } catch (PDOException $e) {
+            return $e->getMessage()();
+        }
+    }
+
+    public function addImage($input)
+    {
+        try {
+            $query = " INSERT INTO images (name, product_id, created_at) VALUES (:name, :product_id, NOW())";
+
+            $statement = $this->db->prepare($query);
+            $statement->execute($input);
+
+            return $this->db->lastInsertId();
+        } catch (PDOException $e) {
+            return $e->getMessage()();
+        }
+    }
+
+    public function addStock($input)
+    {
+        try {
+            $query = " INSERT INTO stocks (product_id, size_id, stock, created_at) VALUES (:product_id, :size_id, :stock, NOW())";
+
+            $statement = $this->db->prepare($query);
+            $statement->execute($input);
+
+            return $this->db->lastInsertId();
+        } catch (PDOException $e) {
+            return $e->getMessage()();
+        }
     }
 
     // public function getProducts($gender, $topic)

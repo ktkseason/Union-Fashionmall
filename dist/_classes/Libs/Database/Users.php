@@ -13,13 +13,13 @@ class Users
 		$this->db = $db->connect();
 	}
 
-	public function insertUser($data)
+	public function addUser($input)
 	{
 		try {
 			$query = " INSERT INTO users (name, email, password, created_at) VALUES (:name, :email, :password, NOW())";
 
 			$statement = $this->db->prepare($query);
-			$statement->execute($data);
+			$statement->execute($input);
 
 			return $this->db->lastInsertId();
 		} catch (PDOException $e) {

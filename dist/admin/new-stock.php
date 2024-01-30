@@ -19,7 +19,7 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
     $categories = $data->getCategoryByGenderAndTopic($gender_id, $topic_id);
     $brands = $data->getBrandAll();
     $colors = $data->getColorAll();
-    $sizes = $data->getSizesAll($topic_id);
+    $sizes = $data->getSizeAll($topic_id);
 
     if (!$gender || !$topic) {
         HTTP::redirect("/admin/home.php", "query_error=1");
@@ -35,9 +35,7 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="shortcut icon" href="../assets/img/logo-icon.png" type="image/x-icon">
     <title>Union Fashion Mall</title>
@@ -64,7 +62,7 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                 <input type="hidden" name="gender_id" value="<?= $gender_id ?>">
                 <input type="hidden" name="topic_id" value="<?= $topic_id ?>">
                 <div class="mb-3">
-                    <input type="file" name="files[]" multiple required>
+                    <input type="file" name="images[]" multiple required>
                 </div>
                 <div class="inputs">
                     <input type="text" name="name" placeholder="Product Name" required>
@@ -76,9 +74,9 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                         <label for="category">Category</label>
                         <select name="category_id" id="category" required>
                             <?php foreach ($categories as $category) : ?>
-                            <option value="<?= $category->id ?>">
-                                <?= $category->name ?>
-                            </option>
+                                <option value="<?= $category->id ?>">
+                                    <?= $category->name ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -86,9 +84,9 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                         <label for="brand">Brand</label>
                         <select name="brand_id" id="brand">
                             <?php foreach ($brands as $brand) : ?>
-                            <option value="<?= $brand->id ?>">
-                                <?= $brand->name ?>
-                            </option>
+                                <option value="<?= $brand->id ?>">
+                                    <?= $brand->name ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -96,18 +94,17 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                         <label for="color">Color</label>
                         <select name="color_id" id="color">
                             <?php foreach ($colors as $color) : ?>
-                            <option value="<?= $color->id ?>">
-                                <?= $color->name ?>
-                            </option>
+                                <option value="<?= $color->id ?>">
+                                    <?= $color->name ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
                 <div class="sizes">
                     <?php foreach ($sizes as $size) : ?>
-                    <label for="<?= $size->name ?>"><?= $size->name ?></label>
-                    <input type="number" id="<?= $size->name ?>" name="<?= $size->id ?>" class="stockNo" min=0 value=0
-                        required>
+                        <label for="<?= $size->name ?>"><?= $size->name ?></label>
+                        <input type="number" id="<?= $size->name ?>" name="<?= $size->id ?>" class="stockNo" min=0 value=0 required>
                     <?php endforeach; ?>
                 </div>
                 <input type="submit">

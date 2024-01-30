@@ -5,15 +5,15 @@ use Libs\Database\MySQL;
 use Libs\Database\Users;
 use Helpers\HTTP;
 
-$data = [
+$input = [
     "name" => $_POST['name'],
     "email" => $_POST['email'],
     "password" => md5($_POST['password']),
 ];
 
-$table = new Users(new MySQL());
-if ($table) {
-    $table->insertUser($data);
+$data = new Users(new MySQL());
+if ($data) {
+    $data->addUser($input);
     HTTP::redirect("/customer/index.php");
 } else {
     HTTP::redirect("/public/signup.php");

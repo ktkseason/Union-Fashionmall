@@ -55,7 +55,10 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                     New</a>
             </div>
 
-            <!--  -->
+            <!-- Table -->
+            <table>
+
+            </table>
         </section>
 
     </main>
