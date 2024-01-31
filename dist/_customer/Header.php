@@ -79,7 +79,7 @@ $categories = $data->getCategoryAll();
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 1 && $category->topic_id == 1) : ?>
                                         <div>
-                                            <a href="#">
+                                            <a href="products.php?gender=1&topic=1&category=<?= $category->id ?>">
                                                 <?= $category->name ?>
                                             </a>
                                         </div>
@@ -95,7 +95,8 @@ $categories = $data->getCategoryAll();
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 1 && $category->topic_id == 2) : ?>
                                         <div>
-                                            <a href="#"><?= $category->name ?></a>
+                                            <a
+                                                href="products.php?gender=1&topic=2&category=<?= $category->id ?>"><?= $category->name ?></a>
                                         </div>
                                         <?php endif;
                                         endforeach; ?>
@@ -109,7 +110,8 @@ $categories = $data->getCategoryAll();
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 1 && $category->topic_id == 3) : ?>
                                         <div>
-                                            <a href="#"><?= $category->name ?></a>
+                                            <a
+                                                href="products.php?gender=1&topic=3&category=<?= $category->id ?>"><?= $category->name ?></a>
                                         </div>
                                         <?php endif;
                                         endforeach; ?>
@@ -128,7 +130,8 @@ $categories = $data->getCategoryAll();
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 2 && $category->topic_id == 1) : ?>
                                         <div>
-                                            <a href="#"><?= $category->name ?></a>
+                                            <a
+                                                href="products.php?gender=2&topic=1&category=<?= $category->id ?>"><?= $category->name ?></a>
                                         </div>
                                         <?php endif;
                                         endforeach; ?>
@@ -142,7 +145,8 @@ $categories = $data->getCategoryAll();
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 2 && $category->topic_id == 2) : ?>
                                         <div>
-                                            <a href="#"><?= $category->name ?></a>
+                                            <a
+                                                href="products.php?gender=2&topic=2&category=<?= $category->id ?>"><?= $category->name ?></a>
                                         </div>
                                         <?php endif;
                                         endforeach; ?>
@@ -156,7 +160,8 @@ $categories = $data->getCategoryAll();
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 2 && $category->topic_id == 3) : ?>
                                         <div>
-                                            <a href="#"><?= $category->name ?></a>
+                                            <a
+                                                href="products.php?gender=2&topic=3&category=<?= $category->id ?>"><?= $category->name ?></a>
                                         </div>
                                         <?php endif;
                                         endforeach; ?>

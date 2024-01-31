@@ -16,7 +16,9 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="shortcut icon" href="../assets/img/logo-icon.png" type="image/x-icon">
     <title>Union Fashion Mall</title>
@@ -75,11 +77,11 @@ session_start();
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 1 && $category->topic_id == 1) : ?>
-                                                <div>
-                                                    <a href="#">
-                                                        <?= $category->name ?>
-                                                    </a>
-                                                </div>
+                                        <div>
+                                            <a href="products.php?gender=1&topic=1&category=<?= $category->id ?>">
+                                                <?= $category->name ?>
+                                            </a>
+                                        </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
@@ -91,9 +93,10 @@ session_start();
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 1 && $category->topic_id == 2) : ?>
-                                                <div>
-                                                    <a href="#"><?= $category->name ?></a>
-                                                </div>
+                                        <div>
+                                            <a
+                                                href="products.php?gender=1&topic=2&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                        </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
@@ -105,9 +108,10 @@ session_start();
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 1 && $category->topic_id == 3) : ?>
-                                                <div>
-                                                    <a href="#"><?= $category->name ?></a>
-                                                </div>
+                                        <div>
+                                            <a
+                                                href="products.php?gender=1&topic=3&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                        </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
@@ -124,9 +128,10 @@ session_start();
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 2 && $category->topic_id == 1) : ?>
-                                                <div>
-                                                    <a href="#"><?= $category->name ?></a>
-                                                </div>
+                                        <div>
+                                            <a
+                                                href="products.php?gender=2&topic=1&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                        </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
@@ -138,9 +143,10 @@ session_start();
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 2 && $category->topic_id == 2) : ?>
-                                                <div>
-                                                    <a href="#"><?= $category->name ?></a>
-                                                </div>
+                                        <div>
+                                            <a
+                                                href="products.php?gender=2&topic=2&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                        </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
@@ -152,9 +158,10 @@ session_start();
                                     <div class="categories">
                                         <?php foreach ($categories as $category) :
                                             if ($category->gender_id == 2 && $category->topic_id == 3) : ?>
-                                                <div>
-                                                    <a href="#"><?= $category->name ?></a>
-                                                </div>
+                                        <div>
+                                            <a
+                                                href="products.php?gender=2&topic=3&category=<?= $category->id ?>"><?= $category->name ?></a>
+                                        </div>
                                         <?php endif;
                                         endforeach; ?>
                                     </div>
@@ -187,7 +194,7 @@ session_start();
                         foreach ($_SESSION['cart'] as $val) {
                             $total_cart += $val['qty'];
                         } ?>
-                        <div class="badge"><?= $total_cart ?></div>
+                    <div class="badge"><?= $total_cart ?></div>
                     <?php endif; ?>
                     <a href="cart.php"><i class="fa-solid fa-bag-shopping"></i></a>
                 </li>

@@ -877,12 +877,16 @@ header .same-part .working-icons li.cart .badge {
 .head h4 a {
   color: #b99095;
 }
+.head h4.choices {
+  color: rgba(46, 21, 27, 0.5);
+}
 .head .caption {
   width: 100%;
   height: 10rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 
 .filter {
@@ -1020,9 +1024,6 @@ header .same-part .working-icons li.cart .badge {
   .filter .filter-container .filter-options .product-filter {
     height: calc(100vh - 4rem - 4rem);
   }
-}
-.showcase .choices {
-  color: rgba(46, 21, 27, 0.5);
 }
 .showcase .sorry {
   text-align: center;

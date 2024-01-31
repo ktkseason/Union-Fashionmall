@@ -1,37 +1,40 @@
 <?php
 
+use Libs\Database\Users;
 
 include("../vendor/autoload.php");
 
+use Helpers\HTTP;
 use Libs\Database\Stocks;
-use Libs\Database\Users;
 use Libs\Database\MySQL;
 
-$user = new Users(new MySQL());
 $data = new Stocks(new MySQL());
-
-$wishes = $user->getWishAll($auth->id);
 
 ?>
 
-
 <!-- Head -->
 <section class="container head">
-    <div class="caption">
-        <h1>WishList</h1>
-    </div>
+    <h4><?= $gender ?> &raquo; <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>"><?= $topic ?></a>
+        <?php if ($category_id) : $category = $data->getCategory($category_id); ?>
+        &raquo; <?= $category ?>
+        <?php elseif ($brand_id) : $brand = $data->getBrand($brand_id); ?>
+        &raquo; <?= $brand ?>
+        <?php elseif ($color_id) : $color = $data->getColor($color_id); ?>
+        &raquo; <?= $color ?>
+        <?php endif; ?>
+    </h4>
 </section>
 
 <!-- Showcase -->
 <section class="container showcase">
-    <?php if (count($wishes) != 0) : ?>
+    <?php if (count($products) != 0) : ?>
     <div class="card-container">
-        <?php foreach ($wishes as $wish) :
-                $product = $data->getProduct($wish->product_id); ?>
+        <?php foreach ($products as $product) : ?>
         <div class="card">
             <div class="img-holder">
-                <a href="#"><img src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
-                                                            echo $images[0]->image; ?>" alt=""></a>
+                <a href="product-detail.php?id=<?= $product->id ?>"><img
+                        src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
+                                                                                                    echo $images[0]->image; ?>" alt=""></a>
             </div>
             <div class="info">
                 <div class="texts">
@@ -50,15 +53,7 @@ $wishes = $user->getWishAll($auth->id);
                     <h3><?= $product->price ?> <span>MMK</span></h3>
                     <div class="working-icons">
                         <div class="wishlist">
-                            <a href="../_actions/add-to-wishlist.php?product_id=<?= $product->id ?>">
-                                <i class="fa-solid fa-heart" style="color: <?php $wishes = $user->getWishAll($auth->id);
-                                                                                    $wish_products = [];
-                                                                                    foreach ($wishes as $wish) {
-                                                                                        $wish_products[] = $wish->product_id;
-                                                                                    }
-                                                                                    if (in_array($product->id, $wish_products)) echo "#b99095";
-                                                                                    else echo "#3a324a"; ?>;"></i>
-                            </a>
+                            <a href="signin.php"><i class="fa-solid fa-heart"></i></a>
                         </div>
                         <div class="cart">
                             <a href="product-detail.php?id=<?= $product->id ?>">
@@ -72,6 +67,6 @@ $wishes = $user->getWishAll($auth->id);
         <?php endforeach; ?>
     </div>
     <?php else : ?>
-    <h2 class="sorry">No Current Wish.</h2>
+    <h2 class="sorry">We are sorry. There is no current product.</h2>
     <?php endif; ?>
 </section>

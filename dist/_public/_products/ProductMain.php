@@ -1,4 +1,7 @@
 <?php
+
+use Libs\Database\Users;
+
 include("../vendor/autoload.php");
 
 use Helpers\HTTP;
@@ -6,29 +9,87 @@ use Libs\Database\Stocks;
 use Libs\Database\MySQL;
 
 $data = new Stocks(new MySQL());
+$user = new Users(new MySQL());
 
-if (isset($_GET['gender']) && isset($_GET['topic'])) {
-    $gender_id = $_GET['gender'];
-    $topic_id = $_GET['topic'];
+$gender_id = $_GET['gender'] ?? 1;
+$topic_id = $_GET['topic'] ?? 1;
+$category_id = $_GET['category'] ?? 0;
+$brand_id = $_GET['brand'] ?? 0;
+$color_id = $_GET['color'] ?? 0;
 
+$latest = $_GET['latest'] ?? 0;
+$highfirst = $_GET['highfirst'] ?? 0;
+$lowfirst = $_GET['lowfirst'] ?? 0;
 
-    $gender = $data->getGender($gender_id);
-    $topic = $data->getTopic($topic_id);
+$gender = $data->getGender($gender_id);
+$topic = $data->getTopic($topic_id);
+$category = $brand = $color = "";
 
-    $categories = $data->getCategoryByGenderAndTopic($gender_id, $topic_id);
-    $brands = $data->getBrandAll();
-    $colors = $data->getColorAll();
-    $products = $data->getProductByGenderAndTopic($gender_id, $topic_id);
+$categories = $data->getCategoryByGenderAndTopic($gender_id, $topic_id);
+$brands = $data->getBrandAll();
+$colors = $data->getColorAll();
+
+if ($category_id) {
+    if ($latest)
+        $products = $data->getProductByGenderTopicAndCategoryLatest($gender_id, $topic_id, $category_id);
+    elseif ($highfirst)
+        $products = $data->getProductByGenderTopicAndCategoryHighFirst($gender_id, $topic_id, $category_id);
+    elseif ($lowfirst)
+        $products = $data->getProductByGenderTopicAndCategoryLowFirst($gender_id, $topic_id, $category_id);
+    else
+        $products = $data->getProductByGenderTopicAndCategory($gender_id, $topic_id, $category_id);
+} elseif ($brand_id) {
+    if ($latest)
+        $products = $data->getProductByGenderTopicAndBrandLatest($gender_id, $topic_id, $brand_idd);
+    elseif ($highfirst)
+        $products = $data->getProductByGenderTopicAndBrandHighFirst($gender_id, $topic_id, $brand_idd);
+    elseif ($lowfirst)
+        $products = $data->getProductByGenderTopicAndBrandLowFirst($gender_id, $topic_id, $brand_idd);
+    else
+        $products = $data->getProductByGenderTopicAndBrand($gender_id, $topic_id, $brand_id);
+} elseif ($color_id) {
+    if ($latest)
+        $products = $data->getProductByGenderTopicAndColorLatest($gender_id, $topic_id, $category_id);
+    elseif ($highfirst)
+        $products = $data->getProductByGenderTopicAndColorHighFirst($gender_id, $topic_id, $category_id);
+    elseif ($lowfirst)
+        $products = $data->getProductByGenderTopicAndColorLowFirst($gender_id, $topic_id, $category_id);
+    else
+        $products = $data->getProductByGenderTopicAndColor($gender_id, $topic_id, $color_id);
 } else {
-    HTTP::redirect("/public/index.php");
+    if ($latest)
+        $products = $data->getProductByGenderAndTopicLatest($gender_id, $topic_id);
+    elseif ($highfirst)
+        $products = $data->getProductByGenderAndTopicHighFirst($gender_id, $topic_id);
+    elseif ($lowfirst)
+        $products = $data->getProductByGenderAndTopicLowFirst($gender_id, $topic_id);
+    else
+        $products = $data->getProductByGenderAndTopic($gender_id, $topic_id);
 }
+
 ?>
 
 <!-- Head -->
 <section class="container head">
-    <!-- <h4>Products &raquo; <a href="#">product</a> &raquo; <a href="#">category</a></h4> -->
+    <h4><?= $gender ?> &raquo; <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>"><?= $topic ?></a>
+        <?php if ($category_id) : $category = $data->getCategory($category_id); ?>
+        &raquo; <?= $category ?>
+        <?php elseif ($brand_id) : $brand = $data->getBrand($brand_id); ?>
+        &raquo; <?= $brand ?>
+        <?php elseif ($color_id) : $color = $data->getColor($color_id); ?>
+        &raquo; <?= $color ?>
+        <?php endif;
+        if ($latest) : ?>
+        &raquo; Latest First
+        <?php elseif ($highfirst) : ?>
+        &raquo; High Price First
+        <?php elseif ($lowfirst) : ?>
+        &raquo; Low Price First
+        <?php endif; ?>
+    </h4>
     <div class="caption">
         <h1><?= $gender . " " . $topic ?></h1>
+        <h4 class="choices">( <?= count($products); ?> Products )</h4>
     </div>
 </section>
 
@@ -48,8 +109,10 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                     <div class="dropdown">
                         <?php foreach ($categories as $category) : ?>
                         <div>
-                            <a
-                                href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category->id ?>"><?= $category->name ?></a>
+                            <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category->id ?>"
+                                style="text-decoration:<?php if ($category_id == $category->id) echo "line-through" ?>;">
+                                <?= $category->name ?>
+                            </a>
                         </div>
                         <?php endforeach; ?>
                     </div>
@@ -61,7 +124,8 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                     <div class="dropdown">
                         <?php foreach ($brands as $brand) : ?>
                         <div>
-                            <a href="products.php?brand=<?= $brand->id ?>"><?= $brand->name ?></a>
+                            <a
+                                href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&brand=<?= $brand->id ?>"><?= $brand->name ?></a>
                         </div>
                         <?php endforeach; ?>
                     </div>
@@ -74,7 +138,8 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                         <?php foreach ($colors as $color) : ?>
                         <div>
                             <div class="color" style="background: <?= $color->value ?>;"></div>
-                            <a href="products.php?color=<?= $color->id ?>"><?= $color->name ?></a>
+                            <a
+                                href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&color=<?= $color->id ?>"><?= $color->name ?></a>
                         </div>
                         <?php endforeach; ?>
                     </div>
@@ -90,13 +155,19 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                 </div>
                 <div class="dropdown">
                     <div>
-                        <a href="#">Latest</a>
+                        <a
+                            href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&latest=1">Latest
+                            First</a>
                     </div>
                     <div>
-                        <a href="#">High Price First</a>
+                        <a
+                            href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&highfirst=1">High
+                            Price First</a>
                     </div>
                     <div>
-                        <a href="#">Low Price First</a>
+                        <a
+                            href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&lowfirst=1">Low
+                            Price First</a>
                     </div>
                 </div>
             </div>
@@ -106,14 +177,14 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
 
 <!-- Showcase -->
 <section class="container showcase">
-    <!-- <h4 class="choices">filtered / categories / list / also / color / br nyr</h4> -->
     <?php if (count($products) != 0) : ?>
     <div class="card-container">
         <?php foreach ($products as $product) : ?>
         <div class="card">
             <div class="img-holder">
-                <a href="#"><img src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
-                                                            echo $images[0]->image; ?>" alt=""></a>
+                <a href="product-detail.php?id=<?= $product->id ?>"><img
+                        src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
+                                                                                                    echo $images[0]->image; ?>" alt=""></a>
             </div>
             <div class="info">
                 <div class="texts">
@@ -135,8 +206,8 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                             <a href="signin.php"><i class="fa-solid fa-heart"></i></a>
                         </div>
                         <div class="cart">
-                            <a href="../_actions/add-to-cart.php?id=<?= $product->id ?>">
-                                <i class="fa-solid fa-bag-shopping"></i>
+                            <a href="product-detail.php?id=<?= $product->id ?>">
+                                <i class="fa-solid fa-shopping-bag"></i>
                             </a>
                         </div>
                     </div>

@@ -40,11 +40,29 @@ class Stocks
         $name = $statement->fetch()->name;
         return $name ?? false;
     }
+    public function getBrand($brand_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT name FROM brands WHERE id=:brand_id;
+        ");
+        $statement->execute([':brand_id' => $brand_id]);
+        $name = $statement->fetch()->name;
+        return $name ?? false;
+    }
+    public function getColor($color_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT name FROM colors WHERE id=:color_id;
+        ");
+        $statement->execute([':color_id' => $color_id]);
+        $name = $statement->fetch()->name;
+        return $name ?? false;
+    }
 
     public function getCategoryByGenderAndTopic($gender_id, $topic_id)
     {
         $statement = $this->db->prepare("
-        SELECT id, name FROM categories WHERE gender_id = :gender_id AND topic_id = :topic_id ;
+        SELECT id, name FROM categories WHERE gender_id = :gender_id AND topic_id = :topic_id ORDER BY name;
         ");
         $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id]);
         return $statement->fetchAll();
@@ -61,7 +79,7 @@ class Stocks
     public function getBrandAll()
     {
         $statement = $this->db->query("
-            SELECT id, name, image FROM brands;
+            SELECT id, name, image FROM brands ORDER BY name;
         ");
         return $statement->fetchAll();
     }
@@ -69,7 +87,7 @@ class Stocks
     public function getColorAll()
     {
         $statement = $this->db->query("
-            SELECT id, name, value FROM colors;
+            SELECT id, name, value FROM colors ORDER BY name;
         ");
         return $statement->fetchAll();
     }
@@ -127,22 +145,48 @@ class Stocks
 
     public function getProductByGenderAndTopic($gender_id, $topic_id)
     {
-        // $statement = $this->db->query("
-        //     SELECT products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail, sizes.name as size, stocks.stock, stocks.created_at FROM stocks
-        //     LEFT JOIN sizes ON sizes.id = stocks.size_id
-        //     LEFT JOIN products ON products.id = stocks.product_id
-        //     LEFT JOIN categories ON categories.id = products.category_id
-        //     LEFT JOIN brands ON brands.id = products.brand_id
-        //     LEFT JOIN colors ON colors.id = products.color_id
-        //     WHERE products.gender_id = '$gender_id' AND products.topic_id = '$topic_id'
-        // ");
-
         $statement = $this->db->prepare("
             SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
             LEFT JOIN categories ON categories.id = products.category_id
             LEFT JOIN brands ON brands.id = products.brand_id
             LEFT JOIN colors ON colors.id = products.color_id
             WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id        
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderAndTopicLatest($gender_id, $topic_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id ORDER BY products.created_at DESC   
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderAndTopicHighFirst($gender_id, $topic_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id ORDER BY products.price DESC   
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderAndTopicLowFirst($gender_id, $topic_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id ORDER BY products.price   
         ");
         $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id]);
         return $statement->fetchAll();
@@ -246,5 +290,150 @@ class Stocks
         $statement->execute([':id' => $id]);
         $name = $statement->fetch();
         return $name ?? false;
+    }
+
+    public function getProductByGenderTopicAndCategory($gender_id, $topic_id, $category_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.category_id = :category_id       
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':category_id' => $category_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderTopicAndCategoryLatest($gender_id, $topic_id, $category_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.category_id = :category_id ORDER BY products.created_at DESC 
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':category_id' => $category_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderTopicAndCategoryHighFirst($gender_id, $topic_id, $category_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.category_id = :category_id ORDER BY products.price DESC 
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':category_id' => $category_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderTopicAndCategoryLowFirst($gender_id, $topic_id, $category_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.category_id = :category_id ORDER BY products.price 
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':category_id' => $category_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderTopicAndBrand($gender_id, $topic_id, $brand_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.brand_id = :brand_id       
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':brand_id' => $brand_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderTopicAndBrandLatest($gender_id, $topic_id, $brand_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.brand_id = :brand_id ORDER BY products.created_at DESC    
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':brand_id' => $brand_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderTopicAndBrandHighFirst($gender_id, $topic_id, $brand_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.brand_id = :brand_id ORDER BY products.price DESC    
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':brand_id' => $brand_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderTopicAndBrandLowFirst($gender_id, $topic_id, $brand_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.brand_id = :brand_id ORDER BY products.price     
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':brand_id' => $brand_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderTopicAndColor($gender_id, $topic_id, $color_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.color_id = :color_id       
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':color_id' => $color_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderTopicAndColorLatest($gender_id, $topic_id, $color_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.color_id = :color_id ORDER BY products.created_at DESC    
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':color_id' => $color_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderTopicAndColorHighFirst($gender_id, $topic_id, $color_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.color_id = :color_id ORDER BY products.price DESC    
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':color_id' => $color_id]);
+        return $statement->fetchAll();
+    }
+    public function getProductByGenderTopicAndColorLowFirst($gender_id, $topic_id, $color_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.color_id = :color_id ORDER BY products.price   
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':color_id' => $color_id]);
+        return $statement->fetchAll();
     }
 }

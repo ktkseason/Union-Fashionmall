@@ -3,6 +3,10 @@
         a {
             color: $color-secondary;
         }
+
+        &.choices {
+            color: $color-primary-opacity;
+        }
     }
 
     .caption {
@@ -11,5 +15,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 1rem;
     }
 }
