@@ -7,14 +7,7 @@ use Libs\Database\MySQL;
 $data = new Stocks(new MySQL());
 
 $categories = $data->getCategoryAll();
-
 session_start();
-$total_cart = 0;
-if (isset($_SESSION['cart'])) {
-    foreach ($_SESSION['cart'] as $val) {
-        $total_cart += $val['qty'];
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -188,7 +181,14 @@ if (isset($_SESSION['cart'])) {
                     <a href="signin.php"><i class="fa-solid fa-heart"></i></a>
                 </li>
                 <li class="cart">
-                    <div class="badge"><?= $total_cart ?></div>
+                    <?php
+                    $total_cart = 0;
+                    if (isset($_SESSION['cart'])) :
+                        foreach ($_SESSION['cart'] as $val) {
+                            $total_cart += $val['qty'];
+                        } ?>
+                        <div class="badge"><?= $total_cart ?></div>
+                    <?php endif; ?>
                     <a href="cart.php"><i class="fa-solid fa-bag-shopping"></i></a>
                 </li>
                 <li class="profile">

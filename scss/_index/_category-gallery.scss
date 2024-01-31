@@ -21,6 +21,7 @@
             align-items: center;
             justify-content: center;
             color: $color-background;
+            border-radius: 3px;
             opacity: 0;
             @include transition;
 

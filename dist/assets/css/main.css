@@ -202,6 +202,8 @@ textarea {
   width: 100%;
   height: 60%;
   background-color: #e2e6e9;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 .card-container .card .img-holder img {
   width: 100%;
@@ -770,6 +772,7 @@ header .same-part .working-icons li.cart .badge {
   align-items: center;
   justify-content: center;
   color: #f7f1f0;
+  border-radius: 3px;
   opacity: 0;
   transition: all 0.5s ease-out;
 }
