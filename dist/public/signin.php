@@ -2,6 +2,6 @@
 <main>
     <?php include_once "../_public/SigninForm.php" ?>
 </main>
-<?php include_once('../_public/Footer.php'); ?>
+<?php include_once "../_public/Footer.php"; ?>
 
 <script src="../assets/js/header.js"></script>

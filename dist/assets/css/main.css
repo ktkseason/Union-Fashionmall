@@ -499,10 +499,10 @@ header .same-part .working-icons li.search form input {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-header .same-part .working-icons li.cart {
+header .same-part .working-icons li.bag {
   position: relative;
 }
-header .same-part .working-icons li.cart .badge {
+header .same-part .working-icons li.bag .badge {
   position: absolute;
   top: -0.3rem;
   right: -0.3rem;

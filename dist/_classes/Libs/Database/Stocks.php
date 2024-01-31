@@ -58,6 +58,14 @@ class Stocks
         $name = $statement->fetch()->name;
         return $name ?? false;
     }
+    public function getStock($stock_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT * FROM stocks WHERE id=:stock_id;
+        ");
+        $statement->execute([':stock_id' => $stock_id]);
+        return $statement->fetch() ?? false;
+    }
 
     public function getCategoryByGenderAndTopic($gender_id, $topic_id)
     {
@@ -281,10 +289,12 @@ class Stocks
     public function getProduct($id)
     {
         $statement = $this->db->prepare("
-            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            SELECT products.id, products.name, genders.name as gender, products.gender_id, products.topic_id, topics.name as topic, products.category_id, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
             LEFT JOIN categories ON categories.id = products.category_id
             LEFT JOIN brands ON brands.id = products.brand_id
             LEFT JOIN colors ON colors.id = products.color_id
+            LEFT JOIN genders ON genders.id = products.gender_id
+            LEFT JOIN topics ON topics.id = products.topic_id
             WHERE products.id=:id;
         ");
         $statement->execute([':id' => $id]);

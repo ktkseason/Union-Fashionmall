@@ -188,15 +188,15 @@ $categories = $data->getCategoryAll();
                 <li class="wishlist">
                     <a href="wishlist.php"><i class="fa-solid fa-heart"></i></a>
                 </li>
-                <li class="cart">
-                    <?php $total_cart = 0;
-                    if (isset($_SESSION['cart'])) :
-                        foreach ($_SESSION['cart'] as $val) {
-                            $total_cart += $val['qty'];
+                <li class="bag">
+                    <?php $total = 0;
+                    if (isset($_SESSION['bag'])) :
+                        foreach ($_SESSION['bag'] as $val) {
+                            $total += $val['quantity'];
                         } ?>
-                    <div class="badge"><?= $total_cart ?></div>
+                    <div class="badge"><?= $total ?></div>
                     <?php endif; ?>
-                    <a href="cart.php"><i class="fa-solid fa-bag-shopping"></i></a>
+                    <a href="bag.php"><i class="fa-solid fa-bag-shopping"></i></a>
                 </li>
                 <li class="profile">
                     <a href="profile.php"><i class="fa-solid fa-user"></i></a>

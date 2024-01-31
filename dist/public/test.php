@@ -68,7 +68,7 @@
                     <div class="wishlist">
                         <i class="fa-solid fa-heart"></i>
                     </div>
-                    <div class="cart">
+                    <div class="bag">
                         <i class="fa-solid fa-bag-shopping"></i>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                     <div class="wishlist">
                         <i class="fa-solid fa-heart"></i>
                     </div>
-                    <div class="cart">
+                    <div class="bag">
                         <i class="fa-solid fa-bag-shopping"></i>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                     <div class="wishlist">
                         <i class="fa-solid fa-heart"></i>
                     </div>
-                    <div class="cart">
+                    <div class="bag">
                         <i class="fa-solid fa-bag-shopping"></i>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                     <div class="wishlist">
                         <i class="fa-solid fa-heart"></i>
                     </div>
-                    <div class="cart">
+                    <div class="bag">
                         <i class="fa-solid fa-bag-shopping"></i>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                     <div class="wishlist">
                         <i class="fa-solid fa-heart"></i>
                     </div>
-                    <div class="cart">
+                    <div class="bag">
                         <i class="fa-solid fa-bag-shopping"></i>
                     </div>
                 </div>
