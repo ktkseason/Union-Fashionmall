@@ -1,10 +1,9 @@
 <?php
 
-use Libs\Database\Users;
 
 include("../vendor/autoload.php");
 
-use Helpers\HTTP;
+use Libs\Database\Users;
 use Libs\Database\Stocks;
 use Libs\Database\MySQL;
 

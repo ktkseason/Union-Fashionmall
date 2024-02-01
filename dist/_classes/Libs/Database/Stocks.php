@@ -289,7 +289,7 @@ class Stocks
     public function getProduct($id)
     {
         $statement = $this->db->prepare("
-            SELECT products.id, products.name, genders.name as gender, products.gender_id, products.topic_id, topics.name as topic, products.category_id, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            SELECT products.id, products.name, genders.name as gender, products.gender_id, products.topic_id, topics.name as topic, products.category_id, categories.name as category, products.brand_id, brands.name as brand, colors.name as color, products.price, products.detail FROM products
             LEFT JOIN categories ON categories.id = products.category_id
             LEFT JOIN brands ON brands.id = products.brand_id
             LEFT JOIN colors ON colors.id = products.color_id
@@ -444,6 +444,19 @@ class Stocks
             WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.color_id = :color_id ORDER BY products.price   
         ");
         $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':color_id' => $color_id]);
+        return $statement->fetchAll();
+    }
+
+    public function getSimilarProduct($gender_id, $topic_id, $category_id, $product_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.category_id = :category_id AND products.id != :product_id LIMIT 4   
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':category_id' => $category_id, ':product_id' => $product_id]);
         return $statement->fetchAll();
     }
 }

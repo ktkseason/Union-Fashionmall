@@ -1,10 +1,12 @@
 <?php
 include("../vendor/autoload.php");
 
+use Libs\Database\Users;
 use Libs\Database\Stocks;
 use Libs\Database\MySQL;
 
 $data = new Stocks(new MySQL());
+$user = new Users(new MySQL());
 
 $id = $_GET['id'];
 
@@ -46,7 +48,7 @@ $product = $data->getProduct($id);
         <div class="info">
             <div class="texts">
                 <a
-                    href="products.php?gender=<?= $product->gender_id ?>&topic=<?= $product->topic_id ?>&brand=<?= $product->brand_id ?>">
+                    href="products.php?gender=<?=$product->gender_id?>&topic=<?=$product->topic_id?>&brand=<?=$product->brand_id?>">
                     <h2 class="brand"><?= $product->brand ?></h2>
                 </a>
                 <h4><?= $product->name ?></h4>
@@ -74,8 +76,14 @@ $product = $data->getProduct($id);
                     <button type="submit" class="btn btn-primary">Add to Bag <i
                             class='fa-solid fa-shopping-bag'></i></button>
                     <div class="wishlist">
-                        <a href="signin.php">
-                            <i class="fa-solid fa-heart"></i>
+                        <a href="../_actions/add-to-wishlist.php?product_id=<?= $product->id ?>">
+                            <i class="fa-solid fa-heart" style="color: <?php $wishes = $user->getWishAll($auth->id);
+                                                                        $wish_products = [];
+                                                                        foreach ($wishes as $wish) {
+                                                                            $wish_products[] = $wish->product_id;
+                                                                        }
+                                                                        if (in_array($product->id, $wish_products)) echo "#b99095";
+                                                                        else echo "#3a324a"; ?>;"></i>
                         </a>
                     </div>
                 </div>
