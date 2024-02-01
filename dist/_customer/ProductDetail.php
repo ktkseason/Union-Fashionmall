@@ -9,6 +9,8 @@ $data = new Stocks(new MySQL());
 $user = new Users(new MySQL());
 
 $id = $_GET['id'];
+$exceed = $_GET['exceed'] ?? 0;
+$success = $_GET['success'] ?? 0;
 
 $product = $data->getProduct($id);
 
@@ -47,8 +49,20 @@ $product = $data->getProduct($id);
         </div>
         <div class="info">
             <div class="texts">
+
+                <?php if ($exceed) : ?>
+                <div class="alert error">
+                    <h4>The additional added quantity is exceeded from our stock.</h4>
+                </div>
+                <?php endif; ?>
+                <?php if ($success) : ?>
+                <div class="alert success">
+                    <h4>Item is added to your shopping bag.</h4>
+                </div>
+                <?php endif; ?>
+
                 <a
-                    href="products.php?gender=<?=$product->gender_id?>&topic=<?=$product->topic_id?>&brand=<?=$product->brand_id?>">
+                    href="products.php?gender=<?= $product->gender_id ?>&topic=<?= $product->topic_id ?>&brand=<?= $product->brand_id ?>">
                     <h2 class="brand"><?= $product->brand ?></h2>
                 </a>
                 <h4><?= $product->name ?></h4>

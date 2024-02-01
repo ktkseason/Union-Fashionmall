@@ -61,7 +61,9 @@ class Stocks
     public function getStock($stock_id)
     {
         $statement = $this->db->prepare("
-            SELECT * FROM stocks WHERE id=:stock_id;
+            SELECT stocks.id, stocks.product_id, stocks.size_id, stocks.stock, sizes.name as size FROM stocks
+            LEFT JOIN sizes ON sizes.id = stocks.size_id
+            WHERE stocks.id=:stock_id;
         ");
         $statement->execute([':stock_id' => $stock_id]);
         return $statement->fetch() ?? false;

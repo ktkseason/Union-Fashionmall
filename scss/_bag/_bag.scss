@@ -1,0 +1,91 @@
+.bag-checkout {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-auto-rows: auto;
+    grid-auto-flow: dense;
+    align-items: center;
+
+    span.unit,
+    span.quantity {
+        font-size: $fs-us;
+    }
+
+    .bag-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: 4rem;
+
+        .bag {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: start;
+            width: 100%;
+            gap: 1.5rem;
+
+            .bag-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                width: 100%;
+
+                .img-side {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 1rem;
+
+                    .img-holder {
+                        width: 10rem;
+                        height: auto;
+                        background-color: $img-holder;
+                        border-radius: 3px;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 3px;
+                            object-fit: contain;
+                        }
+                    }
+
+                    .texts {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        align-items: start;
+                        gap: 2rem;
+                        flex-wrap: wrap;
+
+                        .stock-info {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            gap: 1.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .sign {
+
+        display: none;
+        @include transition;
+
+
+        &.active {
+            display: block;
+            @include transition;
+        }
+    }
+
+    .checkout {
+        border: 1px solid palevioletred;
+    }
+}

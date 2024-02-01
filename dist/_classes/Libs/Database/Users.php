@@ -88,4 +88,13 @@ class Users
 
 		return $statement->rowCount();
 	}
+
+	public function getFeedbackAll()
+	{
+		$statement = $this->db->prepare("
+            SELECT * FROM feedbacks;
+        ");
+		$statement->execute();
+		return $statement->fetchAll();
+	}
 }

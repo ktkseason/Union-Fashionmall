@@ -1025,9 +1025,10 @@ header .same-part .working-icons li.bag .badge {
     height: calc(100vh - 4rem - 4rem);
   }
 }
-.showcase .similar {
+.showcase .similar,
+.showcase .no-bag,
+.showcase .no-feedback {
   text-align: center;
-  margin-bottom: 3rem;
 }
 .showcase .sorry {
   text-align: center;
@@ -1233,6 +1234,90 @@ header .same-part .working-icons li.bag .badge {
   margin-top: 1.5rem;
 }
 
+@media screen and (max-width: 768px) {
+  .detail-container .detail {
+    grid-gap: 1rem;
+  }
+}
+.bag-checkout {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-auto-rows: auto;
+  grid-auto-flow: dense;
+  align-items: center;
+}
+.bag-checkout span.unit,
+.bag-checkout span.quantity {
+  font-size: 0.9rem;
+}
+.bag-checkout .bag-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 4rem;
+}
+.bag-checkout .bag-container .bag {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  width: 100%;
+  gap: 1.5rem;
+}
+.bag-checkout .bag-container .bag .bag-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+.bag-checkout .bag-container .bag .bag-row .img-side {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.bag-checkout .bag-container .bag .bag-row .img-side .img-holder {
+  width: 10rem;
+  height: auto;
+  background-color: #e2e6e9;
+  border-radius: 3px;
+}
+.bag-checkout .bag-container .bag .bag-row .img-side .img-holder img {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.bag-checkout .bag-container .bag .bag-row .img-side .texts {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.bag-checkout .bag-container .bag .bag-row .img-side .texts .stock-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+.bag-checkout .sign {
+  display: none;
+  transition: all 0.5s ease-out;
+}
+.bag-checkout .sign.active {
+  display: block;
+  transition: all 0.5s ease-out;
+}
+.bag-checkout .checkout {
+  border: 1px solid palevioletred;
+}
+
 .sign .form-container {
   max-width: 40rem;
   width: 100%;
@@ -1434,4 +1519,32 @@ footer a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.feedbacks {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.feedbacks .feedback-container {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-auto-rows: auto;
+  grid-auto-flow: dense;
+}
+.feedbacks .feedback-container .feedback {
+  background-color: #e2e6e9;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.feedbacks .feedback-container .feedback h3 {
+  margin-top: 0.5rem;
+}
+.feedbacks .feedback-container .feedback p {
+  margin-top: 1rem;
 }/*# sourceMappingURL=main.css.map */

@@ -45,11 +45,10 @@
             </div>
             <div class="list">
                 <nav>
-                    <a href="#home">Home</a>
-                    <a href="#books">Books</a>
-                    <a href="#authors">Authors</a>
-                    <a href="#services">Services</a>
-                    <a href="#contact">Contact</a>
+                    <a href="index.php">Home</a>
+                    <a href="about.php">About</a>
+                    <a href="products.php?gender=1&topic=1">Products</a>
+                    <a href="contact.php">Contact</a>
                 </nav>
                 <div class="policies">
                     <a href="#customerservices">Customer Services</a>

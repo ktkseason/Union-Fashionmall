@@ -2,8 +2,13 @@
 include("../vendor/autoload.php");
 
 use Helpers\Auth;
+use Libs\Database\MySQL;
+use Libs\Database\Users;
 
 $auth = Auth::adminCheck();
+
+$user = new Users(new MySQL());
+$feedbacks = $user->getFeedbackAll();
 ?>
 
 <!DOCTYPE html>
@@ -12,9 +17,7 @@ $auth = Auth::adminCheck();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="shortcut icon" href="../assets/img/logo-icon.png" type="image/x-icon">
     <title>Union Fashion Mall</title>
@@ -31,9 +34,9 @@ $auth = Auth::adminCheck();
         <!-- Buttons -->
         <section class="container btns">
             <?php if (isset($_GET['query_error'])) : ?>
-            <div class="alert error">
-                <h4>QUERY ERROR.</h4>
-            </div>
+                <div class="alert error">
+                    <h4>QUERY ERROR.</h4>
+                </div>
             <?php endif; ?>
 
             <!-- Product Buttons -->
@@ -66,8 +69,8 @@ $auth = Auth::adminCheck();
                 <a href="#" class="crud">
                     <h2>Checkouts <span>17</span></h2>
                 </a>
-                <a href="#" class="crud">
-                    <h2>Feedbacks <span>8</span></h2>
+                <a href="feedbacks.php" class="crud">
+                    <h2>Feedbacks <span><?= count($feedbacks) ?></span></h2>
                 </a>
                 <a href="#" class="crud">
                     <h2>Popular Products <span>37</span></h2>

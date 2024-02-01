@@ -154,8 +154,13 @@
             }
 
         }
-
     }
+}
 
-
+@include media-md {
+    .detail-container {
+        .detail {
+            grid-gap: 1rem;
+        }
+    }
 }

@@ -12,6 +12,8 @@ session_start();
 $product_id = $_POST['product_id'];
 $sizes_stocks = $data->getSizesAndStocksByProduct($product_id);
 
+$query = "id=" . $product_id;
+
 if (!isset($_SESSION['bag'])) {
     $_SESSION['bag'] = [];
 }
@@ -24,7 +26,15 @@ foreach ($sizes_stocks as $size_stock) {
 
     if ($quantity) {
         if (isset($_SESSION['bag'][$stock_id])) {
-            $_SESSION['bag'][$stock_id]['quantity'] += $quantity;
+            if ($size_stock->stock < $_SESSION['bag'][$stock_id]['quantity'] + $quantity) {
+                if (isset($_SESSION['customer_auth'])) {
+                    $query .= "&exceed=1";
+                    HTTP::redirect("/customer/product-detail.php", $query);
+                } else {
+                    HTTP::redirect("/public/product-detail.php", $query);
+                }
+            } else
+                $_SESSION['bag'][$stock_id]['quantity'] += $quantity;
         } else {
             $_SESSION['bag'][$stock_id] = [
                 'stock_id' => $stock_id,
@@ -37,8 +47,7 @@ foreach ($sizes_stocks as $size_stock) {
 print_r($_SESSION['bag']);
 echo "<br>";
 print_r($stocks);
-
-$query = "id=" . $product_id;
+$query .= "&success=1";
 if (isset($_SESSION['customer_auth'])) {
     HTTP::redirect("/customer/product-detail.php", $query);
 } else {
