@@ -257,6 +257,17 @@ class Stocks
         return $statement->rowCount();
     }
 
+    public function updateStock($input)
+    {
+
+        $statement = $this->db->prepare("
+            UPDATE stocks SET stock = :stock, updated_at = NOW() WHERE id = :stock_id            
+        ");
+
+        $statement->execute($input);
+        return $statement->rowCount();
+    }
+
     public function deleteImageByProduct($id)
     {
         $statement = $this->db->prepare("

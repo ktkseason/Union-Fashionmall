@@ -97,4 +97,19 @@ class Users
 		$statement->execute();
 		return $statement->fetchAll();
 	}
+
+	public function addCheckout($input)
+	{
+		try {
+			$query = " INSERT INTO checkouts (user_id, customer_information, card_information, products, created_at) 
+			VALUES (:user_id, :customer_information, :card_information, :products, NOW())";
+
+			$statement = $this->db->prepare($query);
+			$statement->execute($input);
+
+			return $this->db->lastInsertId();
+		} catch (PDOException $e) {
+			return $e->getMessage()();
+		}
+	}
 }

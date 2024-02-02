@@ -7,7 +7,6 @@ use Helpers\HTTP;
 
 $data = new Stocks(new MySQL());
 session_start();
-// unset($_SESSION['bag']);
 
 $product_id = $_POST['product_id'];
 $sizes_stocks = $data->getSizesAndStocksByProduct($product_id);

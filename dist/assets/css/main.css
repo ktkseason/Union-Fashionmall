@@ -1262,8 +1262,8 @@ header .same-part .working-icons li.bag .badge {
 }
 .bag-checkout .bag-container .bag-head {
   display: flex;
-  justify-content: space-between;
-  gap: 3rem;
+  justify-content: start;
+  gap: 1rem;
   width: 100%;
   align-items: center;
 }
@@ -1322,8 +1322,8 @@ header .same-part .working-icons li.bag .badge {
 }
 .bag-checkout .bag-container .bag .bag-row a.delete {
   position: absolute;
-  top: 0rem;
-  left: 27rem;
+  top: 0;
+  right: 0;
 }
 .bag-checkout .sign {
   display: none;
@@ -1337,7 +1337,76 @@ header .same-part .working-icons li.bag .badge {
   transition: all 0.5s ease-out;
 }
 .bag-checkout .checkout {
-  border: 1px solid palevioletred;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 2rem;
+  min-height: 100vh;
+}
+.bag-checkout .checkout .checkout-container {
+  border-radius: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+}
+.bag-checkout .checkout .checkout-container .amount-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.bag-checkout .checkout .checkout-container .amount-info .amount {
+  display: flex;
+  width: 45%;
+  margin: auto;
+  justify-content: space-between;
+}
+.bag-checkout .checkout .checkout-container .amount-info .amount .values .subtotals .subtotal,
+.bag-checkout .checkout .checkout-container .amount-info .amount .values .total {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.bag-checkout .checkout .checkout-container .amount-info .amount .labels,
+.bag-checkout .checkout .checkout-container .amount-info .amount .values {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.bag-checkout .checkout .checkout-container .amount-info .amount .labels .total,
+.bag-checkout .checkout .checkout-container .amount-info .amount .values .total {
+  padding: 1rem 0;
+}
+.bag-checkout .checkout .checkout-container .amount-info .amount .values .total {
+  border-top: 1px solid #3a324a;
+}
+.bag-checkout .checkout .checkout-container .amount-info .info-inputs {
+  width: 100%;
+}
+.bag-checkout .checkout .checkout-container .amount-info .info-inputs form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.bag-checkout .checkout .checkout-container .amount-info .info-inputs form .info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.bag-checkout .checkout .checkout-container .amount-info .info-inputs form .info .inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.bag-checkout .checkout .checkout-container .amount-info .info-inputs form .info .inputs .two {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+.bag-checkout .checkout .checkout-container .amount-info .info-inputs form .info .inputs .two input {
+  flex: 1;
+  min-width: 10rem;
 }
 
 .sign .form-container {
@@ -1525,7 +1594,7 @@ footer a:hover {
   align-items: center;
   border-radius: 1rem;
   padding: 1rem;
-  background-color: #b99095;
+  background-color: rgba(46, 21, 27, 0.8);
   color: #f7f1f0;
   transition: all 0.5s ease-out;
 }

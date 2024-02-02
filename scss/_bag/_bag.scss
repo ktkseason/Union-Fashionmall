@@ -21,8 +21,8 @@
 
         .bag-head {
             display: flex;
-            justify-content: space-between;
-            gap: 3rem;
+            justify-content: start;
+            gap: 1rem;
             width: 100%;
             align-items: center;
 
@@ -87,8 +87,8 @@
 
                 a.delete {
                     position: absolute;
-                    top: 0rem;
-                    left: 27rem;
+                    top: 0;
+                    right: 0;
                 }
             }
 
@@ -111,6 +111,88 @@
     }
 
     .checkout {
-        border: 1px solid palevioletred;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: 2rem;
+        min-height: 100vh;
+
+        .checkout-container {
+            border-radius: 1px solid red;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 2rem;
+
+            .amount-info {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+
+                .amount {
+                    display: flex;
+                    width: 45%;
+                    margin: auto;
+                    justify-content: space-between;
+
+
+                    .values .subtotals .subtotal,
+                    .values .total {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: end;
+                    }
+
+                    .labels,
+                    .values {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1.5rem;
+
+                        .total {
+                            padding: 1rem 0;
+                        }
+                    }
+
+                    .values .total {
+                        border-top: 1px solid $color-text;
+                    }
+                }
+
+                .info-inputs {
+                    width: 100%;
+
+                    form {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 2rem;
+
+                        .info {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 1.5rem;
+
+                            .inputs {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 0.7rem;
+
+                                .two {
+                                    display: flex;
+                                    gap: 0.7rem;
+                                    flex-wrap: wrap;
+
+                                    input {
+                                        flex: 1;
+                                        min-width: 10rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
