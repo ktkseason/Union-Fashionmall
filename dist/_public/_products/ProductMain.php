@@ -12,6 +12,9 @@ $user = new Users(new MySQL());
 
 $gender_id = $_GET['gender'] ?? 1;
 $topic_id = $_GET['topic'] ?? 1;
+
+$new = $_GET['new'] ?? 0;
+
 $category_id = $_GET['category'] ?? 0;
 $brand_id = $_GET['brand'] ?? 0;
 $color_id = $_GET['color'] ?? 0;
@@ -28,7 +31,9 @@ $categories = $data->getCategoryByGenderAndTopic($gender_id, $topic_id);
 $brands = $data->getBrandAll();
 $colors = $data->getColorAll();
 
-if ($category_id) {
+if ($new) {
+    $products = $data->getProductLatest(30);
+} else if ($category_id) {
     if ($latest)
         $products = $data->getProductByGenderTopicAndCategoryLatest($gender_id, $topic_id, $category_id);
     elseif ($highfirst)
@@ -70,21 +75,23 @@ if ($category_id) {
 
 <!-- Head -->
 <section class="container head">
-    <h4><?= $gender ?> &raquo; <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>"><?= $topic ?></a>
-        <?php if ($category_id) : $category = $data->getCategory($category_id); ?>
-            &raquo; <?= $category ?>
-        <?php elseif ($brand_id) : $brand = $data->getBrand($brand_id); ?>
-            &raquo; <?= $brand ?>
-        <?php elseif ($color_id) : $color = $data->getColor($color_id); ?>
-            &raquo; <?= $color ?>
+    <h4><?php if ($new) : ?> New Arrivals
+        <?php else : $gender ?> &raquo; <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>"><?= $topic ?></a>
+            <?php if ($category_id) : $category = $data->getCategory($category_id); ?>
+                &raquo; <?= $category ?>
+            <?php elseif ($brand_id) : $brand = $data->getBrand($brand_id); ?>
+                &raquo; <?= $brand ?>
+            <?php elseif ($color_id) : $color = $data->getColor($color_id); ?>
+                &raquo; <?= $color ?>
+            <?php endif;
+            if ($latest) : ?>
+                &raquo; Latest First
+            <?php elseif ($highfirst) : ?>
+                &raquo; High Price First
+            <?php elseif ($lowfirst) : ?>
+                &raquo; Low Price First
         <?php endif;
-        if ($latest) : ?>
-            &raquo; Latest First
-        <?php elseif ($highfirst) : ?>
-            &raquo; High Price First
-        <?php elseif ($lowfirst) : ?>
-            &raquo; Low Price First
-        <?php endif; ?>
+        endif; ?>
     </h4>
     <div class="caption">
         <h1><?= $gender . " " . $topic ?></h1>

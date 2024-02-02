@@ -63,7 +63,7 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
             <form action="../_actions/_admin/add-stock.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="gender_id" value="<?= $gender_id ?>">
                 <input type="hidden" name="topic_id" value="<?= $topic_id ?>">
-                <div class="mb-3">
+                <div class="img-holder">
                     <input type="file" name="images[]" multiple required>
                 </div>
                 <div class="inputs">
@@ -105,15 +105,16 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                 </div>
                 <div class="sizes">
                     <?php foreach ($sizes as $size) : ?>
-                    <label for="<?= $size->name ?>"><?= $size->name ?></label>
-                    <input type="number" id="<?= $size->name ?>" name="<?= $size->id ?>" class="stockNo" min=0 value=0
-                        required>
+                    <div>
+                        <label for="<?= $size->name ?>"><?= $size->name ?></label>
+                        <input type="number" id="<?= $size->name ?>" name="<?= $size->id ?>" class="stockNo" min=0
+                            value=0 required>
+                    </div>
                     <?php endforeach; ?>
                 </div>
-                <input type="submit">
+                <input class="btn btn-primary" type="submit">
             </form>
         </section>
-
     </main>
 </body>
 

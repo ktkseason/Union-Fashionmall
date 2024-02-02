@@ -49,7 +49,7 @@
 .card-container {
     display: grid;
     grid-gap: 3rem;
-    grid-template-columns: repeat(auto-fit, 27rem);
+    grid-template-columns: repeat(auto-fit, minmax(27rem, 0.25fr));
     grid-auto-rows: 35rem;
     grid-auto-flow: dense;
 
