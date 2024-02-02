@@ -11,8 +11,7 @@ $auth = Auth::adminCheck();
 
 $user = new Users(new MySQL());
 $data = new Stocks(new MySQL());
-$feedbacks = $user->getFeedbackAll();
-$checkouts = $user->getCheckoutByStatus();
+$checkouts = $user->getCheckoutAll();
 ?>
 
 <!DOCTYPE html>
@@ -37,55 +36,8 @@ $checkouts = $user->getCheckoutByStatus();
 
     <main>
 
-        <!-- Buttons -->
-        <section class="container btns">
-            <?php if (isset($_GET['query_error'])) : ?>
-            <div class="alert error">
-                <h4>QUERY ERROR.</h4>
-            </div>
-            <?php endif; ?>
-
-            <!-- Product Buttons -->
-            <section class="btns-group product-btns">
-                <a href="stocks.php?gender=1&topic=1" class="crud">
-                    <h3>Men <span>Clothings</span></h3>
-                </a>
-                <a href="stocks.php?gender=1&topic=2" class="crud">
-                    <h3>Men <span>Shoes</span></h3>
-                </a>
-                <a href="stocks.php?gender=1&topic=3" class="crud">
-                    <h3>Men <span>Bags</span></h3>
-                </a>
-                <a href="stocks.php?gender=2&topic=1" class="crud">
-                    <h3>Women <span>Clothings</span></h3>
-                </a>
-                <a href="stocks.php?gender=2&topic=2" class="crud">
-                    <h3>Women <span>Shoes</span></h3>
-                </a>
-                <a href="stocks.php?gender=2&topic=3" class="crud">
-                    <h3>Women <span>Bags</span></h3>
-                </a>
-            </section>
-
-            <!-- Others Buttons -->
-            <section class="btns-group other-btns">
-                <a href="checkouts.php" class="crud">
-                    <h2>Checkouts <span><?= count($checkouts) ?></span></h2>
-                </a>
-                <a href="feedbacks.php" class="crud">
-                    <h2>Feedbacks <span><?= count($feedbacks) ?></span></h2>
-                </a>
-                <a href="#" class="crud">
-                    <h2>Popular Products <span>37</span></h2>
-                </a>
-                <a href="#" class="crud">
-                    <h2>Users <span>286</span></h2>
-                </a>
-            </section>
-        </section>
-
         <section class="admin-checkouts container">
-            <h2>Recent Checkouts</h2>
+            <h2>Checkouts</h2>
             <?php if ($checkouts) : ?>
             <div class="checkout-container">
                 <?php foreach ($checkouts as $checkout) :
@@ -97,7 +49,8 @@ $checkouts = $user->getCheckoutByStatus();
                         <h3><?= $customer->name ?> <span>( <?= $customer->email ?> ) ( <?= $customer->phone ?> )</span>
                         </h3>
                         <a class="update" href="../_actions/_admin/update-checkout.php?id=<?= $checkout->id ?>"><i
-                                class="fa-solid fa-circle-check"></i></a>
+                                class="fa-solid fa-circle-check"
+                                style="color: <?php if ($checkout->status) echo 'green'; ?>;"></i></a>
                     </div>
                     <div class="products">
                         <?php foreach ($products as $product) : ?>

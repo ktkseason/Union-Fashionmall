@@ -52,6 +52,7 @@
     grid-template-columns: repeat(auto-fit, minmax(27rem, 0.25fr));
     grid-auto-rows: 35rem;
     grid-auto-flow: dense;
+    justify-content: center;
 
     .card {
         background-color: $color-card;
@@ -144,5 +145,100 @@
         background-color: rgba(13, 56, 42, 0.2);
         border: 1px solid rgba(13, 56, 42, 0.8);
         border-radius: 3px;
+    }
+}
+
+/* ========================= Checkout cards ======================*/
+.checkout-container {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .checkout {
+
+        .checkout-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .products {
+            display: grid;
+            grid-gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(30rem, 0.5fr));
+            grid-auto-rows: 14rem;
+            grid-auto-flow: dense;
+            justify-content: center;
+
+            .product {
+                border: 1px solid $color-primary;
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                gap: 1rem;
+                border-radius: 1rem;
+
+                span.unit,
+                span.quantity {
+                    font-size: $fs-us;
+                }
+
+                .img-holder {
+                    width: 12rem;
+                    height: 14rem;
+                    border-radius: 1rem;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        border-radius: 1rem;
+                    }
+                }
+
+                .texts {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    height: 100%;
+                    padding: 2rem 0;
+
+                    .stock-info {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;
+
+                        .one {
+                            display: flex;
+                            gap: 2rem;
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+        .info-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .texts {
+                width: 70%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 1rem;
+
+                .contact {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 3rem;
+                }
+            }
+        }
     }
 }

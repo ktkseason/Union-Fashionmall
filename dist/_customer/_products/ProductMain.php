@@ -186,7 +186,7 @@ if ($new) {
                     </div>
                     <div class="info">
                         <div class="texts">
-                            <a class="names">
+                            <a href="product-detail.php?id=<?= $product->id ?>" class="names">
                                 <h2 class="brand"><?= $product->brand ?></h2>
                                 <h4><?= $product->name  ?></h4>
                             </a>

@@ -13,6 +13,7 @@ $user = new Users(new MySQL());
 $data = new Stocks(new MySQL());
 $user_id = $auth->id;
 $bag = $_SESSION['bag'];
+$products = [];
 
 $customer_information = json_encode([
     "name" => $_POST['name'],
@@ -31,7 +32,26 @@ $card_information = json_encode([
     "cvv" => $_POST['cvv']
 ], true);
 
-$products = json_encode($bag, true);
+foreach ($bag as $cell) {
+    $stock_id = $cell['stock_id'];
+    $stock = $data->getStock($stock_id);
+    $product = $data->getProduct($stock->product_id);
+    $products[] = [
+        "id" => $product->id,
+        "name" => $product->name,
+        "gender" => $product->gender,
+        "topic" => $product->topic,
+        "category" => $product->category,
+        "brand" => $product->brand,
+        "color" => $product->color,
+        "price" => $product->price,
+        "size" => $stock->size,
+        "quantity" => $cell['quantity']
+    ];
+}
+
+
+$products = json_encode($products, true);
 
 $input = [
     "user_id" => $user_id,

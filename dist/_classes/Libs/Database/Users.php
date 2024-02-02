@@ -112,4 +112,40 @@ class Users
 			return $e->getMessage()();
 		}
 	}
+
+	public function getCheckoutByUser($user_id)
+	{
+		$statement = $this->db->prepare("
+            SELECT * FROM checkouts WHERE user_id = :user_id;
+        ");
+		$statement->execute([':user_id' => $user_id]);
+		return $statement->fetchAll();
+	}
+	public function getCheckoutByStatus()
+	{
+		$statement = $this->db->prepare("
+            SELECT * FROM checkouts WHERE  status= :status ORDER BY created_at DESC;
+        ");
+		$statement->execute([':status' => 0]);
+		return $statement->fetchAll();
+	}
+	public function getCheckoutAll()
+	{
+		$statement = $this->db->prepare("
+            SELECT * FROM checkouts ORDER BY created_at DESC;
+        ");
+		$statement->execute();
+		return $statement->fetchAll();
+	}
+
+	public function updateCheckout($checkout_id)
+	{
+
+		$statement = $this->db->prepare("
+            UPDATE checkouts SET status = :status, updated_at = NOW() WHERE id = :checkout_id            
+        ");
+
+		$statement->execute([':status' => 1, ':checkout_id' => $checkout_id]);
+		return $statement->rowCount();
+	}
 }
