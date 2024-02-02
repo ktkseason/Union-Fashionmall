@@ -1706,6 +1706,83 @@ footer a:hover {
   align-items: center;
 }
 
+.admin-stocks .stocks-product {
+  padding: 2rem 0;
+  border-bottom: 1px solid #3a324a;
+}
+.admin-stocks .stocks-product .product-head {
+  display: flex;
+  justify-content: space-between;
+}
+.admin-stocks .stocks-product .product-head h1 span {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.admin-stocks .stocks-product .img-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.admin-stocks .stocks-product .img-container img {
+  width: 10rem;
+  height: 10rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 3px;
+}
+.admin-stocks .stocks-product .img-holder .img-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.admin-stocks .stocks-product .img-holder .img-container .img {
+  width: 10rem;
+  height: 10rem;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid red;
+}
+.admin-stocks .stocks-product .edit {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.admin-stocks .stocks-product .edit .editables {
+  flex: 1;
+  min-width: 30rem;
+}
+.admin-stocks .stocks-product .edit .editables.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.admin-stocks .stocks-product .edit .editables.info span.unit {
+  font-size: 0.9rem;
+}
+.admin-stocks .stocks-product .edit .editables .sizes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.admin-stocks .stocks-product .edit .editables .sizes p {
+  font-weight: 600;
+}
+.admin-stocks .stocks-product .edit .editables .sizes p span {
+  font-weight: 400;
+}
+.admin-stocks .stocks-product .edit .with-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
 .feedbacks {
   display: flex;
   flex-direction: column;

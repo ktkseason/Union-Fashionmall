@@ -47,6 +47,6 @@ foreach ($sizes as $s) {
     }
 }
 
-$query = "gender=" . $gender_id . "&topic=" . $topic_id;
+$query = "gender=" . $gender_id . "&topic=" . $topic_id . "&updated=1";
 
 HTTP::redirect("/admin/stocks.php", $query);

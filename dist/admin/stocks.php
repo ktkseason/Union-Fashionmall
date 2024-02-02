@@ -11,7 +11,7 @@ $auth = Auth::adminCheck();
 if (isset($_GET['gender']) && isset($_GET['topic'])) {
     $gender_id = $_GET['gender'];
     $topic_id = $_GET['topic'];
-
+    $deleted = $_GET['deleted'] ?? 0;
     $data = new Stocks(new MySQL());
 
     $gender = $data->getGender($gender_id);
@@ -57,50 +57,52 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                 </div>
             </div>
 
-            <!-- Table -->
             <?php if (count($products) != 0) : ?>
-                <table class="container">
-                    <thead>
-                        <tr>
-                            <th>Images</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Brand</th>
-                            <th>Color</th>
-                            <th>Price</th>
-                            <th>Detail</th>
-                            <th>Sizes and Stocks</th>
+                <section class="admin-stocks">
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($products as $product) : ?>
-                            <tr>
-                                <td>
-                                    <?php $images = $data->getImageByProduct($product->id);
-                                    foreach ($images as $image) : ?>
-                                        <img src="../assets/img/<?= $image->image ?>" style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                                    <?php endforeach; ?>
-                                </td>
-                                <td><?= $product->name ?></td>
-                                <td><?= $product->category ?></td>
-                                <td><?= $product->brand ?></td>
-                                <td><?= $product->color ?></td>
-                                <td><?= $product->price ?></td>
-                                <td><?= $product->detail ?></td>
-                                <td>
-                                    <?php $sizes_stocks = $data->getSizesAndStocksByProduct($product->id);
-                                    foreach ($sizes_stocks as $size_stock)
-                                        echo $size_stock->size . ": " . $size_stock->stock . "<br>";
-                                    ?>
-                                </td>
-                                <td>
-                                    <a href="../_actions/_admin/delete-stock.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&id=<?= $product->id ?>" class="btn btn-text">Delete</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                    <?php if ($deleted) : ?>
+                        <div class="alert success">
+                            <h4>Product is deleted successfully.</h4>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php foreach ($products as $product) : ?>
+                        <div class="stocks-product">
+                            <div class="product-head">
+                                <h1><?= $product->brand ?> / <span><?= $product->category ?></span>
+                                </h1>
+                                <a href="../_actions/_admin/delete-stock.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&id=<?= $product->id ?>"><i class="fa-solid fa-circle-minus"></i></a>
+                            </div>
+                            <div class="img-container">
+                                <?php $images = $data->getImageByProduct($product->id);
+                                foreach ($images as $image) : ?>
+                                    <img src="../assets/img/<?= $image->image ?>" alt="">
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="edit">
+                                <div class="info editables">
+                                    <h3><?= $product->name ?></h3>
+                                    <h4><?= $product->color ?></h4>
+                                    <h3><?= $product->price ?> <span class="unit">MMK</span></h3>
+                                    <div class="with-header">
+                                        <h3>Detail</h3>
+                                        <p><?= $product->detail ?></p>
+                                    </div>
+                                </div>
+                                <div class="with-header editables">
+                                    <h3>Sizes & Stocks</h3>
+                                    <div class="sizes">
+                                        <?php $sizes_stocks = $data->getSizesAndStocksByProduct($product->id);
+                                        foreach ($sizes_stocks as $size_stock) : ?>
+                                            <p><?= $size_stock->size ?>: <span><?= $size_stock->stock ?></span></p>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                     </tbody>
-                </table>
+                </section>
             <?php else : ?>
                 <h2>There is no product yet.</h2>
             <?php endif; ?>

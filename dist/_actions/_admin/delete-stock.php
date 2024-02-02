@@ -18,5 +18,5 @@ $data->deleteImageByProduct($id);
 $data->deleteStockByProduct($id);
 $data->deleteProduct($id);
 
-$query = "gender=" . $gender_id . "&topic=" . $topic_id;
+$query = "gender=" . $gender_id . "&topic=" . $topic_id . "&deleted=1";
 HTTP::redirect("/admin/stocks.php", $query);
