@@ -4,9 +4,9 @@
         <h1>Get in touch <span>Feel free to leave your feedback.</span></h1>
         <form action="../_actions/add-feedback.php" method="post">
             <?php if (isset($_GET['success'])) : ?>
-                <div class="alert success">
-                    <h4>Feedback Sent.</h4>
-                </div>
+            <div class="alert success">
+                <h4>Feedback Sent.</h4>
+            </div>
             <?php endif; ?>
             <div class="inputs">
                 <input type="text" name="name" placeholder="John Doe" required>
@@ -25,7 +25,8 @@
 <section class="py contact-info">
     <div class="sector">
         <h3>Phone</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, libero?</p>
+        <p>Feel free to connect with us for any assistance. Dial these numbers to reach Union Fashion Mall's dedicated
+            customer service team.</p>
         <div class="contacts-holder">
             <div class="phone"><a href="#"><i class="fa-solid fa-phone"></i>+95 123456789</a></div>
             <div class="phone"><a href="#"><i class="fa-solid fa-phone"></i>+95 987654321</a></div>
@@ -35,7 +36,9 @@
     </div>
     <div class="sector">
         <h3>Mail</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis, quod.</p>
+        <p>
+            For any questions or assistance, feel free to reach out to us via emails. Our dedicated team is here to
+            enhance your shopping experience and provide the utmost support.</p>
         <div class="contacts-holder">
             <div class="mail"><a href="#"><i class="fa-solid fa-envelope"></i>union.fashion.com</a></div>
             <div class="mail"><a href="#"><i class="fa-solid fa-envelope"></i>union.fashion.customerservice.com</a>

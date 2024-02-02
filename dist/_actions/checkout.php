@@ -4,11 +4,13 @@ include("../vendor/autoload.php");
 
 use Libs\Database\MySQL;
 use Libs\Database\Users;
+use Libs\Database\Stocks;
 use Helpers\HTTP;
 use Helpers\Auth;
 
 $auth = Auth::check();
 $user = new Users(new MySQL());
+$data = new Stocks(new MySQL());
 $user_id = $auth->id;
 $bag = $_SESSION['bag'];
 
@@ -38,17 +40,14 @@ $input = [
     "products" => $products
 ];
 
-$user->addCheckout($input);
+if ($user->addCheckout($input)) {
+    foreach ($bag as $cell) {
+        $stock_id = $cell['stock_id'];
+        $stock = $data->getStock($stock_id);
+        $stock_qty = $stock->stock - $cell['quantity'];
+        $data->updateStock($stock_qty, $stock->id);
+    }
+    unset($_SESSION['bag']);
+}
 
-// if ($user->addCheckout($input)) {
-//     foreach ($bag as $cell) {
-//         $stock_id = $cell['stock_id'];
-//         $stock = $data->getStock($stock_id);
-//         $stock->
-//     }
-// }
-
-
-
-
-// HTTP::redirect("/customer/bag.php");
+HTTP::redirect("/customer/bag.php", "success=1");

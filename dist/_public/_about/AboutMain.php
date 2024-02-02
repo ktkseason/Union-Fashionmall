@@ -1,28 +1,29 @@
 <!-- About Story -->
 <section class="container story">
     <h1>Union <span>Story</span></h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi veritatis laboriosam nemo? Provident neque
-        expedita, exercitationem nemo adipisci facere ipsam, voluptatum sint harum dolores fugit, voluptate odio
-        molestiae quasi repellat ipsum illo error repellendus ducimus eligendi? Numquam maiores, delectus dicta eligendi
-        ullam incidunt quam rem necessitatibus ut eum dolor culpa iure sint eveniet corrupti, ad earum repellendus a
-        voluptatum soluta reprehenderit? Fugit eum doloribus vel temporibus eveniet odio hic, laborum omnis sit minus
-        sequi deleniti rerum laudantium harum atque. Ea aliquid dolorem quod aut unde consequatur voluptatum iste, quia
-        fuga obcaecati. Consequatur accusantium voluptatum iste, expedita ad odio rerum obcaecati.</p>
+    <p>Welcome to Union Fashion Mall, where style meets luxury! Founded just a year ago, we take pride in curating an
+        exquisite collection of premium branded clothing, shoes, and bags for both men and women. Our vision is to
+        redefine your shopping experience by offering an exclusive range of fashion that blends sophistication with the
+        latest trends. At Union Fashion Mall, we believe that fashion is a statement, and our carefully selected
+        assortment of luxury brands reflects our commitment to providing you with the finest quality and unparalleled
+        elegance. Whether you're searching for the perfect ensemble for a special occasion or updating your everyday
+        wardrobe, our online platform is designed to make your shopping journey seamless and enjoyable. Explore the
+        world of Union Fashion Mall and elevate your style with the finest in luxury fashion.</p>
 </section>
 
 <!-- Vision Mission -->
 <section class="py vision-mission">
     <div class="sector">
         <h2>Vision</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aut iste assumenda iure explicabo
-            voluptatibus id, delectus vel quasi distinctio sint obcaecati quis mollitia dolorum ab dolores quod? Illo,
-            doloremque!</p>
+        <p>Union Fashion Mall, one year strong, redefines online luxury shopping. We offer an exclusive selection of
+            high-end, branded clothing, shoes, and bags for both men and women. Discover exclusive high-end clothing,
+            shoes, and bags for men and women. Elevate your style effortlessly with us.</p>
     </div>
     <div class="sector">
         <h2>Mission</h2>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis, incidunt et recusandae officia
-            voluptatem unde fuga distinctio porro quod perspiciatis temporibus voluptatibus animi facere suscipit,
-            repudiandae a. Recusandae, id omnis!</p>
+        <p>At Union Fashion Mall, we're a year into redefining online luxury shopping. Discover curated collections of
+            top-tier brands in clothing, shoes, and bags for men and women. Experience seamless and stylish shopping
+            with us – where fashion meets finesse, and your style statement begins.</p>
     </div>
 </section>
 

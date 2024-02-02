@@ -257,14 +257,14 @@ class Stocks
         return $statement->rowCount();
     }
 
-    public function updateStock($input)
+    public function updateStock($stock_qty, $stock_id)
     {
 
         $statement = $this->db->prepare("
             UPDATE stocks SET stock = :stock, updated_at = NOW() WHERE id = :stock_id            
         ");
 
-        $statement->execute($input);
+        $statement->execute([':stock' => $stock_qty, ':stock_id' => $stock_id]);
         return $statement->rowCount();
     }
 

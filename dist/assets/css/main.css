@@ -831,6 +831,7 @@ header .same-part .working-icons li.bag .badge {
   max-width: 100rem;
   width: 100%;
   margin: auto;
+  line-height: 2rem;
 }
 
 .vision-mission {
@@ -855,6 +856,7 @@ header .same-part .working-icons li.bag .badge {
 .vision-mission .sector p {
   max-width: 40rem;
   margin: auto;
+  line-height: 2rem;
 }
 
 .about-gallery {
@@ -1407,6 +1409,13 @@ header .same-part .working-icons li.bag .badge {
 .bag-checkout .checkout .checkout-container .amount-info .info-inputs form .info .inputs .two input {
   flex: 1;
   min-width: 10rem;
+}
+.bag-checkout .checkout .checkout-container .amount-info .info-inputs form .info .inputs textarea {
+  width: 100%;
+  min-height: 7rem;
+  max-height: 10rem;
+  min-width: 20rem;
+  max-width: 59.5rem;
 }
 
 .sign .form-container {

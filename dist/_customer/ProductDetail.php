@@ -65,19 +65,25 @@ $product = $data->getProduct($id);
             <div class="sizes">
                 <?php $sizes_stocks = $data->getSizesAndStocksByProduct($product->id);
                 foreach ($sizes_stocks as $size_stock) : ?>
-                    <h4><?= $size_stock->size ?> <span>: <?= $size_stock->stock ?> Pcs.</span></h4>
+                    <h4><?= $size_stock->size ?>
+                        <?php if ($size_stock->stock > 0) : ?>
+                            <span>: <?= $size_stock->stock ?> Pcs.</span>
+                        <?php else : echo ": Sold Out.";
+                        endif; ?>
+                    </h4>
                 <?php endforeach; ?>
             </div>
             <form action="../_actions/add-to-bag.php" method="post">
                 <input type="hidden" name="product_id" value=<?= $product->id ?>>
                 <div class="inputs">
-                    <?php foreach ($sizes_stocks as $size_stock) : ?>
-                        <input type="hidden" name="<?= $size_stock->id ?>" value=<?= $size_stock->id ?>>
-                        <div class="input">
-                            <label for="<?= $size_stock->id ?>"><?= $size_stock->size ?></label>
-                            <input type="number" min="0" name="quantity_<?= $size_stock->id ?>" max="<?= $size_stock->stock ?>" id="<?= $size_stock->id ?>" value=0 required>
-                        </div>
-                    <?php endforeach; ?>
+                    <?php foreach ($sizes_stocks as $size_stock) : if ($size_stock->stock) : ?>
+                            <input type="hidden" name="<?= $size_stock->id ?>" value=<?= $size_stock->id ?>>
+                            <div class="input">
+                                <label for="<?= $size_stock->id ?>"><?= $size_stock->size ?></label>
+                                <input type="number" min="0" name="quantity_<?= $size_stock->id ?>" max="<?= $size_stock->stock ?>" id="<?= $size_stock->id ?>" value=0 required>
+                            </div>
+                    <?php endif;
+                    endforeach; ?>
                 </div>
                 <div class="btns">
                     <button type="submit" class="btn btn-primary">Add to Bag <i class='fa-solid fa-shopping-bag'></i></button>
@@ -128,7 +134,15 @@ $product = $data->getProduct($id);
                                 <h3><?= $similar->price ?> <span>MMK</span></h3>
                                 <div class="working-icons">
                                     <div class="wishlist">
-                                        <a href="signin.php"><i class="fa-solid fa-heart"></i></a>
+                                        <a href="../_actions/add-to-wishlist.php?product_id=<?= $similar->id ?>">
+                                            <i class="fa-solid fa-heart" style="color: <?php $wishes = $user->getWishAll($auth->id);
+                                                                                        $wish_products = [];
+                                                                                        foreach ($wishes as $wish) {
+                                                                                            $wish_products[] = $wish->product_id;
+                                                                                        }
+                                                                                        if (in_array($similar->id, $wish_products)) echo "#b99095";
+                                                                                        else echo "#3a324a"; ?>;"></i>
+                                        </a>
                                     </div>
                                     <div class="bag">
                                         <a href="product-detail.php?id=<?= $similar->id ?>">

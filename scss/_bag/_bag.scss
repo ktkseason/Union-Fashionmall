@@ -187,6 +187,15 @@
                                         flex: 1;
                                         min-width: 10rem;
                                     }
+
+                                }
+
+                                textarea {
+                                    width: 100%;
+                                    min-height: 7rem;
+                                    max-height: 10rem;
+                                    min-width: 20rem;
+                                    max-width: 59.5rem;
                                 }
                             }
                         }
