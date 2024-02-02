@@ -5,4 +5,4 @@
 <?php include_once "../_public/Footer.php"; ?>
 
 <script src="../assets/js/header.js"></script>
-<script src="../assets/js/checkout-sign.js"></script>
+<script src="../assets/js/checkoutSign.js"></script>

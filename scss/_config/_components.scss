@@ -52,7 +52,6 @@
     grid-template-columns: repeat(auto-fit, minmax(27rem, 0.25fr));
     grid-auto-rows: 35rem;
     grid-auto-flow: dense;
-    justify-content: center;
 
     .card {
         background-color: $color-card;
@@ -134,14 +133,14 @@
     text-align: center;
 
     &.error {
-        color: #380d0d;
+        color: $error;
         background-color: rgba(56, 13, 13, 0.2);
         border: 1px solid rgba(56, 13, 13, 0.8);
         border-radius: 3px;
     }
 
     &.success {
-        color: #0d382a;
+        color: $success;
         background-color: rgba(13, 56, 42, 0.2);
         border: 1px solid rgba(13, 56, 42, 0.8);
         border-radius: 3px;
@@ -161,6 +160,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            .update {
+
+                i.shipped {
+                    color: $success;
+                    pointer-events: none;
+
+                    &:hover {
+                        color: $success;
+                    }
+                }
+
+                i.pending {
+                    color: $error;
+
+                    &:hover {
+                        color: $color-secondary;
+                    }
+                }
+            }
         }
 
         .products {

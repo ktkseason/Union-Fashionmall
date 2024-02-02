@@ -76,7 +76,7 @@ if ($new) {
 <!-- Head -->
 <section class="container head">
     <h4><?php if ($new) : ?> New Arrivals
-        <?php else : $gender ?> &raquo; <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>"><?= $topic ?></a>
+        <?php else : echo $gender ?> &raquo; <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>"><?= $topic ?></a>
             <?php if ($category_id) : $category = $data->getCategory($category_id); ?>
                 &raquo; <?= $category ?>
             <?php elseif ($brand_id) : $brand = $data->getBrand($brand_id); ?>

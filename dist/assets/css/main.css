@@ -193,7 +193,6 @@ select {
   grid-template-columns: repeat(auto-fit, minmax(27rem, 0.25fr));
   grid-auto-rows: 35rem;
   grid-auto-flow: dense;
-  justify-content: center;
 }
 .card-container .card {
   background-color: #fff9f8;
@@ -285,6 +284,19 @@ select {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.checkout-container .checkout .checkout-head .update i.shipped {
+  color: #0d382a;
+  pointer-events: none;
+}
+.checkout-container .checkout .checkout-head .update i.shipped:hover {
+  color: #0d382a;
+}
+.checkout-container .checkout .checkout-head .update i.pending {
+  color: #380d0d;
+}
+.checkout-container .checkout .checkout-head .update i.pending:hover {
+  color: #b99095;
 }
 .checkout-container .checkout .products {
   display: grid;
@@ -1532,6 +1544,83 @@ header .same-part .working-icons li.bag .badge {
   text-decoration: underline;
 }
 
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.profile .customer-info {
+  height: 21rem;
+}
+.profile .customer-info .operate-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 2rem;
+}
+.profile .customer-info .operate-info .head {
+  display: flex;
+  justify-content: start;
+  align-items: end;
+  gap: 2rem;
+}
+.profile .customer-info .operate-info .head p {
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+.profile .customer-info .operate-info .head p:hover {
+  text-decoration: underline;
+}
+.profile .customer-info .operate-info form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 30rem;
+}
+.profile .customer-info .view-info {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 100%;
+}
+.profile .customer-info .view-info .info-container {
+  justify-self: center;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  gap: 2rem;
+}
+.profile .customer-info .change-block {
+  display: none;
+  transition: all 0.5s ease-out;
+}
+.profile .customer-info .change-block.active {
+  display: flex;
+  transition: all 0.5s ease-out;
+}
+.profile .history {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.profile .history .update i.shipped {
+  color: #0d382a;
+  cursor: inherit;
+}
+.profile .history .update i.shipped:hover {
+  color: #0d382a;
+}
+.profile .history .update i.pending {
+  color: #380d0d;
+  cursor: inherit;
+}
+.profile .history .update i.pending:hover {
+  color: #380d0d;
+}
+
 .services {
   display: flex;
   justify-content: center;
@@ -1723,6 +1812,7 @@ footer a:hover {
   display: flex;
   justify-content: start;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin: 1rem 0;
 }
@@ -1733,19 +1823,24 @@ footer a:hover {
      object-fit: cover;
   border-radius: 3px;
 }
-.admin-stocks .stocks-product .img-holder .img-container {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 1rem 0;
-}
-.admin-stocks .stocks-product .img-holder .img-container .img {
+.admin-stocks .stocks-product .img-container .img {
+  position: relative;
   width: 10rem;
   height: 10rem;
-  position: relative;
-  border-radius: 3px;
-  border: 1px solid red;
+}
+.admin-stocks .stocks-product .img-container .img a {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+}
+.admin-stocks .stocks-product .img-container form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.admin-stocks .stocks-product .img-container form input {
+  width: 22rem;
 }
 .admin-stocks .stocks-product .edit {
   display: flex;
@@ -1781,6 +1876,33 @@ footer a:hover {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+}
+.admin-stocks .stocks-product form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.admin-stocks .stocks-product form .edit .editables textarea {
+  min-width: 30rem;
+  max-width: 61.5rem;
+  min-height: 20rem;
+  max-height: 20rem;
+}
+.admin-stocks .stocks-product form .edit .editables .sizes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.admin-stocks .stocks-product form .edit .editables .sizes .size input {
+  width: 100%;
+  min-width: 15rem;
+}
+.admin-stocks .stocks-product form .edit .editables .sizes .size label {
+  font-weight: 600;
+  display: block;
 }
 
 .feedbacks {

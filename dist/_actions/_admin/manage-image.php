@@ -10,8 +10,8 @@ $auth = Auth::adminCheck();
 
 $data = new Stocks(new MySQL());
 
-$gender_id = $_GET['gender'] ?? $_POST['gender'];
-$topic_id = $_GET['topic'] ?? $_POST['gender'];
+$gender_id =  $_POST['gender'] ?? $_GET['gender'];
+$topic_id = $_POST['topic'] ?? $_GET['topic'];
 $id = $_GET['id'] ?? $_POST['id'];
 
 if (isset($_GET['del'])) {

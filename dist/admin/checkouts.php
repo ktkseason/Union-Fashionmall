@@ -46,11 +46,12 @@ $checkouts = $user->getCheckoutAll();
                     ?>
                 <div class="checkout">
                     <div class="checkout-head">
-                        <h3><?= $customer->name ?> <span>( <?= $customer->email ?> ) ( <?= $customer->phone ?> )</span>
-                        </h3>
+                        <h4>By: <?= $customer->name ?> <span>( <?= $customer->email ?> ) ( <?= $customer->phone ?>
+                                )</span>
+                        </h4>
                         <a class="update" href="../_actions/_admin/update-checkout.php?id=<?= $checkout->id ?>"><i
-                                class="fa-solid fa-circle-check"
-                                style="color: <?php if ($checkout->status) echo 'green'; ?>;"></i></a>
+                                class="fa-solid fa-circle-check <?php if ($checkout->status) echo 'shipped';
+                                                                                                                                                            else echo 'pending'; ?>"></i></a>
                     </div>
                     <div class="products">
                         <?php foreach ($products as $product) : ?>

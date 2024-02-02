@@ -41,6 +41,16 @@ class Users
 		$row = $statement->fetch();
 		return $row;
 	}
+	public function passwordCheck($password)
+	{
+		$statement = $this->db->prepare("
+			SELECT users.* FROM users 
+			WHERE users.password = :password
+		");
+		$statement->execute(['password' => $password]);
+		$row = $statement->fetch();
+		return $row;
+	}
 
 	public function addFeedback($input)
 	{
@@ -116,7 +126,7 @@ class Users
 	public function getCheckoutByUser($user_id)
 	{
 		$statement = $this->db->prepare("
-            SELECT * FROM checkouts WHERE user_id = :user_id;
+            SELECT * FROM checkouts WHERE user_id = :user_id ORDER BY created_at DESC;
         ");
 		$statement->execute([':user_id' => $user_id]);
 		return $statement->fetchAll();
@@ -147,5 +157,39 @@ class Users
 
 		$statement->execute([':status' => 1, ':checkout_id' => $checkout_id]);
 		return $statement->rowCount();
+	}
+	public function updateUserInfo($name, $email, $id)
+	{
+
+		$statement = $this->db->prepare("
+            UPDATE users SET name = :name, email = :email, updated_at = NOW() WHERE id = :id            
+        ");
+
+		$statement->execute([':name' => $name, ':email' => $email, ':id' => $id]);
+
+		$statement = $this->db->prepare("
+			SELECT users.* FROM users 
+			WHERE users.id = :id
+		");
+		$statement->execute(['id' => $id]);
+		$row = $statement->fetch();
+		return $row;
+	}
+	public function updatePassword($password, $id)
+	{
+
+		$statement = $this->db->prepare("
+            UPDATE users SET password = :password, updated_at = NOW() WHERE id = :id            
+        ");
+
+		$statement->execute([':password' => $password, ':id' => $id]);
+
+		$statement = $this->db->prepare("
+			SELECT users.* FROM users 
+			WHERE users.id = :id
+		");
+		$statement->execute(['id' => $id]);
+		$row = $statement->fetch();
+		return $row;
 	}
 }
