@@ -328,6 +328,20 @@ class Stocks
         return $name ?? false;
     }
 
+    public function getProductBySearch($search)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, genders.name as gender, products.gender_id, products.topic_id, topics.name as topic, products.category_id, categories.name as category, products.brand_id, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            LEFT JOIN genders ON genders.id = products.gender_id
+            LEFT JOIN topics ON topics.id = products.topic_id
+            WHERE products.name LIKE :title ORDER BY products.created_at DESC;
+        ");
+        $statement->execute([':title' => "%$search%"]);
+        return $statement->fetchALL();
+    }
     public function getProductByGenderTopicAndCategory($gender_id, $topic_id, $category_id)
     {
         $statement = $this->db->prepare("

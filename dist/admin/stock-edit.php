@@ -11,7 +11,6 @@ $auth = Auth::adminCheck();
 if (isset($_GET['gender']) && isset($_GET['topic'])) {
     $gender_id = $_GET['gender'];
     $topic_id = $_GET['topic'];
-    $updated = $_GET['$updated'] ?? 0;
     $data = new Stocks(new MySQL());
 
     $gender = $data->getGender($gender_id);
@@ -64,9 +63,19 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
             <!-- Table -->
             <?php if (count($products) != 0) : ?>
             <section class="admin-stocks">
-                <?php if ($updated) : ?>
+                <?php if (isset($_GET['added'])) : ?>
                 <div class="alert success">
-                    <h4>Product is updated successfully.</h4>
+                    <h4>Image is added successfully.</h4>
+                </div>
+                <?php endif; ?>
+                <?php if (isset($_GET['deleted'])) : ?>
+                <div class="alert success">
+                    <h4>Image is deleted successfully.</h4>
+                </div>
+                <?php endif; ?>
+                <?php if (isset($_GET['invalid'])) : ?>
+                <div class="alert error">
+                    <h4>Image type is invalid.</h4>
                 </div>
                 <?php endif; ?>
                 <?php foreach ($products as $product) : ?>
@@ -105,7 +114,8 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                                 <input type="hidden" name="id" value="<?= $product->id ?>">
                                 <input type="hidden" name="gender_id" value="<?= $gender_id ?>">
                                 <input type="hidden" name="topic_id" value="<?= $topic_id ?>">
-                                <input type="text" name="name" value="<?= $product->name ?>" required>
+                                <input type="text" name="name" value="<?= $product->name ?>" placeholder="Product Name"
+                                    required>
                                 <div class="with-header">
                                     <h4><?= $product->color ?></h4>
                                     <select name="color_id" id="color">
@@ -116,8 +126,9 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <input type="number" name="price" value="<?= $product->price ?>">
-                                <textarea name="detail"><?= $product->detail ?></textarea>
+                                <input type="number" name="price" value="<?= $product->price ?>" placeholder="Price"
+                                    required>
+                                <textarea name="detail" placeholder="Product Detail"><?= $product->detail ?></textarea>
                             </div>
                             <div class="with-header editables">
                                 <h3>Sizes & Stocks</h3>
@@ -137,7 +148,7 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                                                                                                                                                             }
                                                                                                                                                         }
                                                                                                                                                         echo $value; ?>
-                                            required>
+                                            placeholder="Number of Stock" required>
 
                                     </div>
                                     <?php endforeach; ?>

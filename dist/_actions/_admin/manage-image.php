@@ -14,8 +14,12 @@ $gender_id =  $_POST['gender'] ?? $_GET['gender'];
 $topic_id = $_POST['topic'] ?? $_GET['topic'];
 $id = $_GET['id'] ?? $_POST['id'];
 
+$query = "gender=" . $gender_id . "&topic=" . $topic_id;
+
 if (isset($_GET['del'])) {
     $data->deleteImage($id);
+    $query .= "&deleted=1";
+    HTTP::redirect("/admin/stock-edit.php", $query);
 }
 
 if (isset($_POST['add'])) {
@@ -34,12 +38,12 @@ if (isset($_POST['add'])) {
                     "product_id" => $id
                 ];
                 $data->addImage($input);
+                $query .= "&added=1";
+                HTTP::redirect("/admin/stock-edit.php", $query);
             }
         } else {
-            echo "Invalid Image Type.";
+            $query .= "&invalid=1";
+            HTTP::redirect("/admin/stock-edit.php", $query);
         }
     }
 }
-
-$query = "gender=" . $gender_id . "&topic=" . $topic_id;
-HTTP::redirect("/admin/stock-edit.php", $query);

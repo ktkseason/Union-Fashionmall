@@ -124,29 +124,6 @@ header {
 
             li {
 
-                &.search {
-                    .search-icon {
-                        display: none;
-                    }
-
-                    form {
-                        background-color: $color-background;
-                        display: flex;
-                        justify-content: center;
-                        align-items: end;
-                        border-radius: 3px;
-                        min-width: 30rem;
-                        border-bottom: 1px solid $color-primary;
-
-                        input {
-                            flex: 1;
-                            padding: 0.8rem 1.5rem;
-                            border-top-left-radius: 0;
-                            border-bottom-left-radius: 0;
-                        }
-                    }
-                }
-
                 &.bag {
                     position: relative;
 
@@ -174,41 +151,6 @@ header {
 @include media-lg {
     header {
         padding: 0.5rem;
-
-        .same-part {
-            .working-icons {
-                li {
-
-                    &.search {
-
-                        .search-icon {
-                            display: inline;
-                        }
-
-                        form {
-                            position: absolute;
-                            top: 6rem;
-                            right: 0.5rem;
-                            display: none;
-                            @include transition;
-
-                            input {
-                                width: calc(100% - 3.6rem);
-                            }
-
-                            &.open {
-                                display: block;
-                                @include transition;
-                            }
-                        }
-
-                    }
-
-                }
-            }
-
-        }
-
     }
 }
 
@@ -319,18 +261,6 @@ header {
         .same-part {
             .working-icons {
                 gap: 0.2rem;
-
-                li {
-                    &.search {
-
-                        form {
-                            top: 4.5rem;
-                            left: 50%;
-                            width: 98vw;
-                            transform: translateX(-50%);
-                        }
-                    }
-                }
             }
         }
 

@@ -65,6 +65,11 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                             <h4>Product is deleted successfully.</h4>
                         </div>
                     <?php endif; ?>
+                    <?php if (isset($_GET['updated'])) : ?>
+                        <div class="alert success">
+                            <h4>Product is updated successfully.</h4>
+                        </div>
+                    <?php endif; ?>
 
                     <?php foreach ($products as $product) : ?>
                         <div class="stocks-product">
