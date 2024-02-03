@@ -2,10 +2,12 @@
 
 include("../vendor/autoload.php");
 
+use Libs\Database\Users;
 use Libs\Database\Stocks;
 use Libs\Database\MySQL;
 
 $data = new Stocks(new MySQL());
+$user = new Users(new MySQL());
 
 $search = $_GET['search'] ?? '';
 $products = [];
@@ -55,7 +57,15 @@ if ($search) {
                             <h3><?= $product->price ?> <span>MMK</span></h3>
                             <div class="working-icons">
                                 <div class="wishlist">
-                                    <a href="signin.php"><i class="fa-solid fa-heart"></i></a>
+                                    <a href="../_actions/add-to-wishlist.php?product_id=<?= $product->id ?>">
+                                        <i class="fa-solid fa-heart" style="color: <?php $wishes = $user->getWishAll($auth->id);
+                                                                                    $wish_products = [];
+                                                                                    foreach ($wishes as $wish) {
+                                                                                        $wish_products[] = $wish->product_id;
+                                                                                    }
+                                                                                    if (in_array($product->id, $wish_products)) echo "#b99095";
+                                                                                    else echo "#3a324a"; ?>;"></i>
+                                    </a>
                                 </div>
                                 <div class="bag">
                                     <a href="product-detail.php?id=<?= $product->id ?>">

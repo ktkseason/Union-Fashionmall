@@ -179,11 +179,7 @@ $categories = $data->getCategoryAll();
         <div class="same-part">
             <ul class="working-icons">
                 <li class="search">
-                    <i class="search-icon fa-solid fa-magnifying-glass"></i>
-                    <form action="">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Search">
-                    </form>
+                    <a href="search.php"><i class="search-icon fa-solid fa-magnifying-glass"></i></a>
                 </li>
                 <li class="wishlist">
                     <a href="wishlist.php"><i class="fa-solid fa-heart"></i></a>

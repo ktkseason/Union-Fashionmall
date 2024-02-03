@@ -262,13 +262,13 @@ select {
   text-align: center;
 }
 .alert.error {
-  color: #380d0d;
+  color: #7c2020;
   background-color: rgba(56, 13, 13, 0.2);
   border: 1px solid rgba(56, 13, 13, 0.8);
   border-radius: 3px;
 }
 .alert.success {
-  color: #0d382a;
+  color: #21916c;
   background-color: rgba(13, 56, 42, 0.2);
   border: 1px solid rgba(13, 56, 42, 0.8);
   border-radius: 3px;
@@ -286,14 +286,14 @@ select {
   align-items: center;
 }
 .checkout-container .checkout .checkout-head .update i.shipped {
-  color: #0d382a;
+  color: #21916c;
   pointer-events: none;
 }
 .checkout-container .checkout .checkout-head .update i.shipped:hover {
-  color: #0d382a;
+  color: #21916c;
 }
 .checkout-container .checkout .checkout-head .update i.pending {
-  color: #380d0d;
+  color: #7c2020;
 }
 .checkout-container .checkout .checkout-head .update i.pending:hover {
   color: #b99095;
@@ -1296,10 +1296,15 @@ header .same-part .working-icons li.bag .badge {
   width: 98vw;
   margin: auto;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  height: 3.6rem;
 }
-.head .caption .search input {
-  flex: 1;
-  height: 3.2rem;
+.head .caption .search input[type=text] {
+  height: 100%;
+  width: 80%;
+  max-width: 40rem;
 }
 
 .bag-checkout {
@@ -1576,18 +1581,18 @@ header .same-part .working-icons li.bag .badge {
   gap: 2rem;
 }
 .profile .history .update i.shipped {
-  color: #0d382a;
+  color: #21916c;
   cursor: inherit;
 }
 .profile .history .update i.shipped:hover {
-  color: #0d382a;
+  color: #21916c;
 }
 .profile .history .update i.pending {
-  color: #380d0d;
+  color: #7c2020;
   cursor: inherit;
 }
 .profile .history .update i.pending:hover {
-  color: #380d0d;
+  color: #7c2020;
 }
 
 .services {
@@ -1894,6 +1899,9 @@ footer a:hover {
   flex-direction: column;
   justify-content: space-between;
   gap: 1rem;
+}
+.feedbacks .feedback-container .feedback h4.time {
+  font-size: 0.9rem;
 }
 .feedbacks .feedback-container .feedback h3 {
   margin-top: 0.5rem;

@@ -3,7 +3,6 @@
 include("../vendor/autoload.php");
 
 use Helpers\Auth;
-use Helpers\HTTP;
 use Libs\Database\MySQL;
 use Libs\Database\Users;
 
@@ -42,6 +41,7 @@ $feedbacks = $user->getFeedbackAll();
                         <?php foreach ($feedbacks as $feedback) : ?>
                             <div class="feedback">
                                 <div class="info">
+                                    <h4 class="time"><?= $feedback->created_at ?></h4>
                                     <h4><?= $feedback->name ?> - <?= $feedback->email ?></h4>
                                     <h3><?= $feedback->subject ?></h3>
                                     <p><?= $feedback->feedback ?></p>

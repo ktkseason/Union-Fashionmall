@@ -4,11 +4,15 @@
             width: 98vw;
             margin: auto;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            height: 3.6rem;
 
-
-            input {
-                flex: 1;
-                height: 3.2rem;
+            input[type="text"] {
+                height: 100%;
+                width: 80%;
+                max-width: 40rem;
             }
         }
     }

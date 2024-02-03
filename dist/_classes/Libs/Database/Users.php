@@ -102,7 +102,7 @@ class Users
 	public function getFeedbackAll()
 	{
 		$statement = $this->db->prepare("
-            SELECT * FROM feedbacks;
+            SELECT * FROM feedbacks ORDER BY created_at DESC;
         ");
 		$statement->execute();
 		return $statement->fetchAll();
