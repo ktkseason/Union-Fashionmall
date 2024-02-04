@@ -9,6 +9,11 @@
                     <h4>Login Failed. Please try again.</h4>
                 </div>
             <?php endif; ?>
+            <?php if (isset($_GET['success'])) : ?>
+                <div class="alert success">
+                    <h4>Account is created successfully. Please Login.</h4>
+                </div>
+            <?php endif; ?>
 
             <div class="inputs">
                 <input type="email" name="email" placeholder="john.doe@gmail.com" value="<?php if (isset($_GET['email'])) echo $_GET['email'] ?>" required>

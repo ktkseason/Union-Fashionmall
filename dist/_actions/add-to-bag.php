@@ -26,8 +26,8 @@ foreach ($sizes_stocks as $size_stock) {
     if ($quantity) {
         if (isset($_SESSION['bag'][$stock_id])) {
             if ($size_stock->stock < $_SESSION['bag'][$stock_id]['quantity'] + $quantity) {
+                $query .= "&exceed=1";
                 if (isset($_SESSION['customer_auth'])) {
-                    $query .= "&exceed=1";
                     HTTP::redirect("/customer/product-detail.php", $query);
                 } else {
                     HTTP::redirect("/public/product-detail.php", $query);

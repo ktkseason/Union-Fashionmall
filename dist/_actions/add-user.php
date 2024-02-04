@@ -15,10 +15,7 @@ $data = new Users(new MySQL());
 if ($data) {
     $data->addUser($input);
     if (isset($_POST['from_bag'])) {
-        HTTP::redirect("/customer/bag.php");
+        echo HTTP::redirect("/public/bag.php", "success=1");
     } else
-        HTTP::redirect("/customer/index.php");
-} else if (isset($_POST['from_bag'])) {
-    echo HTTP::redirect("/public/bag.php");
-} else
-    echo HTTP::redirect("/public/signup.php");
+        echo HTTP::redirect("/public/signin.php", "success=1");
+}

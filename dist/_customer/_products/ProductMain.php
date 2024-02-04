@@ -76,25 +76,30 @@ if ($new) {
 <!-- Head -->
 <section class="container head">
     <h4><?php if ($new) : ?> New Arrivals
-        <?php else : echo $gender ?> &raquo; <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>"><?= $topic ?></a>
-            <?php if ($category_id) : $category = $data->getCategory($category_id); ?>
-                &raquo; <?= $category ?>
-            <?php elseif ($brand_id) : $brand = $data->getBrand($brand_id); ?>
-                &raquo; <?= $brand ?>
-            <?php elseif ($color_id) : $color = $data->getColor($color_id); ?>
-                &raquo; <?= $color ?>
-            <?php endif;
+        <?php else : echo $gender ?> &raquo; <a
+            href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>"><?= $topic ?></a>
+        <?php if ($category_id) : $category = $data->getCategory($category_id); ?>
+        &raquo; <?= $category ?>
+        <?php elseif ($brand_id) : $brand = $data->getBrand($brand_id); ?>
+        &raquo; <?= $brand ?>
+        <?php elseif ($color_id) : $color = $data->getColor($color_id); ?>
+        &raquo; <?= $color ?>
+        <?php endif;
             if ($latest) : ?>
-                &raquo; Latest First
-            <?php elseif ($highfirst) : ?>
-                &raquo; High Price First
-            <?php elseif ($lowfirst) : ?>
-                &raquo; Low Price First
+        &raquo; Latest First
+        <?php elseif ($highfirst) : ?>
+        &raquo; High Price First
+        <?php elseif ($lowfirst) : ?>
+        &raquo; Low Price First
         <?php endif;
         endif; ?>
     </h4>
     <div class="caption">
+        <?php if ($new) : ?>
+        <h1>New Arrivals</h1>
+        <?php else : ?>
         <h1><?= $gender . " " . $topic ?></h1>
+        <?php endif; ?>
         <h4 class="choices">( <?= count($products); ?> Products )</h4>
     </div>
 </section>
@@ -114,11 +119,12 @@ if ($new) {
                     </div>
                     <div class="dropdown">
                         <?php foreach ($categories as $category) : ?>
-                            <div>
-                                <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category->id ?>" style="text-decoration:<?php if ($category_id == $category->id) echo "line-through" ?>;">
-                                    <?= $category->name ?>
-                                </a>
-                            </div>
+                        <div>
+                            <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category->id ?>"
+                                style="text-decoration:<?php if ($category_id == $category->id) echo "line-through" ?>;">
+                                <?= $category->name ?>
+                            </a>
+                        </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -128,9 +134,10 @@ if ($new) {
                     </div>
                     <div class="dropdown">
                         <?php foreach ($brands as $brand) : ?>
-                            <div>
-                                <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&brand=<?= $brand->id ?>"><?= $brand->name ?></a>
-                            </div>
+                        <div>
+                            <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&brand=<?= $brand->id ?>"
+                                style="text-decoration:<?php if ($brand_id == $brand->id) echo "line-through" ?>;"><?= $brand->name ?></a>
+                        </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -140,10 +147,11 @@ if ($new) {
                     </div>
                     <div class="dropdown">
                         <?php foreach ($colors as $color) : ?>
-                            <div>
-                                <div class="color" style="background: <?= $color->value ?>;"></div>
-                                <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&color=<?= $color->id ?>"><?= $color->name ?></a>
-                            </div>
+                        <div>
+                            <div class="color" style="background: <?= $color->value ?>;"></div>
+                            <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&color=<?= $color->id ?>"
+                                style="text-decoration:<?php if ($color_id == $color->id) echo "line-through" ?>;"><?= $color->name ?></a>
+                        </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -153,19 +161,23 @@ if ($new) {
         <div class="product-filter">
             <div class="filter-dropdown sort">
                 <div class="dropdown-name sort">
-                    <h4><i class="fa-solid fa-arrow-down-short-wide"></i>Sort</h4><i class="dropdown-icon fa-solid fa-angle-down"></i>
+                    <h4><i class="fa-solid fa-arrow-down-short-wide"></i>Sort</h4><i
+                        class="dropdown-icon fa-solid fa-angle-down"></i>
                 </div>
                 <div class="dropdown">
                     <div>
-                        <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&latest=1">Latest
+                        <a
+                            href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&latest=1">Latest
                             First</a>
                     </div>
                     <div>
-                        <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&highfirst=1">High
+                        <a
+                            href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&highfirst=1">High
                             Price First</a>
                     </div>
                     <div>
-                        <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&lowfirst=1">Low
+                        <a
+                            href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&lowfirst=1">Low
                             Price First</a>
                     </div>
                 </div>
@@ -177,52 +189,53 @@ if ($new) {
 <!-- Showcase -->
 <section class="container showcase">
     <?php if (count($products) != 0) : ?>
-        <div class="card-container">
-            <?php foreach ($products as $product) : ?>
-                <div class="card">
-                    <div class="img-holder">
-                        <a href="product-detail.php?id=<?= $product->id ?>"><img src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
+    <div class="card-container">
+        <?php foreach ($products as $product) : ?>
+        <div class="card">
+            <div class="img-holder">
+                <a href="product-detail.php?id=<?= $product->id ?>"><img
+                        src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
                                                                                                     echo $images[0]->image; ?>" alt=""></a>
-                    </div>
-                    <div class="info">
-                        <div class="texts">
-                            <a href="product-detail.php?id=<?= $product->id ?>" class="names">
-                                <h2 class="brand"><?= $product->brand ?></h2>
-                                <h4><?= $product->name  ?></h4>
-                            </a>
-                            <div class="sizes">
-                                <p>
-                                    <?php $sizes_stocks = $data->getSizesAndStocksByProduct($product->id);
+            </div>
+            <div class="info">
+                <div class="texts">
+                    <a href="product-detail.php?id=<?= $product->id ?>" class="names">
+                        <h2 class="brand"><?= $product->brand ?></h2>
+                        <h4><?= $product->name  ?></h4>
+                    </a>
+                    <div class="sizes">
+                        <p>
+                            <?php $sizes_stocks = $data->getSizesAndStocksByProduct($product->id);
                                     foreach ($sizes_stocks as $size_stock) echo $size_stock->size . " "; ?>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="bottom">
-                            <h3><?= $product->price ?> <span>MMK</span></h3>
-                            <div class="working-icons">
-                                <div class="wishlist">
-                                    <a href="../_actions/add-to-wishlist.php?product_id=<?= $product->id ?>">
-                                        <i class="fa-solid fa-heart" style="color: <?php $wishes = $user->getWishAll($auth->id);
+                        </p>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <h3><?= $product->price ?> <span>MMK</span></h3>
+                    <div class="working-icons">
+                        <div class="wishlist">
+                            <a href="../_actions/add-to-wishlist.php?product_id=<?= $product->id ?>">
+                                <i class="fa-solid fa-heart" style="color: <?php $wishes = $user->getWishAll($auth->id);
                                                                                     $wish_products = [];
                                                                                     foreach ($wishes as $wish) {
                                                                                         $wish_products[] = $wish->product_id;
                                                                                     }
                                                                                     if (in_array($product->id, $wish_products)) echo "#b99095";
                                                                                     else echo "#3a324a"; ?>;"></i>
-                                    </a>
-                                </div>
-                                <div class="bag">
-                                    <a href="product-detail.php?id=<?= $product->id ?>">
-                                        <i class="fa-solid fa-shopping-bag"></i>
-                                    </a>
-                                </div>
-                            </div>
+                            </a>
+                        </div>
+                        <div class="bag">
+                            <a href="product-detail.php?id=<?= $product->id ?>">
+                                <i class="fa-solid fa-shopping-bag"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            </div>
         </div>
+        <?php endforeach; ?>
+    </div>
     <?php else : ?>
-        <h2 class="sorry">We are sorry. There is no current product.</h2>
+    <h2 class="sorry">We are sorry. There is no current product.</h2>
     <?php endif; ?>
 </section>

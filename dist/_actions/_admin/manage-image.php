@@ -23,7 +23,6 @@ if (isset($_GET['del'])) {
 }
 
 if (isset($_POST['add'])) {
-    echo "adding";
     $targetDir = "../../assets/img/";
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
     $fileNames = array_filter($_FILES['images']['name']);
@@ -39,11 +38,11 @@ if (isset($_POST['add'])) {
                 ];
                 $data->addImage($input);
                 $query .= "&added=1";
-                HTTP::redirect("/admin/stock-edit.php", $query);
             }
         } else {
             $query .= "&invalid=1";
             HTTP::redirect("/admin/stock-edit.php", $query);
         }
     }
+    HTTP::redirect("/admin/stock-edit.php", $query);
 }

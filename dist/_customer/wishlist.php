@@ -30,12 +30,12 @@ $wishes = $user->getWishAll($auth->id);
                 $product = $data->getProduct($wish->product_id); ?>
                 <div class="card">
                     <div class="img-holder">
-                        <a href="#"><img src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
-                                                            echo $images[0]->image; ?>" alt=""></a>
+                        <a href="product-detail.php?id=<?= $product->id ?>"><img src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
+                                                                                                    echo $images[0]->image; ?>" alt=""></a>
                     </div>
                     <div class="info">
                         <div class="texts">
-                            <a class="names">
+                            <a href="product-detail.php?id=<?= $product->id ?>" class="names">
                                 <h2 class="brand"><?= $product->brand ?></h2>
                                 <h4><?= $product->name  ?></h4>
                             </a>

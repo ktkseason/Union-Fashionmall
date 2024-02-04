@@ -15,42 +15,41 @@ $bag = $_SESSION['bag'] ?? 0;
             <a href="../_actions/delete-from-bag.php?all=1"><i class="fa-solid fa-circle-minus"></i></a>
         </div>
         <?php if ($bag) : ?>
-        <div class="bag">
-            <?php foreach ($bag as $cell) :
+            <div class="bag">
+                <?php foreach ($bag as $cell) :
                     $stock_id = $cell['stock_id'];
                     $stock = $data->getStock($stock_id);
                     $product = $data->getProduct($stock->product_id);
                 ?>
-            <div class="bag-row">
-                <div class="img-side">
-                    <div class="img-holder">
-                        <img src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
+                    <div class="bag-row">
+                        <div class="img-side">
+                            <div class="img-holder">
+                                <img src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
                                                         echo $images[0]->image; ?>" alt="">
-                    </div>
-                    <div class="texts">
-                        <div class="names">
-                            <h2><?= $product->brand ?></h2>
-                            <h4><?= $product->name ?></h4>
+                            </div>
+                            <div class="texts">
+                                <div class="names">
+                                    <h2><?= $product->brand ?></h2>
+                                    <h4><?= $product->name ?></h4>
+                                </div>
+                                <div class="stock-info">
+                                    <h3><?= $stock->size ?></h3>
+                                    <h4><?= $product->price ?> <span class="unit">MMK</span>
+                                        <span class="quantity">(x<?= $cell['quantity'] ?>)</span>
+                                    </h4>
+                                </div>
+                            </div>
                         </div>
-                        <div class="stock-info">
-                            <h3><?= $stock->size ?></h3>
-                            <h4><?= $product->price ?> <span class="unit">MMK</span>
-                                <span class="quantity">(x<?= $cell['quantity'] ?>)</span>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="subtotal">
-                    <h4><?php echo $product->price * $cell['quantity']; ?> <span class="unit">MMK</span></h4>
-                </div>
-                <a class="delete" href="../_actions/delete-from-bag.php?cell=<?= $cell['stock_id'] ?>"><i
-                        class="fa-solid fa-circle-minus"></i></a>
+                        <div class="subtotal">
+                            <h4><?php echo $product->price * $cell['quantity']; ?> <span class="unit">MMK</span></h4>
+                        </div>
+                        <a class="delete" href="../_actions/delete-from-bag.php?cell=<?= $cell['stock_id'] ?>"><i class="fa-solid fa-circle-minus"></i></a>
+                    </div>
+                <?php endforeach; ?>
             </div>
-            <?php endforeach; ?>
-        </div>
         <?php else : ?>
-        <h2 class="no-bag">No product in shopping bag.</h2>
+            <h2 class="no-bag">No product in shopping bag.</h2>
         <?php endif; ?>
     </section>
 
@@ -60,14 +59,19 @@ $bag = $_SESSION['bag'] ?? 0;
             <form action="../_actions/verify-user.php" method="post">
 
                 <?php if (isset($_GET['incorrect'])) : ?>
-                <div class="alert error">
-                    <h4>Login Failed. Please try again.</h4>
-                </div>
+                    <div class="alert error">
+                        <h4>Login Failed. Please try again.</h4>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (isset($_GET['success'])) : ?>
+                    <div class="alert success">
+                        <h4>Account is created successfully. Please Login.</h4>
+                    </div>
                 <?php endif; ?>
 
                 <div class="inputs">
-                    <input type="email" name="email" placeholder="john.doe@gmail.com"
-                        value="<?php if (isset($_GET['email'])) echo $_GET['email'] ?>" required>
+                    <input type="email" name="email" placeholder="john.doe@gmail.com" value="<?php if (isset($_GET['email'])) echo $_GET['email'] ?>" required>
                     <input type="password" name="password" placeholder="xxxxxxxx" required>
                     <input type="submit" name="from_bag" class="btn btn-primary">
                 </div>

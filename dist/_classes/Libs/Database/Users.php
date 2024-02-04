@@ -21,7 +21,13 @@ class Users
 			$statement = $this->db->prepare($query);
 			$statement->execute($input);
 
-			return $this->db->lastInsertId();
+			$id = $this->db->lastInsertId();
+
+			$statement = $this->db->prepare("
+           		SELECT * FROM users WHERE id = :user_id;
+			");
+			$statement->execute([':user_id' => $id]);
+			return $statement->fetch();
 		} catch (PDOException $e) {
 			return $e->getMessage()();
 		}

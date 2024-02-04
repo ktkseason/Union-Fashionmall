@@ -95,7 +95,11 @@ if ($new) {
         endif; ?>
     </h4>
     <div class="caption">
+        <?php if ($new) : ?>
+        <h1>New Arrivals</h1>
+        <?php else : ?>
         <h1><?= $gender . " " . $topic ?></h1>
+        <?php endif; ?>
         <h4 class="choices">( <?= count($products); ?> Products )</h4>
     </div>
 </section>
@@ -131,8 +135,8 @@ if ($new) {
                     <div class="dropdown">
                         <?php foreach ($brands as $brand) : ?>
                         <div>
-                            <a
-                                href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&brand=<?= $brand->id ?>"><?= $brand->name ?></a>
+                            <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&brand=<?= $brand->id ?>"
+                                style="text-decoration:<?php if ($brand_id == $brand->id) echo "line-through" ?>;"><?= $brand->name ?></a>
                         </div>
                         <?php endforeach; ?>
                     </div>
@@ -145,8 +149,8 @@ if ($new) {
                         <?php foreach ($colors as $color) : ?>
                         <div>
                             <div class="color" style="background: <?= $color->value ?>;"></div>
-                            <a
-                                href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&color=<?= $color->id ?>"><?= $color->name ?></a>
+                            <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&color=<?= $color->id ?>"
+                                style="text-decoration:<?php if ($color_id == $color->id) echo "line-through" ?>;"><?= $color->name ?></a>
                         </div>
                         <?php endforeach; ?>
                     </div>
