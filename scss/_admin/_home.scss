@@ -67,4 +67,11 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
+
+    h1 {
+        span {
+            font-size: $fs-sm;
+            font-weight: $fw-bold;
+        }
+    }
 }

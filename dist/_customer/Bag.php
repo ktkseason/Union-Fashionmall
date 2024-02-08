@@ -32,13 +32,20 @@ $total = 0;
             <div class="bag-row">
                 <div class="img-side">
                     <div class="img-holder">
-                        <img src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
-                                                        echo $images[0]->image; ?>" alt="">
+                        <a href="product-detail.php?id=<?= $product->id ?>">
+                            <img src="../assets/img/<?php $images = $data->getImageByProduct($product->id);
+                                                            echo $images[0]->image; ?>" alt="">
+                        </a>
                     </div>
                     <div class="texts">
                         <div class="names">
-                            <h2><?= $product->brand ?></h2>
-                            <h4><?= $product->name ?></h4>
+                            <a
+                                href="products.php?gender=<?= $product->gender_id ?>&topic=<?= $product->topic_id ?>&brand=<?= $product->brand_id ?>">
+                                <h2><?= $product->brand ?></h2>
+                            </a>
+                            <a href="product-detail.php?id=<?= $product->id ?>">
+                                <h4><?= $product->name ?></h4>
+                            </a>
                         </div>
                         <div class="stock-info">
                             <h4><?= $stock->size ?></h4>

@@ -137,6 +137,26 @@ class Users
 		$statement->execute([':user_id' => $user_id]);
 		return $statement->fetchAll();
 	}
+	public function getUserByCheckout()
+	{
+		$statement = $this->db->prepare("
+            SELECT DISTINCT users.id, users.name, users.email FROM users
+			LEFT JOIN checkouts ON checkouts.user_id = users.id
+			WHERE checkouts.user_id = users.id;
+        ");
+		$statement->execute();
+		return $statement->fetchAll();
+	}
+	public function getUserByCheckoutOnSearch($search)
+	{
+		$statement = $this->db->prepare("
+            SELECT DISTINCT users.id, users.name, users.email FROM users
+			LEFT JOIN checkouts ON checkouts.user_id = users.id
+			WHERE checkouts.user_id = users.id AND users.name LIKE :name;
+        ");
+		$statement->execute([':name' => "%$search%"]);
+		return $statement->fetchAll();
+	}
 	public function getCheckoutByStatus()
 	{
 		$statement = $this->db->prepare("
