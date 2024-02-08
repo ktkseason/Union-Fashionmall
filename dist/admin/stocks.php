@@ -1,23 +1,32 @@
 <?php
+
 include("../vendor/autoload.php");
 
+use Libs\Database\Users;
 use Helpers\Auth;
 use Helpers\HTTP;
 use Libs\Database\Stocks;
 use Libs\Database\MySQL;
 
 $auth = Auth::adminCheck();
+$data = new Stocks(new MySQL());
 
 if (isset($_GET['gender']) && isset($_GET['topic'])) {
     $gender_id = $_GET['gender'];
     $topic_id = $_GET['topic'];
     $deleted = $_GET['deleted'] ?? 0;
-    $data = new Stocks(new MySQL());
+
+    $search = $_GET['search'] ?? '';
 
     $gender = $data->getGender($gender_id);
     $topic = $data->getTopic($topic_id);
 
-    $products = $data->getProductByGenderAndTopicLatest($gender_id, $topic_id);
+    if ($search) {
+        $products = $data->getProductByGenderAndTopicLatestOnSearch($search, $gender_id, $topic_id);
+    } else {
+        $products = $data->getProductByGenderAndTopicLatest($gender_id, $topic_id);
+    }
+
     if (!$gender || !$topic) {
         HTTP::redirect("/admin/home.php", "query_error=1");
     }
@@ -56,6 +65,17 @@ if (isset($_GET['gender']) && isset($_GET['topic'])) {
                         New</a>
                 </div>
             </div>
+
+            <section class="head">
+                <div class="caption admin-search">
+                    <form class="search" action="">
+                        <input type="hidden" name="gender" value="<?= $gender_id ?>">
+                        <input type="hidden" name="topic" value="<?= $topic_id ?>">
+                        <input type="text" name="search" value="<?= $search ?>" placeholder=" Search">
+                        <input type="submit" class="btn btn-primary" value="Search">
+                    </form>
+                </div>
+            </section>
 
             <?php if (count($products) != 0) : ?>
                 <section class="admin-stocks">

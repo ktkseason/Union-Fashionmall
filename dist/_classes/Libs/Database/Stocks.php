@@ -178,6 +178,18 @@ class Stocks
         $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id]);
         return $statement->fetchAll();
     }
+    public function getProductByGenderAndTopicLatestOnSearch($search, $gender_id, $topic_id)
+    {
+        $statement = $this->db->prepare("
+            SELECT products.id, products.name, categories.name as category, brands.name as brand, colors.name as color, products.price, products.detail FROM products
+            LEFT JOIN categories ON categories.id = products.category_id
+            LEFT JOIN brands ON brands.id = products.brand_id
+            LEFT JOIN colors ON colors.id = products.color_id
+            WHERE products.gender_id = :gender_id AND products.topic_id = :topic_id AND products.name LIKE :name ORDER BY products.created_at DESC   
+        ");
+        $statement->execute([':gender_id' => $gender_id, ':topic_id' => $topic_id, ':name' => "%$search%"]);
+        return $statement->fetchAll();
+    }
     public function getProductByGenderAndTopicHighFirst($gender_id, $topic_id)
     {
         $statement = $this->db->prepare("
