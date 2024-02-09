@@ -44,20 +44,20 @@ if ($new) {
         $products = $data->getProductByGenderTopicAndCategory($gender_id, $topic_id, $category_id);
 } elseif ($brand_id) {
     if ($latest)
-        $products = $data->getProductByGenderTopicAndBrandLatest($gender_id, $topic_id, $brand_idd);
+        $products = $data->getProductByGenderTopicAndBrandLatest($gender_id, $topic_id, $brand_id);
     elseif ($highfirst)
-        $products = $data->getProductByGenderTopicAndBrandHighFirst($gender_id, $topic_id, $brand_idd);
+        $products = $data->getProductByGenderTopicAndBrandHighFirst($gender_id, $topic_id, $brand_id);
     elseif ($lowfirst)
-        $products = $data->getProductByGenderTopicAndBrandLowFirst($gender_id, $topic_id, $brand_idd);
+        $products = $data->getProductByGenderTopicAndBrandLowFirst($gender_id, $topic_id, $brand_id);
     else
         $products = $data->getProductByGenderTopicAndBrand($gender_id, $topic_id, $brand_id);
 } elseif ($color_id) {
     if ($latest)
-        $products = $data->getProductByGenderTopicAndColorLatest($gender_id, $topic_id, $category_id);
+        $products = $data->getProductByGenderTopicAndColorLatest($gender_id, $topic_id, $color_id);
     elseif ($highfirst)
-        $products = $data->getProductByGenderTopicAndColorHighFirst($gender_id, $topic_id, $category_id);
+        $products = $data->getProductByGenderTopicAndColorHighFirst($gender_id, $topic_id, $color_id);
     elseif ($lowfirst)
-        $products = $data->getProductByGenderTopicAndColorLowFirst($gender_id, $topic_id, $category_id);
+        $products = $data->getProductByGenderTopicAndColorLowFirst($gender_id, $topic_id, $color_id);
     else
         $products = $data->getProductByGenderTopicAndColor($gender_id, $topic_id, $color_id);
 } else {
@@ -166,18 +166,18 @@ if ($new) {
                 </div>
                 <div class="dropdown">
                     <div>
-                        <a
-                            href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&latest=1">Latest
+                        <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&latest=1"
+                            style="text-decoration:<?php if ($latest) echo "line-through" ?>;">Latest
                             First</a>
                     </div>
                     <div>
-                        <a
-                            href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&highfirst=1">High
+                        <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&highfirst=1"
+                            style="text-decoration:<?php if ($highfirst) echo "line-through" ?>;">High
                             Price First</a>
                     </div>
                     <div>
-                        <a
-                            href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&lowfirst=1">Low
+                        <a href="products.php?gender=<?= $gender_id ?>&topic=<?= $topic_id ?>&category=<?= $category_id ?>&brand=<?= $brand_id ?>&color=<?= $color_id ?>&lowfirst=1"
+                            style="text-decoration:<?php if ($lowfirst) echo "line-through" ?>;">Low
                             Price First</a>
                     </div>
                 </div>

@@ -24,7 +24,7 @@ if ($search) {
     <?php endif; ?>
     <div class="caption">
         <form class="search" action="">
-            <input type="text" name="search" placeholder="Search">
+            <input type="text" name="search" value="<?= $search ?>" placeholder="Search">
             <input type="submit" class="btn btn-primary" value="Search">
         </form>
     </div>
@@ -79,6 +79,6 @@ if ($search) {
             <?php endforeach; ?>
         </div>
     <?php else : ?>
-        <h2 class="sorry">There is no result product for your search.</h2>
+        <h2 class="sorry">There is no result product for your search yet.</h2>
     <?php endif; ?>
 </section>
