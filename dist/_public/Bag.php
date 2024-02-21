@@ -68,7 +68,7 @@ $bag = $_SESSION['bag'] ?? 0;
 
                 <?php if (isset($_GET['incorrect'])) : ?>
                 <div class="alert error">
-                    <h4>Login Failed. Please try again.</h4>
+                    <h4>Sign in Failed. Please try again.</h4>
                 </div>
                 <?php endif; ?>
 

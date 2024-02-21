@@ -6,7 +6,7 @@
 
             <?php if (isset($_GET['incorrect'])) : ?>
             <div class="alert error">
-                <h4>Login Failed. Please try again.</h4>
+                <h4>Sign in Failed. Please try again.</h4>
             </div>
             <?php endif; ?>
             <?php if (isset($_GET['success'])) : ?>

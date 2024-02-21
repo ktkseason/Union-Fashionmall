@@ -43,9 +43,7 @@ foreach ($sizes_stocks as $size_stock) {
         }
     }
 }
-print_r($_SESSION['bag']);
-echo "<br>";
-print_r($stocks);
+
 $query .= "&success=1";
 if (isset($_SESSION['customer_auth'])) {
     HTTP::redirect("/customer/product-detail.php", $query);
